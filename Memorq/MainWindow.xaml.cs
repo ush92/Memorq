@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Memorq.Classes.Models;
+using SQLite;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,11 +22,48 @@ namespace Memorq
     /// </summary>
     public partial class MainWindow : Window
     {
+        List<Category> categories;
+
         public MainWindow()
         {
             InitializeComponent();
 
-         /*       
+            categories = new List<Category>();
+        }
+
+        private void insertDBtestBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Category category = new Category()
+            {
+                Name = insertDBtxt.Text
+            };
+
+            if (category.Name.Equals(string.Empty)) category.Name = "default";
+
+            using (SQLiteConnection connection = new SQLiteConnection(App.databasePath))
+            {
+                connection.CreateTable<Category>();
+                connection.Insert(category);
+            }
+        }
+
+        private void readDBbtn_Click(object sender, RoutedEventArgs e)
+        {
+            using (SQLiteConnection connection = new SQLiteConnection(App.databasePath))
+            {
+                connection.CreateTable<Category>();
+                categories = (connection.Table<Category>().ToList()).OrderBy(c => c.Name).ToList();
+            }
+
+            if(categories != null)
+            {
+                categoriesListView.ItemsSource = categories;
+            }
+        }
+    }
+}
+
+             /*       
                     algorithm SM-2 is
             input:  user grade q
                     repetition number n
@@ -53,7 +92,3 @@ namespace Memorq
             return (n, EF, I)
 
          */
-
-        }
-    }
-}

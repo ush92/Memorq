@@ -25,6 +25,16 @@
             <TextBox HorizontalAlignment="Left" Margin="600,286,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
             <TextBox HorizontalAlignment="Left" Margin="600,309,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
             <TextBox HorizontalAlignment="Left" Margin="600,332,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <Button x:Name="insertDBtestBtn" Content="Button" HorizontalAlignment="Left" Margin="160,259,0,0" VerticalAlignment="Top" Click="insertDBtestBtn_Click"/>
+            <TextBox x:Name="insertDBtxt" HorizontalAlignment="Left" Margin="158,210,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <ListView x:Name="categoriesListView" HorizontalAlignment="Left" Height="255" Margin="345,63,0,0" VerticalAlignment="Top" Width="150">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <Button x:Name="readDBbtn" Content="Button" HorizontalAlignment="Left" Margin="398,26,0,0" VerticalAlignment="Top" Click="readDBbtn_Click"/>
         </Grid>
 
     </DockPanel>
