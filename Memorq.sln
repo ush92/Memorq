@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31025.194
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Memorq", "Memorq\Memorq.csproj", "{2F359D7F-D873-4D84-8574-0226F74DDF90}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2F359D7F-D873-4D84-8574-0226F74DDF90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F359D7F-D873-4D84-8574-0226F74DDF90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F359D7F-D873-4D84-8574-0226F74DDF90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F359D7F-D873-4D84-8574-0226F74DDF90}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5317E382-4E0A-450C-8B19-A5BE6F357858}
+	EndGlobalSection
+EndGlobal
