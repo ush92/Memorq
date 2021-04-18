@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
 
-    <DockPanel>
+    <DockPanel LastChildFill="False">
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="_Plik">
                 <MenuItem Header="_Nowa baza" />
@@ -16,27 +16,42 @@
                 <Separator />
                 <MenuItem Header="_Exit" />
             </MenuItem>
+            <MenuItem Header="_Edycja">
+                <MenuItem Header="_Nowa baza" />
+                <MenuItem Header="_Otwórz bazę" />
+                <MenuItem Header="_Save" />
+                <Separator />
+                <MenuItem Header="_Exit" />
+            </MenuItem>
+            <MenuItem Header="_Statystyki">
+                <MenuItem Header="_Nowa baza" />
+                <MenuItem Header="_Otwórz bazę" />
+                <MenuItem Header="_Save" />
+                <Separator />
+                <MenuItem Header="_Exit" />
+            </MenuItem>
+            <MenuItem Header="Opcje">
+                <MenuItem Header="_Nowa baza" />
+                <MenuItem Header="_Otwórz bazę" />
+                <MenuItem Header="_Save" />
+                <Separator />
+                <MenuItem Header="_Exit" />
+            </MenuItem>
+            <MenuItem Header="_Pomoc">
+                <MenuItem Header="_Nowa baza" />
+                <MenuItem Header="_Otwórz bazę" />
+                <MenuItem Header="_Save" />
+                <Separator />
+                <MenuItem Header="_Exit" />
+            </MenuItem>
         </Menu>
-        <Grid>
-            <Button Content="Button" Height="21" Margin="600,259,80,136"/>
-            <TextBox HorizontalAlignment="Left" Margin="600,190,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-            <TextBox HorizontalAlignment="Left" Margin="600,213,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-            <TextBox HorizontalAlignment="Left" Margin="600,236,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-            <TextBox HorizontalAlignment="Left" Margin="600,286,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-            <TextBox HorizontalAlignment="Left" Margin="600,309,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-            <TextBox HorizontalAlignment="Left" Margin="600,332,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-            <Button x:Name="insertDBtestBtn" Content="Button" HorizontalAlignment="Left" Margin="160,259,0,0" VerticalAlignment="Top" Click="insertDBtestBtn_Click"/>
-            <TextBox x:Name="insertDBtxt" HorizontalAlignment="Left" Margin="158,210,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-            <ListView x:Name="categoriesListView" HorizontalAlignment="Left" Height="255" Margin="345,63,0,0" VerticalAlignment="Top" Width="150">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn/>
-                    </GridView>
-                </ListView.View>
-            </ListView>
-            <Button x:Name="readDBbtn" Content="Button" HorizontalAlignment="Left" Margin="398,26,0,0" VerticalAlignment="Top" Click="readDBbtn_Click"/>
-        </Grid>
+        <StatusBar DockPanel.Dock="Bottom" Name="statusBar" Height="30" HorizontalContentAlignment="Stretch">
+            <DockPanel LastChildFill="True"
+                   Width="{Binding ActualWidth, ElementName=statusBar, Mode=OneWay}">
+                <Label DockPanel.Dock="Right" Content="0 0 0" Width="106" Background="#FF9CD3BA" />
+                <Label DockPanel.Dock="Left"  Content="test" Background="#FFE2C7C7" />
 
+            </DockPanel>
+        </StatusBar>
     </DockPanel>
-
 </Window>
