@@ -27,11 +27,23 @@ namespace Memorq
             InitializeComponent();
         }
 
-        //private void Button_Click_1(object sender, RoutedEventArgs e)
-        //{
-        //    DebugWindow debugWindow = new DebugWindow();
-        //    debugWindow.Show();
-        //}
+        #region RightButtons
 
+        private void DebugBtn_Click(object sender, RoutedEventArgs e)
+        {
+            DebugWindow debugWindow = new DebugWindow();
+            debugWindow.Show();
+        }
+
+        #endregion
+
+        #region MainMenu
+
+        private void FileExitItem_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        #endregion
     }
 }
