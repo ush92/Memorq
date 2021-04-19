@@ -1,4 +1,5 @@
-﻿using Memorq.Classes.Models;
+﻿using Memorq.Classes.Forms;
+using Memorq.Classes.Models;
 using SQLite;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,9 @@ namespace Memorq
     /// </summary>
     public partial class MainWindow : Window
     {
+        private DebugWindow debugWindow = null;
+        private About aboutWindow = null;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -31,8 +35,8 @@ namespace Memorq
 
         private void DebugBtn_Click(object sender, RoutedEventArgs e)
         {
-            DebugWindow debugWindow = new DebugWindow();
-            debugWindow.Show();
+            debugWindow = new DebugWindow();
+            debugWindow.ShowDialog();
         }
 
         #endregion
@@ -42,6 +46,12 @@ namespace Memorq
         private void MenuFileExitItem_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void MenuHelpAboutItem_Click(object sender, RoutedEventArgs e)
+        {
+            aboutWindow = new About();
+            aboutWindow.ShowDialog();
         }
 
         #endregion

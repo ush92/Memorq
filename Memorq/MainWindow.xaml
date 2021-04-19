@@ -29,11 +29,9 @@
                 <MenuItem Header="..." />
             </MenuItem>
             <MenuItem Header="{StaticResource Menu_Help}">
-                <MenuItem Header="{StaticResource Menu_Help_About}" />
+                <MenuItem Header="{StaticResource Menu_Help_About}" Click="MenuHelpAboutItem_Click" />
             </MenuItem>
         </Menu>
-
-
 
         <StatusBar DockPanel.Dock="Bottom" Name="statusBar" Height="30" HorizontalContentAlignment="Stretch">
             <DockPanel LastChildFill="True"
@@ -55,6 +53,15 @@
             <Button x:Name="NewBtn" Grid.Row="1" Content="{StaticResource NewBtn_right}"></Button>
             <Button x:Name="ForceBtn" Grid.Row="2" Content="{StaticResource ForceBtn_right}"></Button>
             <Button x:Name="DebugBtn" Grid.Row="3" Click="DebugBtn_Click">Debug</Button>
+        </Grid>
+
+        <Grid DockPanel.Dock="Left" Width="675">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="9*" />
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" Content="Memorq 1.0.1"/>
+            <Label Grid.Row="1" Content="'Tell me and I forget. Teach me and I remember. Involve me and I learn.' - Benjamin Franklin"/>
         </Grid>
 
     </DockPanel>
