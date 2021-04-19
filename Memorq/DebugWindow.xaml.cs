@@ -58,6 +58,10 @@ namespace Memorq
             {
                 categoriesListView.ItemsSource = categories;
             }
+
+            // Programmatic use of string resource from Dictionary.xaml resource dictionary
+            string localizedMessage = (string)Application.Current.FindResource("NewBtn_right");
+            MessageBox.Show(localizedMessage);
         }
     }
 }

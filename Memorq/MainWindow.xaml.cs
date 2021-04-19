@@ -39,7 +39,7 @@ namespace Memorq
 
         #region MainMenu
 
-        private void FileExitItem_Click(object sender, RoutedEventArgs e)
+        private void MenuFileExitItem_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }

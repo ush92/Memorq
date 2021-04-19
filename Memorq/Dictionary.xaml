@@ -1,0 +1,27 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+
+    <!-- Right Panel buttons -->
+    <system:String x:Key="AddBtn_right">Dodaj</system:String>
+    <system:String x:Key="NewBtn_right">Nowe</system:String>
+    <system:String x:Key="ForceBtn_right">Wymuś</system:String>
+
+    
+
+    <!-- Main Menu -->
+    <system:String x:Key="Menu_File">Plik</system:String>
+    <system:String x:Key="Menu_File_New">Nowa kategoria</system:String>
+    <system:String x:Key="Menu_File_Open">Otwórz kategorię</system:String>
+    <system:String x:Key="Menu_File_Manager">Menedżer kategorii</system:String>
+    <system:String x:Key="Menu_File_ImportExport">Import/Eksport</system:String>
+    <system:String x:Key="Menu_File_Exit">Wyjście</system:String>
+
+    <system:String x:Key="Menu_Edit">Edycja</system:String>
+    <system:String x:Key="Menu_Stats">Statystyki</system:String>
+    <system:String x:Key="Menu_Options">Opcje</system:String>
+    
+    <system:String x:Key="Menu_Help">Pomoc</system:String>
+    <system:String x:Key="Menu_Help_About">O programie</system:String>
+
+</ResourceDictionary>

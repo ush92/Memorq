@@ -10,45 +10,31 @@
 
     <DockPanel LastChildFill="False">
         <Menu DockPanel.Dock="Top">
-            <MenuItem Header="_Plik">
-                <MenuItem Header="_Nowa baza" />
-                <MenuItem Header="_Otwórz bazę" />
-                <MenuItem Header="_Save" />
+            <MenuItem Header="{StaticResource Menu_File}">
+                <MenuItem Header="{StaticResource Menu_File_New}"/>
+                <MenuItem Header="{StaticResource Menu_File_Open}"/>
+                <MenuItem Header="{StaticResource Menu_File_Manager}"/>
                 <Separator />
-                <MenuItem Header="_Exit" Click="FileExitItem_Click"/>
+                <MenuItem Header="{StaticResource Menu_File_ImportExport}" />
+                <Separator />
+                <MenuItem Header="{StaticResource Menu_File_Exit}" Click="MenuFileExitItem_Click"/>
             </MenuItem>
-            <MenuItem Header="_Edycja">
-                <MenuItem Header="_Nowa baza" />
-                <MenuItem Header="_Otwórz bazę" />
-                <MenuItem Header="_Save" />
-                <Separator />
-                <MenuItem Header="_Exit" />
+            <MenuItem Header="{StaticResource Menu_Edit}">
+                <MenuItem Header="..." />
             </MenuItem>
-            <MenuItem Header="_Statystyki">
-                <MenuItem Header="_Nowa baza" />
-                <MenuItem Header="_Otwórz bazę" />
-                <MenuItem Header="_Save" />
-                <Separator />
-                <MenuItem Header="_Exit" />
+            <MenuItem Header="{StaticResource Menu_Stats}">
+                <MenuItem Header="..." />
             </MenuItem>
-            <MenuItem Header="Opcje">
-                <MenuItem Header="_Nowa baza" />
-                <MenuItem Header="_Otwórz bazę" />
-                <MenuItem Header="_Save" />
-                <Separator />
-                <MenuItem Header="_Exit" />
+            <MenuItem Header="{StaticResource Menu_Options}">
+                <MenuItem Header="..." />
             </MenuItem>
-            <MenuItem Header="_Pomoc">
-                <MenuItem Header="_Nowa baza" />
-                <MenuItem Header="_Otwórz bazę" />
-                <MenuItem Header="_Save" />
-                <Separator />
-                <MenuItem Header="_Exit" />
+            <MenuItem Header="{StaticResource Menu_Help}">
+                <MenuItem Header="{StaticResource Menu_Help_About}" />
             </MenuItem>
         </Menu>
-        
-        
-        
+
+
+
         <StatusBar DockPanel.Dock="Bottom" Name="statusBar" Height="30" HorizontalContentAlignment="Stretch">
             <DockPanel LastChildFill="True"
                    Width="{Binding ActualWidth, ElementName=statusBar, Mode=OneWay}">
@@ -65,9 +51,9 @@
                 <RowDefinition Height="1*" />
                 <RowDefinition Height="1*" />
             </Grid.RowDefinitions>
-            <Button x:Name="AddBtn" Grid.Row="0">Dodaj</Button>
-            <Button x:Name="NewBtn" Grid.Row="1">Nowe</Button>
-            <Button x:Name="ForceBtn" Grid.Row="2">Wymuś</Button>
+            <Button x:Name="AddBtn" Grid.Row="0" Content="{StaticResource AddBtn_right}"></Button>
+            <Button x:Name="NewBtn" Grid.Row="1" Content="{StaticResource NewBtn_right}"></Button>
+            <Button x:Name="ForceBtn" Grid.Row="2" Content="{StaticResource ForceBtn_right}"></Button>
             <Button x:Name="DebugBtn" Grid.Row="3" Click="DebugBtn_Click">Debug</Button>
         </Grid>
 
