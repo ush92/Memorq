@@ -1,4 +1,4 @@
-﻿using Memorq.Classes.Models;
+﻿using Memorq.Models;
 using SQLite;
 using System;
 using System.Collections.Generic;

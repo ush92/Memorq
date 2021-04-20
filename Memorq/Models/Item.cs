@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Memorq.Classes.Models
+namespace Memorq.Models
 {
     public class Item
     {

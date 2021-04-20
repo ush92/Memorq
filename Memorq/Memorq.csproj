@@ -26,4 +26,9 @@
     <Resource Include="Images\add.png" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Commands\" />
+    <Folder Include="ViewModels\" />
+  </ItemGroup>
+
 </Project>

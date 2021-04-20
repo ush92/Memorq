@@ -1,5 +1,5 @@
-﻿using Memorq.Classes.Forms;
-using Memorq.Classes.Models;
+﻿using Memorq.Views;
+using Memorq.Models;
 using SQLite;
 using System;
 using System.Collections.Generic;
