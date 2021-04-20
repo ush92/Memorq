@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Memorq.Models
 {
-    public class Item
+    public sealed class Item
     {
 
     }

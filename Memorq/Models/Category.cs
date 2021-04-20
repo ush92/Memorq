@@ -7,7 +7,7 @@ using SQLite;
 
 namespace Memorq.Models
 {
-    public class Category
+    public sealed class Category
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
