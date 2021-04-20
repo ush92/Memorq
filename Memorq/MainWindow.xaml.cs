@@ -31,7 +31,7 @@ namespace Memorq
             InitializeComponent();
         }
 
-        #region RightButtons
+        #region RightPanelButtons
 
         private void DebugBtn_Click(object sender, RoutedEventArgs e)
         {

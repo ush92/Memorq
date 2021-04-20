@@ -8,7 +8,6 @@
     <system:String x:Key="ForceBtn_right">Wymuś</system:String>
 
     
-
     <!-- Main Menu -->
     <system:String x:Key="Menu_File">Plik</system:String>
     <system:String x:Key="Menu_File_New">Nowa kategoria</system:String>
@@ -18,7 +17,9 @@
     <system:String x:Key="Menu_File_Exit">Wyjście</system:String>
 
     <system:String x:Key="Menu_Edit">Edycja</system:String>
+    
     <system:String x:Key="Menu_Stats">Statystyki</system:String>
+    
     <system:String x:Key="Menu_Options">Opcje</system:String>
     
     <system:String x:Key="Menu_Help">Pomoc</system:String>

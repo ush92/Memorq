@@ -8,6 +8,14 @@
         Icon="memorq.ico"
         Title="Memorq" Height="450" Width="800">
 
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Images.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
     <DockPanel LastChildFill="False">
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="{StaticResource Menu_File}">
@@ -29,7 +37,11 @@
                 <MenuItem Header="..." />
             </MenuItem>
             <MenuItem Header="{StaticResource Menu_Help}">
-                <MenuItem Header="{StaticResource Menu_Help_About}" Click="MenuHelpAboutItem_Click" />
+                <MenuItem Header="{StaticResource Menu_Help_About}" Click="MenuHelpAboutItem_Click">
+                    <MenuItem.Icon>
+                        <Image Source="memorq.ico"/>
+                    </MenuItem.Icon>
+                </MenuItem>
             </MenuItem>
         </Menu>
 
@@ -49,7 +61,12 @@
                 <RowDefinition Height="1*" />
                 <RowDefinition Height="1*" />
             </Grid.RowDefinitions>
-            <Button x:Name="AddBtn" Grid.Row="0" Content="{StaticResource AddBtn_right}"></Button>
+            <Button x:Name="AddBtn" Grid.Row="0">
+                <StackPanel>
+                    <Image Source="{StaticResource AddBtn_right_img}" Width="32" Height="32"/>
+                    <TextBlock Text="{StaticResource AddBtn_right}"></TextBlock>
+                </StackPanel>
+            </Button>
             <Button x:Name="NewBtn" Grid.Row="1" Content="{StaticResource NewBtn_right}"></Button>
             <Button x:Name="ForceBtn" Grid.Row="2" Content="{StaticResource ForceBtn_right}"></Button>
             <Button x:Name="DebugBtn" Grid.Row="3" Click="DebugBtn_Click">Debug</Button>

@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\add.png" />
     <None Remove="memorq.ico" />
   </ItemGroup>
 
@@ -19,6 +20,10 @@
 
   <ItemGroup>
     <PackageReference Include="sqlite-net-pcl" Version="1.7.335" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\add.png" />
   </ItemGroup>
 
 </Project>
