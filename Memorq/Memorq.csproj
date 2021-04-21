@@ -5,17 +5,13 @@
     <TargetFramework>net5.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
     <ApplicationIcon>memorq.ico</ApplicationIcon>
+    <Win32Resource></Win32Resource>
   </PropertyGroup>
 
   <ItemGroup>
     <None Remove="Images\add.png" />
     <None Remove="memorq.ico" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="memorq.ico">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <None Remove="Views\memorq.ico" />
   </ItemGroup>
 
   <ItemGroup>
@@ -24,10 +20,12 @@
 
   <ItemGroup>
     <Resource Include="Images\add.png" />
+    <Resource Include="memorq.ico" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Commands\" />
+    <Folder Include="Services\" />
     <Folder Include="ViewModels\" />
   </ItemGroup>
 

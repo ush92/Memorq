@@ -15,7 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Memorq
+namespace Memorq.Views
 {
     /// <summary>
     /// Interaction logic for DebugWindow.xaml
