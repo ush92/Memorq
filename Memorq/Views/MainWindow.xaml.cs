@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Memorq.ViewModels;
 
 namespace Memorq.Views
 {
@@ -23,37 +24,10 @@ namespace Memorq.Views
     /// </summary>
     public partial class MainWindow : Window
     {
-        private DebugWindow debugWindow = null;
-        private About aboutWindow = null;
-
-        public MainWindow()
+        public MainWindow(MainWindowViewModel mainWindowViewModel)
         {
             InitializeComponent();
+            DataContext = mainWindowViewModel;
         }
-
-        #region RightPanelButtons
-
-        private void DebugBtn_Click(object sender, RoutedEventArgs e)
-        {
-            debugWindow = new DebugWindow();
-            debugWindow.ShowDialog();
-        }
-
-        #endregion
-
-        #region MainMenu
-
-        private void MenuFileExitItem_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
-
-        private void MenuHelpAboutItem_Click(object sender, RoutedEventArgs e)
-        {
-            aboutWindow = new About();
-            aboutWindow.ShowDialog();
-        }
-
-        #endregion
     }
 }
