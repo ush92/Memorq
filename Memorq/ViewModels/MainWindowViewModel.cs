@@ -25,16 +25,9 @@ namespace Memorq.ViewModels
 
         #region MainMenu
 
-        public ICommand MenuFileExitCommand => new RelayCommand(_ => {
-            Application.Current.MainWindow.Close();
-        });
+        public ICommand MenuFileExitCommand => new RelayCommand(_ => Application.Current.MainWindow.Close());
 
-
-
-        public ICommand MenuHelpAboutCommand => new RelayCommand(_ => {
-            var aboutWindow = _windowFactory.CreateWindow<About>();
-            aboutWindow.ShowDialog();
-        });
+        public ICommand MenuHelpAboutCommand => new RelayCommand(_ => _windowFactory.CreateWindow<About>().ShowDialog());
 
         #endregion
     }
