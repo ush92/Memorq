@@ -24,7 +24,7 @@
                 <Separator />
                 <MenuItem Header="{StaticResource Menu_File_ImportExport}" />
                 <Separator />
-                <MenuItem Header="{StaticResource Menu_File_Exit}"/>
+                <MenuItem Header="{StaticResource Menu_File_Exit}" Command="{Binding MenuFileExitCommand}"/>
             </MenuItem>
             <MenuItem Header="{StaticResource Menu_Edit}">
                 <MenuItem Header="..." />
@@ -36,7 +36,7 @@
                 <MenuItem Header="..." />
             </MenuItem>
             <MenuItem Header="{StaticResource Menu_Help}">
-                <MenuItem Header="{StaticResource Menu_Help_About}">
+                <MenuItem Header="{StaticResource Menu_Help_About}" Command="{Binding MenuHelpAboutCommand}">
                     <MenuItem.Icon>
                         <Image Source="Images/memorq.ico"/>
                     </MenuItem.Icon>
@@ -77,7 +77,7 @@
                 <RowDefinition Height="9*" />
             </Grid.RowDefinitions>
             <Label Grid.Row="0" Content="Memorq 1.0.1"/>
-            <Label Grid.Row="1" Content="'Tell me and I forget. Teach me and I remember. Involve me and I learn.' - Benjamin Franklin"/>
+            <Label Grid.Row="1" Content=" "/>
         </Grid>
 
     </DockPanel>

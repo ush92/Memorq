@@ -1,46 +1,41 @@
 ﻿using Memorq.Infrastructure;
 using Memorq.Views;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
-using Task.Commands;
 
 namespace Memorq.ViewModels
 {
     public class MainWindowViewModel : BaseViewModel
     {
-        private DebugWindow _debugWindow;
+        private readonly IWindowFactory _windowFactory;
 
-        public MainWindowViewModel(DebugWindow debugWindow)
+        public MainWindowViewModel(IWindowFactory windowFactory)
         {
-            _debugWindow = debugWindow;
+            _windowFactory = windowFactory;
         }
-
 
         #region RightPanelButtons
 
-        public ICommand OpenDebugWindowCommand => new RelayCommand(_ => _debugWindow.ShowDialog());
+        public ICommand OpenDebugWindowCommand => new RelayCommand(_ => {
+            var debugWindow = _windowFactory.CreateWindow<DebugWindow>();
+            debugWindow.ShowDialog();
+        });
 
         #endregion
 
         #region MainMenu
 
-        //private void MenuFileExitItem_Click(object sender, RoutedEventArgs e)
-        //{
-        //    this.Close();
-        //}
+        public ICommand MenuFileExitCommand => new RelayCommand(_ => {
+            Application.Current.MainWindow.Close();
+        });
 
-        //private void MenuHelpAboutItem_Click(object sender, RoutedEventArgs e)
-        //{
-        //    aboutWindow = new About();
-        //    aboutWindow.ShowDialog();
-        //}
+
+
+        public ICommand MenuHelpAboutCommand => new RelayCommand(_ => {
+            var aboutWindow = _windowFactory.CreateWindow<About>();
+            aboutWindow.ShowDialog();
+        });
 
         #endregion
-
-
     }
 }

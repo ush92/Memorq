@@ -37,7 +37,7 @@ namespace SM2
 
                 Console.WriteLine("Ocena: {0}", grade);
 
-                if (grade >= 3)
+                if (grade >= 3) 
                 {
                     if (repetition == 0)
                     {

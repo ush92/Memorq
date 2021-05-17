@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using Memorq.Infrastructure;
 using Memorq.Services;
-using Memorq.ViewModels;
 using Memorq.Views;
 using Microsoft.Extensions.DependencyInjection;
+using System;
+using System.Windows;
 
 namespace Memorq
 {
@@ -35,13 +30,13 @@ namespace Memorq
 
         private void ConfigureServices(IServiceCollection services)
         {
-            services.AddTransient<MainWindow>();
-            services.AddTransient<MainWindowViewModel>();
-
-            services.AddTransient<DebugWindow>();
-            services.AddTransient<DebugWindowViewModel>();
+            services.Scan(s => s.FromCallingAssembly()
+                .AddClasses(c => c.AssignableToAny(typeof(Window), typeof(BaseViewModel)))
+                .AsSelf()
+                .WithTransientLifetime()); 
 
             services.AddTransient<ICategoryProvider, CategoryProvider>();
+            services.AddTransient<IWindowFactory, WindowFactory>();
         }
     }
 }

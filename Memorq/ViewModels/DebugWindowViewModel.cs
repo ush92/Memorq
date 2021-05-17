@@ -1,4 +1,6 @@
-﻿using Memorq.Services;
+﻿using Memorq.Infrastructure;
+using Memorq.Models;
+using Memorq.Services;
 using Memorq.Views;
 using System;
 using System.Collections.Generic;
@@ -9,53 +11,54 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
-using Task.Commands;
 
 namespace Memorq.ViewModels
 {
-    public class DebugWindowViewModel : INotifyPropertyChanged
+    public class DebugWindowViewModel : BaseViewModel
     {
         private readonly ICategoryProvider _categoryProvider;
+        private readonly IWindowFactory _windowFactory;
+        private List<Category> _categoriesList;
+        private string _categoryToInsert;
 
-        public ObservableCollection<UIElement> DebugWindowControls { get; set; }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-
-        //public DebugWindowViewModel(ICategoryProvider categoryProvider)
-        //{
-        //    DebugWindowControls = new ObservableCollection<UIElement> { new DebugWindow() };
-        //    _categoryProvider = categoryProvider;
-        //}
-
-
-        public ICommand InsertDBtestButtonCommand => new CommandHandler(CanExecute, OnCategoriesLoad);
-
-        public ICommand ReadDBtestButtonCommand => new CommandHandler(CanExecute, OnCategorySave);
-
-
-
-        private bool CanExecute(object parameter) => true;
-
-        private void OnCategoriesLoad(object parameter)
+        public List<Category> CategoriesList
         {
-
+            get => _categoriesList;
+            set
+            {
+                _categoriesList = value;
+                OnPropertyChanged(nameof(CategoriesList));
+            }
+        }
+        public string CategoryToInsert
+        {
+            get => _categoryToInsert;
+            set
+            {
+                _categoryToInsert = value;
+                OnPropertyChanged(nameof(CategoryToInsert));
+            }
         }
 
-        private void OnCategorySave(object parameter)
+        public DebugWindowViewModel(ICategoryProvider categoryProvider, IWindowFactory windowFactory)
         {
-
+            _categoryProvider = categoryProvider;
+            _windowFactory = windowFactory;
         }
 
-        private void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
+        public ICommand InsertDBtestButtonCommand => new RelayCommand(_ => {
+            Category category = new Category()
+            {
+                Name = CategoryToInsert
+            };
 
-        //public void OnDebugWindowLoaded(object sender, RoutedEventArgs e)
-        //{
-        //    DebugWindowControls.Add(new WorkplanListView());
-        //}
+            if (category.Name == null) category.Name = "default";
+            _categoryProvider.InsertCategory(category);
+        });
 
+        public ICommand ReadDBtestButtonCommand => new RelayCommand(_ => CategoriesList = _categoryProvider.GetCategories());
     }
 }
+
+//Using of string resource from Dictionary.xaml resource dictionary:
+//string localizedMessage = (string)Application.Current.FindResource("NewBtn_right");
