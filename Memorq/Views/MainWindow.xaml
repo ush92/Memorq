@@ -7,6 +7,10 @@
         Icon="../memorq.ico"
         Title="Memorq" Height="450" Width="800">
 
+    <Window.InputBindings>
+        <KeyBinding Command="{Binding ShowDebugWindowCommand}" Key="D" Modifiers="Ctrl"/>
+    </Window.InputBindings>
+
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -24,7 +28,7 @@
                 <Separator />
                 <MenuItem Header="{StaticResource Menu_File_ImportExport}" />
                 <Separator />
-                <MenuItem Header="{StaticResource Menu_File_Exit}" Command="{Binding MenuFileExitCommand}"/>
+                <MenuItem Header="{StaticResource Menu_File_Exit}" Command="{Binding CloseWindowCommand}"/>
             </MenuItem>
             <MenuItem Header="{StaticResource Menu_Edit}">
                 <MenuItem Header="..." />
@@ -36,7 +40,7 @@
                 <MenuItem Header="..." />
             </MenuItem>
             <MenuItem Header="{StaticResource Menu_Help}">
-                <MenuItem Header="{StaticResource Menu_Help_About}" Command="{Binding MenuHelpAboutCommand}">
+                <MenuItem Header="{StaticResource Menu_Help_About}" Command="{Binding ShowAboutCommand}">
                     <MenuItem.Icon>
                         <Image Source="Images/memorq.ico"/>
                     </MenuItem.Icon>
@@ -68,7 +72,7 @@
             </Button>
             <Button x:Name="NewBtn" Grid.Row="1" Content="{StaticResource NewBtn_right}"></Button>
             <Button x:Name="ForceBtn" Grid.Row="2" Content="{StaticResource ForceBtn_right}"></Button>
-            <Button Command="{Binding OpenDebugWindowCommand}" Grid.Row="3">Debug</Button>
+            <Button Command="{Binding ShowDebugWindowCommand}" Grid.Row="3">Debug</Button>
         </Grid>
 
         <Grid DockPanel.Dock="Left" Width="675">

@@ -9,6 +9,7 @@ namespace Memorq.Views
         {
             InitializeComponent();
             DataContext = mainWindowViewModel;
+            mainWindowViewModel.OwnerWindow = this;
         }
     }
 }

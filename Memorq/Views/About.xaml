@@ -6,6 +6,11 @@
         xmlns:local="clr-namespace:Memorq.Views"
         mc:Ignorable="d"
         Title="About" Height="450" Width="800">
+
+    <Window.InputBindings>
+        <KeyBinding Command="{Binding CloseWindowCommand}" Key="Esc"/>
+    </Window.InputBindings>
+
     <Grid>
         <Label Content="Memorq 1.0.1" HorizontalAlignment="Left" Margin="187,156,0,0" VerticalAlignment="Top"/>
 

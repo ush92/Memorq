@@ -14,21 +14,17 @@ namespace Memorq.ViewModels
             _windowFactory = windowFactory;
         }
 
-        #region RightPanelButtons
-
-        public ICommand OpenDebugWindowCommand => new RelayCommand(_ => {
+        public ICommand ShowDebugWindowCommand => new RelayCommand(_ => {
             var debugWindow = _windowFactory.CreateWindow<DebugWindow>();
-            debugWindow.ShowDialog();
+            
+            if (debugWindow.ShowDialog() == true)
+            {
+                var debugWindowViewModel = (DebugWindowViewModel)debugWindow.DataContext;
+                MessageBox.Show(debugWindowViewModel.CategoryToInsert);
+            }
         });
 
-        #endregion
 
-        #region MainMenu
-
-        public ICommand MenuFileExitCommand => new RelayCommand(_ => Application.Current.MainWindow.Close());
-
-        public ICommand MenuHelpAboutCommand => new RelayCommand(_ => _windowFactory.CreateWindow<About>().ShowDialog());
-
-        #endregion
+        public ICommand ShowAboutCommand => new RelayCommand(_ => _windowFactory.CreateWindow<About>().ShowDialog());
     }
 }

@@ -6,6 +6,11 @@
         xmlns:local="clr-namespace:Memorq.Views"
         mc:Ignorable="d"
         Title="DebugWindow" Height="450" Width="800">
+
+    <Window.InputBindings>
+        <KeyBinding Command="{Binding CloseWindowCommand}" Key="Esc"/>
+    </Window.InputBindings>
+
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="_Plik">
@@ -55,6 +60,8 @@
                 </ListView.View>
             </ListView>
             <Button Command="{Binding ReadDBtestButtonCommand}" Content="Wczytaj" HorizontalAlignment="Left" Margin="398,26,0,0" VerticalAlignment="Top"/>
+            <Button Content="ok" HorizontalAlignment="Left" Margin="580,335,0,0" VerticalAlignment="Top" Width="33" Click="Button_Click"/>
+            <Button Content="cancel" IsCancel="true" HorizontalAlignment="Left" Margin="640,335,0,0" VerticalAlignment="Top"/>
         </Grid>
 
     </DockPanel>

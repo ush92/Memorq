@@ -9,6 +9,12 @@ namespace Memorq.Views
         {
             InitializeComponent();
             DataContext = debugWindowViewModel;
+            debugWindowViewModel.OwnerWindow = this;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            DialogResult = true;
         }
     }
 }

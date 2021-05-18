@@ -17,7 +17,7 @@ namespace Memorq.Services
             using (SQLiteConnection connection = new SQLiteConnection(App.databasePath))
             {
                 connection.CreateTable<Category>();
-                categories = (connection.Table<Category>().ToList()).OrderBy(c => c.Name).ToList();
+                categories = connection.Table<Category>().ToList().OrderBy(c => c.Name).ToList();
             }
 
             return categories;
