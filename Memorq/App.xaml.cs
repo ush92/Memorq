@@ -1,7 +1,9 @@
 ﻿using Memorq.Infrastructure;
+using Memorq.Models;
 using Memorq.Services;
 using Memorq.Views;
 using Microsoft.Extensions.DependencyInjection;
+using SQLite;
 using System;
 using System.Windows;
 
@@ -23,6 +25,12 @@ namespace Memorq
             ConfigureServices(serviceCollection);
 
             ServiceProvider = serviceCollection.BuildServiceProvider();
+
+            using (SQLiteConnection connection = new SQLiteConnection(App.databasePath))
+            {
+                connection.CreateTable<Category>();
+                connection.CreateTable<Item>();
+            }
 
             var mainWindow = ServiceProvider.GetRequiredService<MainWindow>();
             mainWindow.Show();

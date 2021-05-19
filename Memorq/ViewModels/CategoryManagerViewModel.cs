@@ -10,8 +10,11 @@ namespace Memorq.ViewModels
         private readonly ICategoryProvider _categoryProvider;
         private readonly IItemProvider _itemProvider;
         private readonly IWindowFactory _windowFactory;
+
         private List<Category> _categoriesList;
+        private Category _selectedCategory;
         private List<Item> _itemList;
+        private Item _selectedItem;
 
         public List<Category> CategoriesList
         {
@@ -19,7 +22,16 @@ namespace Memorq.ViewModels
             set
             {
                 _categoriesList = value;
-                //OnPropertyChanged(nameof(CategoriesList));
+                OnPropertyChanged(nameof(CategoriesList));
+            }
+        }
+        public Category SelectedCategory
+        {
+            get => _selectedCategory;
+            set
+            {
+                _selectedCategory = value;
+                OnPropertyChanged(nameof(SelectedCategory));
             }
         }
         public List<Item> ItemList
@@ -29,6 +41,15 @@ namespace Memorq.ViewModels
             {
                 _itemList = value;
                 OnPropertyChanged(nameof(ItemList));
+            }
+        }
+        public Item SelectedItem
+        {
+            get => _selectedItem;
+            set
+            {
+                _selectedItem = value;
+                OnPropertyChanged(nameof(SelectedItem));
             }
         }
 

@@ -8,7 +8,7 @@ namespace Memorq.Models
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
 
-        [Indexed]
+        [Indexed, NotNull]
         public int CategoryId { get; set; }
 
         [NotNull]
@@ -33,10 +33,5 @@ namespace Memorq.Models
 
         [NotNull]
         public DateTime LastRepetitionDate { get; set; }
-
-        public override string ToString()
-        {
-            return $"{Question} {Answer}";
-        }
     }
 }

@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Memorq.Views"
+        xmlns:local="clr-namespace:Memorq.Views" 
         mc:Ignorable="d"
         Title="{StaticResource Menu_File_Manager}" Height="450" Width="800">
 
@@ -22,17 +22,23 @@
                 <ColumnDefinition Width="1*" />
                 <ColumnDefinition Width="3*" />
             </Grid.ColumnDefinitions>
-            <ListView ItemsSource="{Binding Path=CategoriesList}">
+
+            <ListView ItemsSource="{Binding Path=CategoriesList}" SelectedItem="{Binding SelectedCategory, Mode=OneWay}">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn/>
+                        <GridViewColumn Header="{StaticResource Name}" DisplayMemberBinding="{Binding Path=Name}" Width="150"/>
                     </GridView>
                 </ListView.View>
             </ListView>
-            <ListView Grid.Column="1">
+
+            <ListView Grid.Column="1" ItemsSource="{Binding Path=ItemList}">
+
+
+
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn/>
+                        <GridViewColumn Header="{StaticResource Question}" DisplayMemberBinding="{Binding Path=Question}" Width="250" />
+                        <GridViewColumn Header="{StaticResource Answer}" DisplayMemberBinding="{Binding Path=Answer}" Width="250"/>
                     </GridView>
                 </ListView.View>
             </ListView>

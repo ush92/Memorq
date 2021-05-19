@@ -2,6 +2,11 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:system="clr-namespace:System;assembly=mscorlib">
 
+    <!-- Category Manager -->
+    <system:String x:Key="Name">Nazwa</system:String>
+    <system:String x:Key="Question">Pytanie</system:String>
+    <system:String x:Key="Answer">Odpowiedź</system:String>
+
     <!-- Right Panel buttons -->
     <system:String x:Key="AddBtn_right">Dodaj</system:String>
     <system:String x:Key="NewBtn_right">Nowe</system:String>
