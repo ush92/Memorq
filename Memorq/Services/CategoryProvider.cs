@@ -1,14 +1,11 @@
 ﻿using Memorq.Models;
 using SQLite;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Memorq.Services
 {
-    public class CategoryProvider : ICategoryProvider
+    public sealed class CategoryProvider : ICategoryProvider
     {
         public List<Category> GetCategories()
         {
@@ -25,11 +22,9 @@ namespace Memorq.Services
 
         public void InsertCategory(Category category)
         {
-            using (SQLiteConnection connection = new SQLiteConnection(App.databasePath))
-            {
-                connection.CreateTable<Category>();
-                connection.Insert(category);
-            }
+            using SQLiteConnection connection = new SQLiteConnection(App.databasePath);
+            connection.CreateTable<Category>();
+            connection.Insert(category);
         }
     }
 }

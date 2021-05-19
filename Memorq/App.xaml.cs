@@ -36,6 +36,7 @@ namespace Memorq
                 .WithTransientLifetime()); 
 
             services.AddTransient<ICategoryProvider, CategoryProvider>();
+            services.AddTransient<IItemProvider, ItemProvider>();
             services.AddTransient<IWindowFactory, WindowFactory>();
         }
     }

@@ -11,7 +11,7 @@ namespace Memorq.Models
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
-        [Unique]
+        [Unique, NotNull]
         public string Name { get; set; }
 
         public override string ToString()

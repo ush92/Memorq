@@ -5,11 +5,11 @@ namespace Memorq.Views
 {
     public partial class About : Window
     {
-        public About(AboutWindowViewModel aboutWindowViewModel)
+        public About(AboutViewModel aboutViewModel)
         {
             InitializeComponent();
-            DataContext = aboutWindowViewModel;
-            aboutWindowViewModel.OwnerWindow = this;
+            DataContext = aboutViewModel;
+            aboutViewModel.OwnerWindow = this;
         }
     }
 }

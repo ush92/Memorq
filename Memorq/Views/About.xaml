@@ -5,14 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Memorq.Views"
         mc:Ignorable="d"
-        Title="About" Height="450" Width="800">
+        Title="{StaticResource Menu_Help_About}" Height="150" Width="300">
 
     <Window.InputBindings>
         <KeyBinding Command="{Binding CloseWindowCommand}" Key="Esc"/>
     </Window.InputBindings>
 
     <Grid>
-        <Label Content="Memorq 1.0.1" HorizontalAlignment="Left" Margin="187,156,0,0" VerticalAlignment="Top"/>
-
+        <Label Content="Memorq 1.0.1" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <Label Content="Autor: Mateusz Trzyna" HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>

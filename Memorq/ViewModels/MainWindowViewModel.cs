@@ -14,16 +14,27 @@ namespace Memorq.ViewModels
             _windowFactory = windowFactory;
         }
 
-        public ICommand ShowDebugWindowCommand => new RelayCommand(_ => {
+        public ICommand ShowCategoryManagerCommand => new RelayCommand(_ =>
+        {
+            var categoryManager = _windowFactory.CreateWindow<CategoryManager>();
+
+            if (categoryManager.ShowDialog() == true)
+            {
+                //var categoryManagerViewModel = (CategoryManagerViewModel)categoryManager.DataContext;
+                //todo: wybranie kategorii
+            }
+        });
+
+        public ICommand ShowDebugWindowCommand => new RelayCommand(_ =>
+        {
             var debugWindow = _windowFactory.CreateWindow<DebugWindow>();
-            
+
             if (debugWindow.ShowDialog() == true)
             {
                 var debugWindowViewModel = (DebugWindowViewModel)debugWindow.DataContext;
                 MessageBox.Show(debugWindowViewModel.CategoryToInsert);
             }
         });
-
 
         public ICommand ShowAboutCommand => new RelayCommand(_ => _windowFactory.CreateWindow<About>().ShowDialog());
     }

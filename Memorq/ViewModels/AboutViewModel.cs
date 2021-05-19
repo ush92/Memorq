@@ -2,7 +2,7 @@
 
 namespace Memorq.ViewModels
 {
-    public class AboutWindowViewModel : BaseViewModel
+    public class AboutViewModel : BaseViewModel
     {
     }
 }

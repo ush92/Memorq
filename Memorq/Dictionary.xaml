@@ -24,5 +24,10 @@
     
     <system:String x:Key="Menu_Help">Pomoc</system:String>
     <system:String x:Key="Menu_Help_About">O programie</system:String>
-
+    
+    
+    <!-- Messages -->
+    <system:String x:Key="MsgCategoryDuplicate">Kategoria o podanej nazwie istnieje już w bazie kategorii.</system:String>
+    <system:String x:Key="MsgCategoryNoName">Podaj nazwę kategorii!</system:String>
+ 
 </ResourceDictionary>

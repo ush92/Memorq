@@ -1,14 +1,8 @@
 ﻿using Memorq.Infrastructure;
 using Memorq.Models;
 using Memorq.Services;
-using Memorq.Views;
-using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
@@ -46,19 +40,30 @@ namespace Memorq.ViewModels
             _windowFactory = windowFactory;
         }
 
-        public ICommand InsertDBtestButtonCommand => new RelayCommand(_ => {
+        public ICommand InsertDBtestButtonCommand => new RelayCommand(_ =>
+        {
             Category category = new Category()
             {
                 Name = CategoryToInsert
             };
 
-            if (category.Name == null) category.Name = "default";
-            _categoryProvider.InsertCategory(category);
+            if (category.Name != null)
+            {
+                if (!_categoryProvider.GetCategories().Any(c => c.Name == category.Name))
+                {
+                    _categoryProvider.InsertCategory(category);
+                }
+                else
+                {
+                    MessageBox.Show(GetDictResource("MsgCategoryDuplicate"), "Memorq", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+            }
+            else
+            {
+                MessageBox.Show(GetDictResource("MsgCategoryNoName"), "Memorq", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         });
 
         public ICommand ReadDBtestButtonCommand => new RelayCommand(_ => CategoriesList = _categoryProvider.GetCategories());
     }
 }
-
-//Using of string resource from Dictionary.xaml resource dictionary:
-//string localizedMessage = (string)Application.Current.FindResource("NewBtn_right");

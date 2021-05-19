@@ -17,6 +17,11 @@ namespace Memorq.Infrastructure
             PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        public string GetDictResource(string key)
+        {
+            return (string)Application.Current.FindResource(key);
+        }
+
         [Conditional("DEBUG")]
         [DebuggerStepThrough]
         public void VerifyPropertyName(string propertyName)
