@@ -2,6 +2,8 @@
 using Memorq.Models;
 using Memorq.Services;
 using System.Collections.Generic;
+using System.Windows;
+using System.Windows.Input;
 
 namespace Memorq.ViewModels
 {
@@ -60,6 +62,16 @@ namespace Memorq.ViewModels
             _windowFactory = windowFactory;
 
             CategoriesList = _categoryProvider.GetCategories();
+        }
+
+        public ICommand UpdateItemsGridBySelectingCategory => new RelayCommand(c =>
+        {
+            UpdateItemsGrid(c as Category);
+        });
+
+        private void UpdateItemsGrid(Category category)
+        {
+            ItemList = _itemProvider.GetItems(category.Id);
         }
     }
 }

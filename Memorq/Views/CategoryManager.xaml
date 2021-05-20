@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:local="clr-namespace:Memorq.Views" 
         mc:Ignorable="d"
         Title="{StaticResource Menu_File_Manager}" Height="450" Width="800">
@@ -23,7 +24,15 @@
                 <ColumnDefinition Width="3*" />
             </Grid.ColumnDefinitions>
 
-            <ListView ItemsSource="{Binding Path=CategoriesList}" SelectedItem="{Binding SelectedCategory, Mode=OneWay}">
+            <ListView Name="CategoryListView" ItemsSource="{Binding Path=CategoriesList}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <i:InvokeCommandAction 
+                        Command="{Binding UpdateItemsGridBySelectingCategory}"
+                        CommandParameter="{Binding ElementName=CategoryListView, Path=SelectedItem}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="{StaticResource Name}" DisplayMemberBinding="{Binding Path=Name}" Width="150"/>
@@ -31,10 +40,7 @@
                 </ListView.View>
             </ListView>
 
-            <ListView Grid.Column="1" ItemsSource="{Binding Path=ItemList}">
-
-
-
+            <ListView ItemsSource="{Binding Path=ItemList}" Grid.Column="1" >
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="{StaticResource Question}" DisplayMemberBinding="{Binding Path=Question}" Width="250" />
@@ -43,7 +49,6 @@
                 </ListView.View>
             </ListView>
         </Grid>
-
 
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
