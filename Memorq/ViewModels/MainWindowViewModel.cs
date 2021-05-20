@@ -1,5 +1,6 @@
 ﻿using Memorq.Infrastructure;
 using Memorq.Views;
+using Microsoft.Extensions.Options;
 using System.Windows;
 using System.Windows.Input;
 
@@ -8,10 +9,12 @@ namespace Memorq.ViewModels
     public class MainWindowViewModel : BaseViewModel
     {
         private readonly IWindowFactory _windowFactory;
+        private readonly IOptions<AppSettings> _options;
 
-        public MainWindowViewModel(IWindowFactory windowFactory)
+        public MainWindowViewModel(IWindowFactory windowFactory, IOptions<AppSettings> options)
         {
             _windowFactory = windowFactory;
+            _options = options;
         }
 
         public ICommand ShowCategoryManagerCommand => new RelayCommand(_ =>
@@ -20,8 +23,8 @@ namespace Memorq.ViewModels
 
             if (categoryManager.ShowDialog() == true)
             {
-                //var categoryManagerViewModel = (CategoryManagerViewModel)categoryManager.DataContext;
-                //todo: wybranie kategorii
+                var categoryManagerViewModel = (CategoryManagerViewModel)categoryManager.DataContext;
+                MessageBox.Show(categoryManagerViewModel.SelectedCategory.Name + " " + _options.Value.StringSetting);
             }
         });
 

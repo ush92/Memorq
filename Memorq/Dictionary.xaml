@@ -2,10 +2,14 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:system="clr-namespace:System;assembly=mscorlib">
 
-    <!-- Category Manager -->
+    <!-- Common -->
     <system:String x:Key="Name">Nazwa</system:String>
     <system:String x:Key="Question">Pytanie</system:String>
     <system:String x:Key="Answer">Odpowiedź</system:String>
+    <system:String x:Key="Cancel">Anuluj</system:String>
+
+    <!-- Category Manager -->
+    <system:String x:Key="ChooseCategory">Wybierz kategorię</system:String>
 
     <!-- Right Panel buttons -->
     <system:String x:Key="AddBtn_right">Dodaj</system:String>
@@ -32,7 +36,8 @@
     
     
     <!-- Messages -->
-    <system:String x:Key="MsgCategoryDuplicate">Kategoria o podanej nazwie istnieje już w bazie kategorii.</system:String>
-    <system:String x:Key="MsgCategoryNoName">Podaj nazwę kategorii!</system:String>
- 
+    <system:String x:Key="MsgCategoryDuplicate">Kategoria o podanej nazwie istnieje już w bazie kategorii</system:String>
+    <system:String x:Key="MsgCategoryNoName">Podaj nazwę kategorii</system:String>
+    <system:String x:Key="MsgCategoryNotChosen">Wybierz kategorię</system:String>
+    
 </ResourceDictionary>

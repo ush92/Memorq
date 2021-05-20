@@ -62,16 +62,13 @@ namespace Memorq.ViewModels
             _windowFactory = windowFactory;
 
             CategoriesList = _categoryProvider.GetCategories();
+            //SelectedCategory = CategoriesList[0];
         }
 
-        public ICommand UpdateItemsGridBySelectingCategory => new RelayCommand(c =>
+        public ICommand UpdateItemsGridBySelectingCategory => new RelayCommand<Category>(c =>
         {
-            UpdateItemsGrid(c as Category);
+            SelectedCategory = c;
+            ItemList = _itemProvider.GetItems(SelectedCategory.Id);
         });
-
-        private void UpdateItemsGrid(Category category)
-        {
-            ItemList = _itemProvider.GetItems(category.Id);
-        }
     }
 }
