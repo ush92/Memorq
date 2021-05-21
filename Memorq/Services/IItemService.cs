@@ -8,5 +8,6 @@ namespace Memorq.Services
         List<Item> GetItems(int categoryId);
 
         void InsertItem(Item item);
+        void DeleteItem(int id);
     }
 }

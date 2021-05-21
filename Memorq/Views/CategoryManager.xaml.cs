@@ -24,11 +24,13 @@ namespace Memorq.Views
             {
                 ChooseCategoryBtn.IsEnabled = false;
                 DeleteCategoryBtn.IsEnabled = false;
+                ChangeCategoryNameBtn.IsEnabled = false;
             }
             else
             {
                 ChooseCategoryBtn.IsEnabled = true;
                 DeleteCategoryBtn.IsEnabled = true;
+                ChangeCategoryNameBtn.IsEnabled = true;
             }
         }
 

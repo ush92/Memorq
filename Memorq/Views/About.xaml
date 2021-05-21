@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Memorq.Views"
         mc:Ignorable="d"
-        Title="{StaticResource Menu_Help_About}" Height="150" Width="300">
+        Title="{StaticResource Menu_Help_About}" Height="150" Width="300" ResizeMode="NoResize">
 
     <Window.InputBindings>
         <KeyBinding Command="{Binding CloseWindowCommand}" Key="Esc"/>
@@ -14,5 +14,6 @@
     <Grid>
         <Label Content="Memorq 1.0.1" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
         <Label Content="Autor: Mateusz Trzyna" HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top"/>
+        <Button Content="OK" IsCancel="True" HorizontalAlignment="Left" Margin="248,82,0,0" VerticalAlignment="Top" Width="25"/>
     </Grid>
 </Window>

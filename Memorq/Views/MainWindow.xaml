@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         Icon="../memorq.ico"
-        Title="Memorq" Height="450" Width="800">
+        Title="Memorq" Height="450" Width="800" ResizeMode="NoResize">
 
     <Window.InputBindings>
         <KeyBinding Command="{Binding ShowDebugWindowCommand}" Key="D" Modifiers="Ctrl"/>

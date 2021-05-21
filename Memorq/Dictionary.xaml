@@ -12,6 +12,7 @@
     <!-- Category Manager -->
     <system:String x:Key="ChooseCategory">Wybierz kategorię</system:String>
     <system:String x:Key="NewCategory">Nowa kategoria</system:String>
+    <system:String x:Key="ChangeCategoryName">Zmień nazwę kat.</system:String>
     <system:String x:Key="DeleteCategory">Usuń kategorię</system:String>
     <system:String x:Key="EditItem">Edytuj pyt./odp.</system:String>
     <system:String x:Key="DeleteItem">Usuń pyt./odp.</system:String>
@@ -24,8 +25,6 @@
     
     <!-- Main Menu -->
     <system:String x:Key="Menu_File">Plik</system:String>
-    <system:String x:Key="Menu_File_New">Nowa kategoria</system:String>
-    <system:String x:Key="Menu_File_Open">Otwórz kategorię</system:String>
     <system:String x:Key="Menu_File_Manager">Menedżer kategorii</system:String>
     <system:String x:Key="Menu_File_ImportExport">Import/Eksport</system:String>
     <system:String x:Key="Menu_File_Exit">Wyjście</system:String>
@@ -46,7 +45,6 @@
     <system:String x:Key="MsgCategoryNotChosen">Wybierz kategorię</system:String>
     <system:String x:Key="MsgEnterNameOfNewCategory">Podaj nazwę kategorii</system:String>
     <system:String x:Key="MsgCategoryDelete">Czy na pewno chcesz usunąć tę kategorię?</system:String>
-
+    <system:String x:Key="MsgItemDelete">Czy na pewno chcesz usunąć to pytanie/odpowiedź?</system:String>
     
-
 </ResourceDictionary>

@@ -8,14 +8,14 @@ int grade;
 //1: zła odpowiedź; odpowiedź wydaje się znajoma
 //0: kompletne zaćmienie
 
-double repetition = 0; //ilość poprawnych odpowiedzi z rzędu. Bazowa wartosc dla nowego elementu = 0
+int repetition = 0; //ilość poprawnych odpowiedzi z rzędu. Bazowa wartosc dla nowego elementu = 0
 double efactor = 2.5;  //wspolczynnik łatwości zapamiętywania. Bazowa wartosc dla nowego elementu = 2.5
-double interval = 0;   //ilość dni do następnej powtórki. Bazowa wartosc dla nowego elementu = 0
+int interval = 0;   //ilość dni do następnej powtórki. Bazowa wartosc dla nowego elementu = 0
 
 //output: nowe wartości: rep, ef, i
-double nextRepetition = 0;
+int nextRepetition = 0;
 double nextEfactor = 0;
-double nextInterval = 0;
+int nextInterval = 0;
 
 Console.WriteLine("repetition: {0}   efactor: {1}   interval: {2}", repetition, efactor, interval);
 Console.WriteLine();
@@ -43,7 +43,7 @@ for (int i = 0; i < 10; i++)
         }
         else
         {
-            nextInterval = Math.Round(interval * efactor);
+            nextInterval = (int)Math.Round(interval * efactor);
             nextRepetition = repetition + 1;
         }
     }

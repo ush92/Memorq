@@ -12,6 +12,8 @@ namespace Memorq.Services
 
         void InsertCategory(Category category);
 
+        void UpdateCategory(Category category);
+
         void DeleteCategory(int id);
     }
 }
