@@ -10,7 +10,7 @@ namespace Memorq.ViewModels
 {
     public class DebugWindowViewModel : BaseViewModel
     {
-        private readonly ICategoryProvider _categoryProvider;
+        private readonly ICategoryService _categoryProvider;
         private readonly IWindowFactory _windowFactory;
         private List<Category> _categoriesList;
         private string _categoryToInsert;
@@ -34,7 +34,7 @@ namespace Memorq.ViewModels
             }
         }
 
-        public DebugWindowViewModel(ICategoryProvider categoryProvider, IWindowFactory windowFactory)
+        public DebugWindowViewModel(ICategoryService categoryProvider, IWindowFactory windowFactory)
         {
             _categoryProvider = categoryProvider;
             _windowFactory = windowFactory;

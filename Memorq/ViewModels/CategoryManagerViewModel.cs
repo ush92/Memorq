@@ -10,8 +10,8 @@ namespace Memorq.ViewModels
 {
     public class CategoryManagerViewModel : BaseViewModel
     {
-        private readonly ICategoryProvider _categoryProvider;
-        private readonly IItemProvider _itemProvider;
+        private readonly ICategoryService _categoryProvider;
+        private readonly IItemService _itemProvider;
         private readonly IWindowFactory _windowFactory;
 
         InputDialog newCategoryDialog;
@@ -58,7 +58,7 @@ namespace Memorq.ViewModels
             }
         }
 
-        public CategoryManagerViewModel(ICategoryProvider categoryProvider, IItemProvider itemProvider, IWindowFactory windowFactory)
+        public CategoryManagerViewModel(ICategoryService categoryProvider, IItemService itemProvider, IWindowFactory windowFactory)
         {
             _categoryProvider = categoryProvider;
             _itemProvider = itemProvider;
@@ -83,24 +83,19 @@ namespace Memorq.ViewModels
 
             while (isNameProperOrCancelled == false)
             {
-                newCategoryDialog = new InputDialog();
-                newCategoryDialog.Label.Content = GetDictResource("MsgEnterNameOfNewCategory");
-
+                newCategoryDialog = new InputDialog(GetDictResource("MsgEnterNameOfNewCategory"));
                 if (newCategoryDialog.ShowDialog() == false)
                 {
                     break;
                 }
 
-                newCategoryName = newCategoryDialog.TextBox.Text;
-
+                newCategoryName = newCategoryDialog.Answer;
                 if (!newCategoryName.Equals(string.Empty))
                 {
                     if (_categoryProvider.GetCategory(newCategoryName) == null)
                     {
                         _categoryProvider.InsertCategory(new Category() { Name = newCategoryName });
-
                         CategoriesList = _categoryProvider.GetCategories();
-
                         isNameProperOrCancelled = true;
                     }
                     else
@@ -121,8 +116,8 @@ namespace Memorq.ViewModels
                 appName, MessageBoxButton.YesNo, MessageBoxImage.Warning).Equals(MessageBoxResult.Yes))
             {
                 _categoryProvider.DeleteCategory(SelectedCategory.Id);
-                SelectedCategory = null;
                 ItemList = null;
+                SelectedCategory = null;
                 CategoriesList = _categoryProvider.GetCategories();
             }
         });

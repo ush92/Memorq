@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Memorq.Services
 {
-    public interface ICategoryProvider
+    public interface ICategoryService
     {
         List<Category> GetCategories();
 

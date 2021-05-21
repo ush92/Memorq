@@ -20,8 +20,16 @@ namespace Memorq.Views
 
         private void CategoryListViewSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ChooseCategoryBtn.IsEnabled = true;
-            DeleteCategoryBtn.IsEnabled = true;
+            if (CategoryListView.SelectedIndex.Equals(-1))
+            {
+                ChooseCategoryBtn.IsEnabled = false;
+                DeleteCategoryBtn.IsEnabled = false;
+            }
+            else
+            {
+                ChooseCategoryBtn.IsEnabled = true;
+                DeleteCategoryBtn.IsEnabled = true;
+            }
         }
 
         private void ItemListViewSelectionChanged(object sender, SelectionChangedEventArgs e)

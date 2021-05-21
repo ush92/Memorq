@@ -4,19 +4,13 @@ using System.Collections.Generic;
 
 namespace Memorq.Services
 {
-    public sealed class ItemProvider : IItemProvider
+    public sealed class ItemService : IItemService
     {
         public List<Item> GetItems(int categoryId)
         {
-            var items = new List<Item>();
-
-            using (SQLiteConnection connection = new SQLiteConnection(App.databasePath))
-            {
-                connection.CreateTable<Item>();
-                items = connection.Table<Item>().Where(c => c.CategoryId.Equals(categoryId)).OrderBy(c => c.Question).ToList();
-            }
-
-            return items;
+            using SQLiteConnection connection = new SQLiteConnection(App.databasePath);
+            connection.CreateTable<Item>();
+            return connection.Table<Item>().Where(c => c.CategoryId.Equals(categoryId)).OrderBy(c => c.Question).ToList();
         }
 
         public void InsertItem(Item item)
