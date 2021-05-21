@@ -22,10 +22,22 @@
     <DockPanel LastChildFill="False">
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="{StaticResource Menu_File}">
-                <MenuItem Header="{StaticResource Menu_File_Manager}" Command="{Binding ShowCategoryManagerCommand}"/>
-                <MenuItem Header="{StaticResource Menu_File_ImportExport}" />
+                <MenuItem Header="{StaticResource Menu_File_Manager}" Command="{Binding ShowCategoryManagerCommand}">
+                    <MenuItem.Icon>
+                        <Image Source="{StaticResource CategoryManager}"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="{StaticResource Menu_File_ImportExport}">
+                    <MenuItem.Icon>
+                        <Image Source="{StaticResource ImportExport}"/>
+                    </MenuItem.Icon>
+                </MenuItem>
                 <Separator />
-                <MenuItem Header="{StaticResource Menu_File_Exit}" Command="{Binding CloseWindowCommand}"/>
+                <MenuItem Header="{StaticResource Menu_File_Exit}" Command="{Binding CloseWindowCommand}">
+                    <MenuItem.Icon>
+                        <Image Source="{StaticResource Exit}"/>
+                    </MenuItem.Icon>
+                </MenuItem>
             </MenuItem>
             <MenuItem Header="{StaticResource Menu_Edit}">
                 <MenuItem Header="..." />
@@ -39,7 +51,7 @@
             <MenuItem Header="{StaticResource Menu_Help}">
                 <MenuItem Header="{StaticResource Menu_Help_About}" Command="{Binding ShowAboutCommand}">
                     <MenuItem.Icon>
-                        <Image Source="Images/memorq.ico"/>
+                        <Image Source="{StaticResource About}"/>
                     </MenuItem.Icon>
                 </MenuItem>
             </MenuItem>

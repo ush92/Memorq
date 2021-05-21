@@ -2,7 +2,6 @@
 using Memorq.Models;
 using Memorq.Services;
 using Memorq.Views.Dialogs;
-using Microsoft.VisualBasic;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Input;

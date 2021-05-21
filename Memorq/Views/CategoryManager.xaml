@@ -6,6 +6,7 @@
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:local="clr-namespace:Memorq.Views" 
         mc:Ignorable="d"
+        Icon="../Images/manager.png"
         Title="{StaticResource Menu_File_Manager}" Height="450" Width="800">
 
     <Window.InputBindings>
