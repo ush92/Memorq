@@ -7,6 +7,11 @@ namespace Memorq.Services
     {
         List<Category> GetCategories();
 
+        public Category GetCategory(string name);
+        public Category GetCategory(int id);
+
         void InsertCategory(Category category);
+
+        void DeleteCategory(int id);
     }
 }

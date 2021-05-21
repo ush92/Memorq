@@ -24,7 +24,7 @@
                 <ColumnDefinition Width="3*" />
             </Grid.ColumnDefinitions>
 
-            <ListView Name="CategoryListView" ItemsSource="{Binding Path=CategoriesList}">
+            <ListView Name="CategoryListView" ItemsSource="{Binding Path=CategoriesList}" SelectionChanged="CategoryListViewSelectionChanged">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="MouseLeftButtonUp">
                         <i:InvokeCommandAction 
@@ -40,7 +40,7 @@
                 </ListView.View>
             </ListView>
 
-            <ListView ItemsSource="{Binding Path=ItemList}" Grid.Column="1" >
+            <ListView Name="ItemListView" ItemsSource="{Binding Path=ItemList}" Grid.Column="1" SelectionChanged="ItemListViewSelectionChanged" >
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="{StaticResource Question}" DisplayMemberBinding="{Binding Path=Question}" Width="250" />
@@ -59,13 +59,13 @@
                 <ColumnDefinition Width="1*" />
                 <ColumnDefinition Width="1*" />
             </Grid.ColumnDefinitions>
-            
-            <Button Click="ChooseCategoryBtnClick" Content="{StaticResource ChooseCategory}" Grid.Column="0" />
-            <Button Grid.Column="1" />
-            <Button Grid.Column="2" />
-            <Button Grid.Column="3" />
-            <Button Grid.Column="4" />
-            <Button Content="{StaticResource Cancel}" IsCancel="true" Grid.Column="5" />
+
+            <Button Content="{StaticResource ChooseCategory}" Name="ChooseCategoryBtn" Click="ChooseCategoryBtnClick" IsEnabled="False" Grid.Column="0" />
+            <Button Content="{StaticResource NewCategory}" Command="{Binding AddNewCategoryCommand}" Grid.Column="1" />
+            <Button Content="{StaticResource DeleteCategory}" Command="{Binding DeleteCategoryCommand}" Name="DeleteCategoryBtn" IsEnabled="False" Grid.Column="2" />
+            <Button Content="{StaticResource EditItem}" Name="EditItemBtn" IsEnabled="False" Grid.Column="3" />
+            <Button Content="{StaticResource DeleteItem}" Name="DeleteItemBtn" IsEnabled="False" Grid.Column="4" />
+            <Button Content="{StaticResource Quit}" IsCancel="true" Grid.Column="5" />
         </Grid>
     </Grid>
 </Window>

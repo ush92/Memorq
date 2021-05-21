@@ -6,10 +6,15 @@
     <system:String x:Key="Name">Nazwa</system:String>
     <system:String x:Key="Question">Pytanie</system:String>
     <system:String x:Key="Answer">Odpowiedź</system:String>
+    <system:String x:Key="Quit">Zamknij</system:String>
     <system:String x:Key="Cancel">Anuluj</system:String>
 
     <!-- Category Manager -->
     <system:String x:Key="ChooseCategory">Wybierz kategorię</system:String>
+    <system:String x:Key="NewCategory">Nowa kategoria</system:String>
+    <system:String x:Key="DeleteCategory">Usuń kategorię</system:String>
+    <system:String x:Key="EditItem">Edytuj pyt./odp.</system:String>
+    <system:String x:Key="DeleteItem">Usuń pyt./odp.</system:String>
 
     <!-- Right Panel buttons -->
     <system:String x:Key="AddBtn_right">Dodaj</system:String>
@@ -39,5 +44,9 @@
     <system:String x:Key="MsgCategoryDuplicate">Kategoria o podanej nazwie istnieje już w bazie kategorii</system:String>
     <system:String x:Key="MsgCategoryNoName">Podaj nazwę kategorii</system:String>
     <system:String x:Key="MsgCategoryNotChosen">Wybierz kategorię</system:String>
+    <system:String x:Key="MsgEnterNameOfNewCategory">Podaj nazwę kategorii</system:String>
+    <system:String x:Key="MsgCategoryDelete">Czy na pewno chcesz usunąć tę kategorię?</system:String>
+
     
+
 </ResourceDictionary>

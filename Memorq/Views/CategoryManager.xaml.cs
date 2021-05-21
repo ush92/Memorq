@@ -15,13 +15,26 @@ namespace Memorq.Views
 
         private void ChooseCategoryBtnClick(object sender, RoutedEventArgs e)
         {
-            if (CategoryListView.SelectedIndex > -1)
+            DialogResult = true;
+        }
+
+        private void CategoryListViewSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ChooseCategoryBtn.IsEnabled = true;
+            DeleteCategoryBtn.IsEnabled = true;
+        }
+
+        private void ItemListViewSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (ItemListView.SelectedIndex.Equals(-1))
             {
-                DialogResult = true;
+                EditItemBtn.IsEnabled = false;
+                DeleteItemBtn.IsEnabled = false;
             }
             else
             {
-                MessageBox.Show((string)Application.Current.FindResource("MsgCategoryNotChosen"), "Memorq", MessageBoxButton.OK, MessageBoxImage.Warning);
+                EditItemBtn.IsEnabled = true;
+                DeleteItemBtn.IsEnabled = true;
             }
         }
     }

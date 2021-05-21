@@ -8,7 +8,7 @@ namespace Memorq.Services
     {
         public List<Item> GetItems(int categoryId)
         {
-            List<Item> items;
+            var items = new List<Item>();
 
             using (SQLiteConnection connection = new SQLiteConnection(App.databasePath))
             {

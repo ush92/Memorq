@@ -9,6 +9,7 @@ namespace Memorq.Infrastructure
     public abstract class BaseViewModel : INotifyPropertyChanged
     {
         public Window OwnerWindow { get; set; }
+        public string appName = "Memorq";
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged(string propertyName)

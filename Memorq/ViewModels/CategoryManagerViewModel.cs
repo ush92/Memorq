@@ -1,6 +1,8 @@
 ﻿using Memorq.Infrastructure;
 using Memorq.Models;
 using Memorq.Services;
+using Memorq.Views.Dialogs;
+using Microsoft.VisualBasic;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Input;
@@ -12,6 +14,8 @@ namespace Memorq.ViewModels
         private readonly ICategoryProvider _categoryProvider;
         private readonly IItemProvider _itemProvider;
         private readonly IWindowFactory _windowFactory;
+
+        InputDialog newCategoryDialog;
 
         private List<Category> _categoriesList;
         private Category _selectedCategory;
@@ -62,13 +66,66 @@ namespace Memorq.ViewModels
             _windowFactory = windowFactory;
 
             CategoriesList = _categoryProvider.GetCategories();
-            //SelectedCategory = CategoriesList[0];
         }
 
         public ICommand UpdateItemsGridBySelectingCategory => new RelayCommand<Category>(c =>
         {
             SelectedCategory = c;
-            ItemList = _itemProvider.GetItems(SelectedCategory.Id);
+            if (SelectedCategory != null)
+            {
+                ItemList = _itemProvider.GetItems(SelectedCategory.Id);         
+            }
+        });
+
+        public ICommand AddNewCategoryCommand => new RelayCommand(_ =>
+        {
+            string newCategoryName;
+            bool isNameProperOrCancelled = false;
+
+            while (isNameProperOrCancelled == false)
+            {
+                newCategoryDialog = new InputDialog();
+                newCategoryDialog.Label.Content = GetDictResource("MsgEnterNameOfNewCategory");
+
+                if (newCategoryDialog.ShowDialog() == false)
+                {
+                    break;
+                }
+
+                newCategoryName = newCategoryDialog.TextBox.Text;
+
+                if (!newCategoryName.Equals(string.Empty))
+                {
+                    if (_categoryProvider.GetCategory(newCategoryName) == null)
+                    {
+                        _categoryProvider.InsertCategory(new Category() { Name = newCategoryName });
+
+                        CategoriesList = _categoryProvider.GetCategories();
+
+                        isNameProperOrCancelled = true;
+                    }
+                    else
+                    {
+                        MessageBox.Show(GetDictResource("MsgCategoryDuplicate"), appName, MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show(GetDictResource("MsgCategoryNoName"), appName, MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+            }
+        });
+
+        public ICommand DeleteCategoryCommand => new RelayCommand(_ =>
+        {
+            if (MessageBox.Show(GetDictResource("MsgCategoryDelete"),
+                appName, MessageBoxButton.YesNo, MessageBoxImage.Warning).Equals(MessageBoxResult.Yes))
+            {
+                _categoryProvider.DeleteCategory(SelectedCategory.Id);
+                SelectedCategory = null;
+                ItemList = null;
+                CategoriesList = _categoryProvider.GetCategories();
+            }
         });
     }
 }
