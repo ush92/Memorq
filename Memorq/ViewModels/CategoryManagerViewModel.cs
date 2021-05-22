@@ -2,6 +2,7 @@
 using Memorq.Models;
 using Memorq.Services;
 using Memorq.Views.Dialogs;
+using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Input;
@@ -67,12 +68,12 @@ namespace Memorq.ViewModels
             CategoriesList = _categoryProvider.GetCategories();
         }
 
-        public ICommand UpdateItemsBySelectCategoryCommand => new RelayCommand<Category>(c =>
+        public ICommand UpdateItemsGridBySelectCategoryCommand => new RelayCommand<Category>(c =>
         {
             SelectedCategory = c;
             if (SelectedCategory != null)
             {
-                ItemList = _itemProvider.GetItems(SelectedCategory.Id);         
+                ItemList = _itemProvider.GetItems(SelectedCategory.Id);
             }
         });
 
@@ -84,9 +85,9 @@ namespace Memorq.ViewModels
         public ICommand AddNewCategoryCommand => new RelayCommand(_ =>
         {
             string newCategoryName;
-            bool isNameProperOrCancelled = false;
+            bool isNameProper = false;
 
-            while (isNameProperOrCancelled == false)
+            while (isNameProper == false)
             {
                 newCategoryDialog = new InputDialog(GetDictResource("MsgEnterNameOfNewCategory"), GetDictResource("NewCategory"));
                 if (newCategoryDialog.ShowDialog() == false)
@@ -95,36 +96,30 @@ namespace Memorq.ViewModels
                 }
 
                 newCategoryName = newCategoryDialog.Answer;
-                if (!newCategoryName.Equals(string.Empty))
+
+                if (_categoryProvider.GetCategory(newCategoryName) == null)
                 {
-                    if (_categoryProvider.GetCategory(newCategoryName) == null)
-                    {
-                        _categoryProvider.InsertCategory(new Category() { Name = newCategoryName });
+                    _categoryProvider.InsertCategory(new Category() { Name = newCategoryName });
 
-                        CategoriesList = _categoryProvider.GetCategories();
-                        isNameProperOrCancelled = true;
+                    CategoriesList = _categoryProvider.GetCategories();
+                    isNameProper = true;
 
-                        ItemList = null;
-                        SelectedCategory = null;
-                    }
-                    else
-                    {
-                        MessageBox.Show(GetDictResource("MsgCategoryDuplicate"), appName, MessageBoxButton.OK, MessageBoxImage.Warning);
-                    }
+                    ItemList = null;
+                    SelectedCategory = null;
                 }
                 else
                 {
-                    MessageBox.Show(GetDictResource("MsgCategoryNoName"), appName, MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBox.Show(GetDictResource("MsgCategoryDuplicate"), appName, MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             }
         });
 
-        public ICommand ChangeCategoryNameCommand => new RelayCommand(_ =>
+        public ICommand UpdateCategoryNameCommand => new RelayCommand(_ =>
         {
             string newCategoryName;
-            bool isNameProperOrCancelled = false;
+            bool isNameProper = false;
 
-            while (isNameProperOrCancelled == false)
+            while (isNameProper == false)
             {
                 newCategoryDialog = new InputDialog(GetDictResource("MsgEnterNameOfNewCategory"), GetDictResource("ChangeCategoryName"));
                 if (newCategoryDialog.ShowDialog() == false)
@@ -133,25 +128,19 @@ namespace Memorq.ViewModels
                 }
 
                 newCategoryName = newCategoryDialog.Answer;
-                if (!newCategoryName.Equals(string.Empty))
-                {
-                    if (_categoryProvider.GetCategory(newCategoryName) == null)
-                    {
-                        Category updatedCategory = SelectedCategory;
-                        updatedCategory.Name = newCategoryName;
-                        _categoryProvider.UpdateCategory(updatedCategory);
 
-                        CategoriesList = _categoryProvider.GetCategories();
-                        isNameProperOrCancelled = true;
-                    }
-                    else
-                    {
-                        MessageBox.Show(GetDictResource("MsgCategoryDuplicate"), appName, MessageBoxButton.OK, MessageBoxImage.Warning);
-                    }
+                if (_categoryProvider.GetCategory(newCategoryName) == null)
+                {
+                    Category updatedCategory = SelectedCategory;
+                    updatedCategory.Name = newCategoryName;
+                    _categoryProvider.UpdateCategory(updatedCategory);
+
+                    CategoriesList = _categoryProvider.GetCategories();
+                    isNameProper = true;
                 }
                 else
                 {
-                    MessageBox.Show(GetDictResource("MsgCategoryNoName"), appName, MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBox.Show(GetDictResource("MsgCategoryDuplicate"), appName, MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             }
         });
@@ -165,6 +154,32 @@ namespace Memorq.ViewModels
                 ItemList = null;
                 SelectedCategory = null;
                 CategoriesList = _categoryProvider.GetCategories();
+            }
+        });
+
+        public ICommand UpdateItemCommand => new RelayCommand(_ =>
+        {
+            var ctgMngEditItem = _windowFactory.CreateWindow<CtgMngEditItem>();
+            ctgMngEditItem.QuestionTexBox.Text = SelectedItem.Question;
+            ctgMngEditItem.AnswerTexBox.Text = SelectedItem.Answer;
+
+            if (ctgMngEditItem.ShowDialog() == true)
+            {
+                Item updatedItem = SelectedItem;
+                updatedItem.Question = ctgMngEditItem.QuestionTexBox.Text;
+                updatedItem.Answer = ctgMngEditItem.AnswerTexBox.Text;
+                if (ctgMngEditItem.ResetItemCb.IsChecked == true)
+                {
+                    updatedItem.EFactor = 2.5;
+                    updatedItem.Interval = 0;
+                    updatedItem.Repetition = 0;
+                    updatedItem.LastGrade = 0;
+                    updatedItem.LastRepetitionDate = DateTime.Now;
+                }
+
+                _itemProvider.UpdateItem(updatedItem);
+
+                ItemList = _itemProvider.GetItems(SelectedCategory.Id);
             }
         });
 

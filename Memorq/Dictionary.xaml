@@ -42,12 +42,17 @@
     <system:String x:Key="Menu_Help_About">O programie</system:String>
     
     
-    <!-- Messages -->
+    <!-- Messages and verification labels -->
     <system:String x:Key="MsgCategoryDuplicate">Kategoria o podanej nazwie istnieje już w bazie kategorii</system:String>
-    <system:String x:Key="MsgCategoryNoName">Podaj nazwę kategorii</system:String>
+    <system:String x:Key="MsgCategoryNoName">Nazwa kategorii nie może być pusta</system:String>
+    <system:String x:Key="MsgCategoryTooLongName">Nazwa kategorii nie może być dłuższa niż 255 znaków</system:String>
     <system:String x:Key="MsgCategoryNotChosen">Wybierz kategorię</system:String>
     <system:String x:Key="MsgEnterNameOfNewCategory">Podaj nazwę kategorii</system:String>
     <system:String x:Key="MsgCategoryDelete">Czy na pewno chcesz usunąć tę kategorię?</system:String>
     <system:String x:Key="MsgItemDelete">Czy na pewno chcesz usunąć to pytanie/odpowiedź?</system:String>
-    
+    <system:String x:Key="MsgQuestionEmpty">Treść pytania nie może być pusta</system:String>
+    <system:String x:Key="MsgAnswerEmpty">Treść odpowiedzi nie może być pusta</system:String>
+    <system:String x:Key="MsgQuestionTooLong">Treść pytania nie może być dłuższa niż 255 znaków</system:String>
+    <system:String x:Key="MsgAnswerTooLong">Treść odpowiedzi nie może być dłuższa niż 255 znaków</system:String>
+
 </ResourceDictionary>

@@ -8,7 +8,7 @@
         Title="Memorq" Height="450" Width="800" ResizeMode="NoResize">
 
     <Window.InputBindings>
-        <KeyBinding Command="{Binding ShowDebugWindowCommand}" Key="D" Modifiers="Ctrl"/>
+        <KeyBinding Command="{Binding ShowAboutCommand}" Key="F1"/>
     </Window.InputBindings>
 
     <Window.Resources>
@@ -91,6 +91,5 @@
             <Label Grid.Row="0" Content="Memorq 1.0.1"/>
             <Label Grid.Row="1" Content="'Tell me and I forget. Teach me and I remember. Involve me and I learn.' - Benjamin Franklin"/>
         </Grid>
-
     </DockPanel>
 </Window>

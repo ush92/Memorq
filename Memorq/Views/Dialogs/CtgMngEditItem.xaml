@@ -1,0 +1,21 @@
+﻿<Window x:Class="Memorq.Views.Dialogs.CtgMngEditItem"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Memorq.Views.Dialogs"
+        mc:Ignorable="d"
+        Title="{StaticResource EditItem}" Height="320" Width="400" ResizeMode="NoResize">
+    <Grid>
+        <Label Content="{StaticResource Question}" ContentStringFormat='{}{0}:' HorizontalAlignment="Center" Margin="0,11,0,0" VerticalAlignment="Top" Width="380"/>
+        <Label x:Name="QuestionVerification" Content="question verify" Foreground="Red" HorizontalAlignment="Center" Margin="0,42,0,0" VerticalAlignment="Top" Width="380"/>
+        <TextBox x:Name="QuestionTexBox" HorizontalAlignment="Center" Margin="0,73,0,0" Text="q" TextWrapping="Wrap" VerticalAlignment="Top" Width="380"/>
+        <Label Content="{StaticResource Answer}" ContentStringFormat='{}{0}:' HorizontalAlignment="Center" Margin="0,105,0,0" VerticalAlignment="Top" Width="380"/>
+        <Label x:Name="AnswerVerification" Content="answer verify" Foreground="Red" HorizontalAlignment="Center" Margin="0,136,0,0" VerticalAlignment="Top" Width="380"/>
+        <TextBox x:Name="AnswerTexBox" HorizontalAlignment="Center" Text="a" TextWrapping="Wrap" VerticalAlignment="Top" Width="380" Margin="0,167,0,0"/>
+        <CheckBox x:Name="ResetItemCb" Content="{StaticResource ResetItem}" IsChecked="False" HorizontalAlignment="Left" Margin="10,207,0,0" VerticalAlignment="Top"/>
+        <Button Content="{StaticResource SwapQuestionAnswer}" Click="SwapQuestionAnswerBtnClick" HorizontalAlignment="Left" Margin="10,243,0,0" VerticalAlignment="Top" Width="107"/>
+        <Button Content="OK" Click="OKBtnClick" HorizontalAlignment="Left" Margin="122,243,0,0" VerticalAlignment="Top" Width="107"/>
+        <Button Content="{StaticResource Cancel}" IsCancel="True" Margin="283,243,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="107"/>
+    </Grid>
+</Window>

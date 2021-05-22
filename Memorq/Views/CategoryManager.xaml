@@ -29,7 +29,7 @@
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="MouseLeftButtonUp">
                         <i:InvokeCommandAction 
-                        Command="{Binding UpdateItemsBySelectCategoryCommand}"
+                        Command="{Binding UpdateItemsGridBySelectCategoryCommand}"
                         CommandParameter="{Binding ElementName=CategoryListView, Path=SelectedItem}"/>
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
@@ -70,9 +70,9 @@
 
             <Button Content="{StaticResource ChooseCategory}" Name="ChooseCategoryBtn" Click="ChooseCategoryBtnClick" IsEnabled="False" Grid.Column="0" />
             <Button Content="{StaticResource NewCategory}" Command="{Binding AddNewCategoryCommand}" Grid.Column="1" />
-            <Button Content="{StaticResource ChangeCategoryName}" Command="{Binding ChangeCategoryNameCommand}" Name="ChangeCategoryNameBtn" IsEnabled="False" Grid.Column="2" />
+            <Button Content="{StaticResource ChangeCategoryName}" Command="{Binding UpdateCategoryNameCommand}" Name="ChangeCategoryNameBtn" IsEnabled="False" Grid.Column="2" />
             <Button Content="{StaticResource DeleteCategory}" Command="{Binding DeleteCategoryCommand}" Name="DeleteCategoryBtn" IsEnabled="False" Grid.Column="3" />
-            <Button Content="{StaticResource EditItem}" Name="EditItemBtn" IsEnabled="False" Grid.Column="4" />
+            <Button Content="{StaticResource EditItem}" Command="{Binding UpdateItemCommand}" Name="EditItemBtn" IsEnabled="False" Grid.Column="4" />
             <Button Content="{StaticResource DeleteItem}" Command="{Binding DeleteItemCommand}" Name="DeleteItemBtn" IsEnabled="False" Grid.Column="5" />
             <Button Content="{StaticResource Quit}" IsCancel="true" Grid.Column="6" />
         </Grid>

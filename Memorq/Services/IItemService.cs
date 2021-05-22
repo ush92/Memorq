@@ -9,5 +9,6 @@ namespace Memorq.Services
 
         void InsertItem(Item item);
         void DeleteItem(int id);
+        void UpdateItem(Item item);
     }
 }

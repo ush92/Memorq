@@ -20,6 +20,13 @@ namespace Memorq.Services
             connection.Insert(item);
         }
 
+        public void UpdateItem(Item item)
+        {
+            using SQLiteConnection connection = new SQLiteConnection(App.databasePath);
+            connection.CreateTable<Item>();
+            connection.Update(item);
+        }
+
         public void DeleteItem(int id)
         {
             using SQLiteConnection connection = new SQLiteConnection(App.databasePath);

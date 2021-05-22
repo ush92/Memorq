@@ -1,5 +1,4 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 
 namespace Memorq.Views.Dialogs
 {
@@ -8,18 +7,37 @@ namespace Memorq.Views.Dialogs
         public InputDialog(string labelText, string title)
         {
             InitializeComponent();
-            this.Label.Content = labelText;
             this.Title = title;
+            this.Label.Content = labelText;
+            this.VerificationLabel.Content = string.Empty;
         }
 
         private void OKBtnClick(object sender, RoutedEventArgs e)
         {
-            DialogResult = true;
+            if(this.TextBox.Text.Trim().Equals(string.Empty))
+            {
+                this.VerificationLabel.Content = (string)Application.Current.FindResource("MsgCategoryNoName");
+                this.TextBox.Text = string.Empty;
+                this.TextBox.Focus();
+            }
+            else
+            {
+                if (this.TextBox.Text.Trim().Length > 255)
+                {
+                    this.VerificationLabel.Content = (string)Application.Current.FindResource("MsgCategoryTooLongName");
+                    this.TextBox.Text = string.Empty;
+                    this.TextBox.Focus();
+                }
+                else
+                {
+                    DialogResult = true;
+                }               
+            }       
         }
 
         public string Answer
         {
-            get { return this.TextBox.Text; }
+            get { return this.TextBox.Text.Trim(); }
         }
     }
 }
