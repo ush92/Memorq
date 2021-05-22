@@ -60,9 +60,9 @@
         <StatusBar DockPanel.Dock="Bottom" Name="statusBar" Height="30" HorizontalContentAlignment="Stretch">
             <DockPanel LastChildFill="True"
                    Width="{Binding ActualWidth, ElementName=statusBar, Mode=OneWay}">
-                <Label DockPanel.Dock="Right" Content="0 0 0" Width="110" Background="#FF9CD3BA" />
-                <Label DockPanel.Dock="Left"  Content="test" Background="#FFE2C7C7" />
-
+                <Label x:Name="CategoryStatsLabel" DockPanel.Dock="Right" Content="10000 10000 10000" FontSize="11" Width="110" Height="30" />
+                <Label x:Name="DefaultCategoryLabel" Content="{Binding Path=DefaultCategoryName}" DockPanel.Dock="Right" Width="327" Height="30" />
+                <Label x:Name="TooltipLabel" DockPanel.Dock="Left" Content="tooltip" Height="30"  />
             </DockPanel>
         </StatusBar>
 
@@ -71,16 +71,33 @@
                 <RowDefinition Height="2*" />
                 <RowDefinition Height="1*" />
                 <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
 
             </Grid.RowDefinitions>
-            <Button x:Name="AddBtn" Grid.Row="0">
+            <Button x:Name="LearnBtn" Grid.Row="0" BorderThickness="0.5" MouseEnter="LearnBtn_MouseEnter" MouseLeave="LearnBtn_MouseLeave">
                 <StackPanel>
-                    <Image Source="{StaticResource AddBtn_right_img}" Width="32" Height="32"/>
-                    <TextBlock Text="{StaticResource AddBtn_right}"></TextBlock>
+                    <Image Source="{StaticResource LearnBtn_right_img}" Width="50" Height="50"/>
+                    <TextBlock Text="{StaticResource LearnBtn_right}" FontSize="12" HorizontalAlignment="Center"></TextBlock>
                 </StackPanel>
             </Button>
-            <Button x:Name="NewBtn" Grid.Row="1" Content="{StaticResource NewBtn_right}"></Button>
-            <Button x:Name="ForceBtn" Grid.Row="2" Content="{StaticResource ForceBtn_right}"></Button>
+            <Button x:Name="AddBtn" Grid.Row="1" BorderThickness="0.5" MouseEnter="AddBtn_MouseEnter" MouseLeave="AddBtn_MouseLeave">
+                <StackPanel>
+                    <Image Source="{StaticResource AddBtn_right_img}" Width="40" Height="40"/>
+                    <TextBlock Text="{StaticResource AddBtn_right}" FontSize="12" HorizontalAlignment="Center"></TextBlock>
+                </StackPanel>
+            </Button>
+            <Button x:Name="NewBtn" Grid.Row="2" BorderThickness="0.5" MouseEnter="NewBtn_MouseEnter" MouseLeave="NewBtn_MouseLeave">
+                <StackPanel>
+                    <Image Source="{StaticResource NewBtn_right_img}" Width="50" Height="50"/>
+                    <TextBlock Text="{StaticResource NewBtn_right}" FontSize="12" HorizontalAlignment="Center"></TextBlock>
+                </StackPanel>
+            </Button>
+            <Button x:Name="ForceBtn" Grid.Row="3" BorderThickness="0.5" MouseEnter="ForceBtn_MouseEnter" MouseLeave="ForceBtn_MouseLeave">
+                <StackPanel>
+                    <Image Source="{StaticResource ForceBtn_right_img}" Width="50" Height="50"/>
+                    <TextBlock Text="{StaticResource ForceBtn_right}" FontSize="12" HorizontalAlignment="Center"></TextBlock>
+                </StackPanel>
+            </Button>
         </Grid>
 
         <Grid DockPanel.Dock="Left" Width="675">

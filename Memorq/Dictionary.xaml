@@ -8,6 +8,20 @@
     <system:String x:Key="Answer">Odpowiedź</system:String>
     <system:String x:Key="Quit">Zamknij</system:String>
     <system:String x:Key="Cancel">Anuluj</system:String>
+    <system:String x:Key="Category">Kategoria</system:String>
+
+    <!-- Messages and verification labels -->
+    <system:String x:Key="MsgCategoryDuplicate">Kategoria o podanej nazwie istnieje już w bazie kategorii</system:String>
+    <system:String x:Key="MsgCategoryNoName">Nazwa kategorii nie może być pusta</system:String>
+    <system:String x:Key="MsgCategoryTooLongName">Nazwa kategorii nie może być dłuższa niż 255 znaków</system:String>
+    <system:String x:Key="MsgCategoryNotChosen">Wybierz kategorię</system:String>
+    <system:String x:Key="MsgEnterNameOfNewCategory">Podaj nazwę kategorii</system:String>
+    <system:String x:Key="MsgCategoryDelete">Czy na pewno chcesz usunąć tę kategorię?</system:String>
+    <system:String x:Key="MsgItemDelete">Czy na pewno chcesz usunąć to pytanie/odpowiedź?</system:String>
+    <system:String x:Key="MsgQuestionEmpty">Treść pytania nie może być pusta</system:String>
+    <system:String x:Key="MsgAnswerEmpty">Treść odpowiedzi nie może być pusta</system:String>
+    <system:String x:Key="MsgQuestionTooLong">Treść pytania nie może być dłuższa niż 255 znaków</system:String>
+    <system:String x:Key="MsgAnswerTooLong">Treść odpowiedzi nie może być dłuższa niż 255 znaków</system:String>
 
     <!-- Category Manager -->
     <system:String x:Key="ChooseCategory">Wybierz kategorię</system:String>
@@ -20,13 +34,15 @@
     <system:String x:Key="ResetItem">Resetuj współczynniki nauki</system:String>
     <system:String x:Key="SwapQuestionAnswer">Zamień pyt./odp.</system:String>
 
-    <!-- Right Panel buttons -->
+    <!-- Main Window -->
+    <system:String x:Key="DefaultCategoryNotChosen">Nie wybrano kategorii</system:String>
+
+    <system:String x:Key="LearnBtn_right">Nauka</system:String>
     <system:String x:Key="AddBtn_right">Dodaj</system:String>
-    <system:String x:Key="NewBtn_right">Nowe</system:String>
-    <system:String x:Key="ForceBtn_right">Wymuś</system:String>
+    <system:String x:Key="NewBtn_right">Nowe elementy</system:String>
+    <system:String x:Key="ForceBtn_right">Wymuś naukę</system:String>
 
     
-    <!-- Main Menu -->
     <system:String x:Key="Menu_File">Plik</system:String>
     <system:String x:Key="Menu_File_Manager">Menedżer kategorii</system:String>
     <system:String x:Key="Menu_File_ImportExport">Import/Eksport</system:String>
@@ -41,18 +57,12 @@
     <system:String x:Key="Menu_Help">Pomoc</system:String>
     <system:String x:Key="Menu_Help_About">O programie</system:String>
     
-    
-    <!-- Messages and verification labels -->
-    <system:String x:Key="MsgCategoryDuplicate">Kategoria o podanej nazwie istnieje już w bazie kategorii</system:String>
-    <system:String x:Key="MsgCategoryNoName">Nazwa kategorii nie może być pusta</system:String>
-    <system:String x:Key="MsgCategoryTooLongName">Nazwa kategorii nie może być dłuższa niż 255 znaków</system:String>
-    <system:String x:Key="MsgCategoryNotChosen">Wybierz kategorię</system:String>
-    <system:String x:Key="MsgEnterNameOfNewCategory">Podaj nazwę kategorii</system:String>
-    <system:String x:Key="MsgCategoryDelete">Czy na pewno chcesz usunąć tę kategorię?</system:String>
-    <system:String x:Key="MsgItemDelete">Czy na pewno chcesz usunąć to pytanie/odpowiedź?</system:String>
-    <system:String x:Key="MsgQuestionEmpty">Treść pytania nie może być pusta</system:String>
-    <system:String x:Key="MsgAnswerEmpty">Treść odpowiedzi nie może być pusta</system:String>
-    <system:String x:Key="MsgQuestionTooLong">Treść pytania nie może być dłuższa niż 255 znaków</system:String>
-    <system:String x:Key="MsgAnswerTooLong">Treść odpowiedzi nie może być dłuższa niż 255 znaków</system:String>
+    <!-- Tooltips -->
+    <system:String x:Key="DefaultTooltip">Memorq jest gotowe</system:String>
+    <system:String x:Key="BtnAddTooltip">Dodaj nowe pytania do bazy nauki</system:String>
+    <system:String x:Key="BtnLearnTooltip">Rozpocznij powtórkę elementów wyznaczonych na dziś</system:String>
+    <system:String x:Key="BtnNewTooltip">Rozpocznij naukę nowych elementów</system:String>
+    <system:String x:Key="BtnForceTooltip">Wymusza powtórkę elementów poza kolejką</system:String>
+
 
 </ResourceDictionary>

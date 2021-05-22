@@ -3,9 +3,12 @@
                     xmlns:system="clr-namespace:System;assembly=mscorlib">
 
     <!-- Right Panel buttons -->
+    <BitmapImage x:Key="LearnBtn_right_img" UriSource="Images/learn.png" />
     <BitmapImage x:Key="AddBtn_right_img" UriSource="Images/add.png" />
+    <BitmapImage x:Key="NewBtn_right_img" UriSource="Images/newElements.png" />
+    <BitmapImage x:Key="ForceBtn_right_img" UriSource="Images/forceLearning.png" />
 
-    
+
     <!-- Main Menu -->
     <BitmapImage x:Key="CategoryManager" UriSource="Images/manager.png" />
     <BitmapImage x:Key="ImportExport" UriSource="Images/importExport.png" />

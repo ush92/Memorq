@@ -11,9 +11,12 @@
   <ItemGroup>
     <None Remove="Images\add.png" />
     <None Remove="Images\exit.png" />
+    <None Remove="Images\forceLearning.png" />
     <None Remove="Images\importExport.png" />
+    <None Remove="Images\learn.png" />
     <None Remove="Images\manager.png" />
     <None Remove="Images\memorq.ico" />
+    <None Remove="Images\newElements.png" />
     <None Remove="memorq.ico" />
     <None Remove="Views\memorq.ico" />
   </ItemGroup>
@@ -29,9 +32,12 @@
   <ItemGroup>
     <Resource Include="Images\add.png" />
     <Resource Include="Images\exit.png" />
+    <Resource Include="Images\forceLearning.png" />
     <Resource Include="Images\importExport.png" />
+    <Resource Include="Images\learn.png" />
     <Resource Include="Images\manager.png" />
     <Resource Include="Images\memorq.ico" />
+    <Resource Include="Images\newElements.png" />
     <Resource Include="memorq.ico" />
   </ItemGroup>
 
