@@ -15,6 +15,7 @@ namespace Memorq.ViewModels
 
         private Category _defaultCategory;
         private string _defaultCategoryName;
+        private bool _isDefaultCategoryChoosen;
 
         public Category DefaultCategory
         {
@@ -36,12 +37,23 @@ namespace Memorq.ViewModels
             }
         }
 
+        public bool IsDefaultCategoryChoosen
+        {
+            get => _isDefaultCategoryChoosen;
+            set
+            {
+                _isDefaultCategoryChoosen = value;
+                OnPropertyChanged(nameof(IsDefaultCategoryChoosen));
+            }
+        }
+
         private void InitDefaultCategory()
         {
             DefaultCategory = _categoryProvider.GetCategory(UserSettings.Default.DefaultCategory);
             if (DefaultCategory == null)
             {
                 DefaultCategoryName = GetDictResource("DefaultCategoryNotChosen");
+                IsDefaultCategoryChoosen = false;
 
                 UserSettings.Default.DefaultCategory = -1;
                 UserSettings.Default.Save();
@@ -49,6 +61,7 @@ namespace Memorq.ViewModels
             else
             {
                 DefaultCategoryName = string.Format("{0}: {1}", GetDictResource("Category"), DefaultCategory.Name);
+                IsDefaultCategoryChoosen = true;
             }
         }
 
@@ -64,17 +77,33 @@ namespace Memorq.ViewModels
         public ICommand ShowCategoryManagerCommand => new RelayCommand(_ =>
         {
             var categoryManager = _windowFactory.CreateWindow<CategoryManager>();
+            categoryManager.ShowDialog();
 
-            if (categoryManager.ShowDialog() == true)
+            var categoryManagerViewModel = (CategoryManagerViewModel)categoryManager.DataContext;
+            DefaultCategory = categoryManagerViewModel.SelectedCategory;
+
+            if (DefaultCategory == null)
             {
-                var categoryManagerViewModel = (CategoryManagerViewModel)categoryManager.DataContext;
-
-                DefaultCategory = categoryManagerViewModel.SelectedCategory;
-                DefaultCategoryName = string.Format("{0}: {1}", GetDictResource("Category"), DefaultCategory.Name);
-
-                UserSettings.Default.DefaultCategory = categoryManagerViewModel.SelectedCategory.Id;
-                UserSettings.Default.Save();
+                DefaultCategoryName = GetDictResource("DefaultCategoryNotChosen");
+                IsDefaultCategoryChoosen = false;
+                UserSettings.Default.DefaultCategory = -1;
             }
+            else
+            {
+                DefaultCategoryName = string.Format("{0}: {1}", GetDictResource("Category"), DefaultCategory.Name);
+                IsDefaultCategoryChoosen = true;
+                UserSettings.Default.DefaultCategory = categoryManagerViewModel.SelectedCategory.Id;
+            }
+
+            UserSettings.Default.Save();
+        });
+
+        public ICommand ShowImportExportCommand => new RelayCommand(_ =>
+        {
+            var importExport = _windowFactory.CreateWindow<ImportExport>();
+            //to do: set category for new window
+            importExport.ShowDialog();
+         
         });
 
         public ICommand ShowAboutCommand => new RelayCommand(_ => _windowFactory.CreateWindow<About>().ShowDialog());

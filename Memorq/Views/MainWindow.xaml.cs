@@ -14,7 +14,6 @@ namespace Memorq.Views
             TooltipLabel.Content = (string)Application.Current.FindResource("DefaultTooltip");
         }
 
-
         #region Tooltips
 
         private void LearnBtn_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
@@ -25,7 +24,6 @@ namespace Memorq.Views
         {
             TooltipLabel.Content = (string)Application.Current.FindResource("DefaultTooltip");
         }
-
         private void AddBtn_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
         {
             TooltipLabel.Content = (string)Application.Current.FindResource("BtnAddTooltip");
@@ -34,7 +32,6 @@ namespace Memorq.Views
         {
             TooltipLabel.Content = (string)Application.Current.FindResource("DefaultTooltip");
         }
-
         private void NewBtn_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
         {
             TooltipLabel.Content = (string)Application.Current.FindResource("BtnNewTooltip");
@@ -43,12 +40,19 @@ namespace Memorq.Views
         {
             TooltipLabel.Content = (string)Application.Current.FindResource("DefaultTooltip");
         }
-
         private void ForceBtn_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
         {
             TooltipLabel.Content = (string)Application.Current.FindResource("BtnForceTooltip");
         }
         private void ForceBtn_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            TooltipLabel.Content = (string)Application.Current.FindResource("DefaultTooltip");
+        }
+        private void CategoryStatsLabel_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            TooltipLabel.Content = (string)Application.Current.FindResource("CategoryStatsTooltip");
+        }
+        private void CategoryStatsLabel_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
         {
             TooltipLabel.Content = (string)Application.Current.FindResource("DefaultTooltip");
         }
