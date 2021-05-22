@@ -17,6 +17,9 @@
     <system:String x:Key="EditItem">Edytuj pyt./odp.</system:String>
     <system:String x:Key="DeleteItem">Usuń pyt./odp.</system:String>
 
+    <system:String x:Key="ResetItem">Resetuj współczynniki nauki</system:String>
+    <system:String x:Key="SwapQuestionAnswer">Zamień pyt./odp.</system:String>
+
     <!-- Right Panel buttons -->
     <system:String x:Key="AddBtn_right">Dodaj</system:String>
     <system:String x:Key="NewBtn_right">Nowe</system:String>

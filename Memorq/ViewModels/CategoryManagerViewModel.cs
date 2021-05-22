@@ -88,7 +88,7 @@ namespace Memorq.ViewModels
 
             while (isNameProperOrCancelled == false)
             {
-                newCategoryDialog = new InputDialog(GetDictResource("MsgEnterNameOfNewCategory"));
+                newCategoryDialog = new InputDialog(GetDictResource("MsgEnterNameOfNewCategory"), GetDictResource("NewCategory"));
                 if (newCategoryDialog.ShowDialog() == false)
                 {
                     break;
@@ -126,7 +126,7 @@ namespace Memorq.ViewModels
 
             while (isNameProperOrCancelled == false)
             {
-                newCategoryDialog = new InputDialog(GetDictResource("MsgEnterNameOfNewCategory"));
+                newCategoryDialog = new InputDialog(GetDictResource("MsgEnterNameOfNewCategory"), GetDictResource("ChangeCategoryName"));
                 if (newCategoryDialog.ShowDialog() == false)
                 {
                     break;

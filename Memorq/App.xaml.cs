@@ -2,7 +2,6 @@
 using Memorq.Models;
 using Memorq.Services;
 using Memorq.Views;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SQLite;
 using System;
@@ -15,12 +14,9 @@ namespace Memorq
         public static string databasePath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "memorq.db");
 
         public IServiceProvider ServiceProvider { get; private set; }
-        public IConfiguration Configuration { get; private set; }
 
         protected override void OnStartup(StartupEventArgs e)
         {
-            Configuration = ConfigurationFactory.GetConfiguration();
-
             var serviceCollection = new ServiceCollection();
             ConfigureServices(serviceCollection);
 
@@ -38,8 +34,6 @@ namespace Memorq
 
         private void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<AppSettings>(Configuration.GetSection(nameof(AppSettings)));
-
             services.Scan(s => s.FromCallingAssembly()
                 .AddClasses(c => c.AssignableToAny(typeof(Window), typeof(BaseViewModel)))
                 .AsSelf()
