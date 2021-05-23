@@ -22,6 +22,10 @@
     <system:String x:Key="MsgAnswerEmpty">Treść odpowiedzi nie może być pusta</system:String>
     <system:String x:Key="MsgQuestionTooLong">Treść pytania nie może być dłuższa niż 255 znaków</system:String>
     <system:String x:Key="MsgAnswerTooLong">Treść odpowiedzi nie może być dłuższa niż 255 znaków</system:String>
+    <system:String x:Key="MsgImportError">Plik jest uszkodzony lub zawiera niepoprawny format danych</system:String>
+    <system:String x:Key="MsgImportSuccess">Nowe elementy zostały zaimportowane</system:String>
+    <system:String x:Key="MsgExportError">Wystąpił problem z zapisem pliku</system:String>
+    <system:String x:Key="MsgExportSuccess">Elementy zostały poprawnie wyeksportowane</system:String>
 
     <!-- Category Manager -->
     <system:String x:Key="ChooseCategory">Wybierz kategorię</system:String>

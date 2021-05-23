@@ -11,18 +11,12 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*" />
-            <RowDefinition Height="10*" />
+            <RowDefinition Height="12*" />
             <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
         <Label Content="{StaticResource ImportExportDescription}" VerticalAlignment="Center" Height="26"/>
+
         <ListView Grid.Row="1" Name="ItemListView" ItemsSource="{Binding Path=ItemList}">
-            <i:Interaction.Triggers>
-                <i:EventTrigger EventName="MouseLeftButtonUp">
-                    <i:InvokeCommandAction 
-                        Command="{Binding SelectItemCommand}"
-                        CommandParameter="{Binding ElementName=ItemListView, Path=SelectedItem}"/>
-                </i:EventTrigger>
-            </i:Interaction.Triggers>
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="{StaticResource Question}" DisplayMemberBinding="{Binding Path=Question}" Width="350" />
@@ -30,6 +24,7 @@
                 </GridView>
             </ListView.View>
         </ListView>
+        
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="2*" />
@@ -39,8 +34,8 @@
                 <ColumnDefinition Width="1*" />
                 <ColumnDefinition Width="1*" />
             </Grid.ColumnDefinitions>
-            <Button Content="{StaticResource Import}" Grid.Column="0"/>
-            <Button Content="{StaticResource Export}" Grid.Column="1"/>
+            <Button Content="{StaticResource Import}" Command="{Binding ImportCommand}" Grid.Column="0"/>
+            <Button Content="{StaticResource Export}" Command="{Binding ExportCommand}" Grid.Column="1"/>
             <Button Content="{StaticResource Quit}" IsCancel="true" Grid.Column="5"/>
         </Grid>
     </Grid>

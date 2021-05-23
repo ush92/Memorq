@@ -1,14 +1,15 @@
 ﻿using SQLite;
 using System;
+using System.Text.Json.Serialization;
 
 namespace Memorq.Models
 {
     public sealed class Item
     {
-        [PrimaryKey, AutoIncrement]
+        [PrimaryKey, AutoIncrement, JsonIgnore]
         public int Id { get; set; }
 
-        [Indexed, NotNull]
+        [Indexed, NotNull, JsonIgnore]
         public int CategoryId { get; set; }
 
         [NotNull]
@@ -17,21 +18,25 @@ namespace Memorq.Models
         [NotNull]
         public string Answer { get; set; }
 
-        [NotNull]
+        [NotNull, JsonIgnore]
+   
         public int Repetition { get; set; }
 
-        [NotNull]
+        [NotNull, JsonIgnore]
         public double EFactor { get; set; }
 
-        [NotNull]
+        [NotNull, JsonIgnore]
+
         public int Interval { get; set; }
 
-        public int LastGrade { get; set; }
+        [JsonIgnore]
+        public int? LastGrade { get; set; }
 
-        [NotNull]
+        [NotNull, JsonIgnore]
+
         public DateTime InsertDate { get; set; }
 
-        [NotNull]
-        public DateTime LastRepetitionDate { get; set; }
+        [JsonIgnore]
+        public DateTime? LastRepetitionDate { get; set; }
     }
 }

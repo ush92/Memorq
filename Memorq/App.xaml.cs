@@ -42,7 +42,6 @@ namespace Memorq
             services.AddTransient<IStringResourcesDictionary, StringResourcesDictionary>();
             services.AddTransient<ICategoryService, CategoryService>();
             services.AddTransient<IItemService, ItemService>();
-            services.AddTransient<IJsonConverter, JsonConverter>();
             services.AddTransient<IWindowFactory, WindowFactory>();
         }
     }

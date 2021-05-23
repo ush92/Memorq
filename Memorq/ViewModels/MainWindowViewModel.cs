@@ -3,8 +3,6 @@ using Memorq.Models;
 using Memorq.Services;
 using Memorq.Views;
 using Memorq.Views.Dialogs;
-using System.Collections.Generic;
-using System.Windows;
 using System.Windows.Input;
 
 namespace Memorq.ViewModels
@@ -15,8 +13,6 @@ namespace Memorq.ViewModels
         private readonly IItemService _itemService;
         private readonly IWindowFactory _windowFactory;
         private readonly IStringResourcesDictionary _stringResourcesDictionary;
-        private readonly IJsonConverter _jsonConverter;
-
 
         private Category _defaultCategory;
         public Category DefaultCategory
@@ -43,12 +39,11 @@ namespace Memorq.ViewModels
             }
         }
 
-        public MainWindowViewModel(ICategoryService categoryService, IItemService itemService, IJsonConverter jsonConverter,
+        public MainWindowViewModel(ICategoryService categoryService, IItemService itemService,
                                    IWindowFactory windowFactory, IStringResourcesDictionary stringResourcesDictionary)
         {
             _categoryService = categoryService;
             _itemService = itemService;
-            _jsonConverter = jsonConverter;
             _windowFactory = windowFactory;
             _stringResourcesDictionary = stringResourcesDictionary;
 
@@ -82,9 +77,11 @@ namespace Memorq.ViewModels
         public ICommand ShowImportExportCommand => new RelayCommand(_ =>
         {
             var importExport = _windowFactory.CreateWindow<ImportExport>();
-            importExport.ItemListView.ItemsSource = _itemService.GetItems(DefaultCategory.Id);
-            importExport.ShowDialog();
-         
+            var importExportViewModel = (ImportExportViewModel)importExport.DataContext;
+            importExportViewModel.DefaultCategoryId = DefaultCategory.Id;
+            importExportViewModel.ItemList = _itemService.GetItems(DefaultCategory.Id);
+
+            importExport.ShowDialog();         
         });
 
         public ICommand ShowMarkDescriptionCommand => new RelayCommand(_ => _windowFactory.CreateWindow<MarkDescription>().ShowDialog());
