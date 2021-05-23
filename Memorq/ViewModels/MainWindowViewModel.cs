@@ -54,18 +54,23 @@ namespace Memorq.ViewModels
         public ICommand ShowCategoryManagerCommand => new RelayCommand(_ =>
         {
             var categoryManager = _windowFactory.CreateWindow<CategoryManager>();
-            categoryManager.ShowDialog();
-
             var categoryManagerViewModel = (CategoryManagerViewModel)categoryManager.DataContext;
-            DefaultCategory = categoryManagerViewModel.SelectedCategory;
 
-            if (DefaultCategory == null)
+            if (categoryManager.ShowDialog() == true)
             {
-                UserSettings.Default.DefaultCategory = -1;
+                DefaultCategory = categoryManagerViewModel.SelectedCategory;
+                UserSettings.Default.DefaultCategory = categoryManagerViewModel.SelectedCategory.Id;
             }
             else
             {
-                UserSettings.Default.DefaultCategory = categoryManagerViewModel.SelectedCategory.Id;
+                if (DefaultCategory != null)
+                {
+                    DefaultCategory = _categoryService.GetCategory(DefaultCategory.Id);
+                }
+                else
+                {
+                    UserSettings.Default.DefaultCategory = -1;
+                }
             }
             UserSettings.Default.Save();
         });
@@ -73,7 +78,7 @@ namespace Memorq.ViewModels
         public ICommand ShowImportExportCommand => new RelayCommand(_ =>
         {
             var importExport = _windowFactory.CreateWindow<ImportExport>();
-            //to do: set category for new window
+            importExport.ItemListView.ItemsSource = _itemService.GetItems(DefaultCategory.Id);
             importExport.ShowDialog();
          
         });
