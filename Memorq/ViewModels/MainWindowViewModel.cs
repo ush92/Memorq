@@ -21,19 +21,12 @@ namespace Memorq.ViewModels
             {
                 _defaultCategory = value;
                 OnPropertyChanged(nameof(DefaultCategory));
-            }
-        }
-
-        private string _defaultCategoryName;
-        public string DefaultCategoryName
-        {
-            get => _defaultCategoryName;
-            set
-            {
-                _defaultCategoryName = value;
                 OnPropertyChanged(nameof(DefaultCategoryName));
             }
         }
+
+        public string DefaultCategoryName => DefaultCategory?.Name ?? GetDictResource("DefaultCategoryNotChosen");
+
 
         private bool _isDefaultCategoryChoosen;
         public bool IsDefaultCategoryChoosen
@@ -51,7 +44,6 @@ namespace Memorq.ViewModels
             DefaultCategory = _categoryProvider.GetCategory(UserSettings.Default.DefaultCategory);
             if (DefaultCategory == null)
             {
-                DefaultCategoryName = GetDictResource("DefaultCategoryNotChosen");
                 IsDefaultCategoryChoosen = false;
 
                 UserSettings.Default.DefaultCategory = -1;
@@ -59,7 +51,6 @@ namespace Memorq.ViewModels
             }
             else
             {
-                DefaultCategoryName = string.Format("{0}: {1}", GetDictResource("Category"), DefaultCategory.Name);
                 IsDefaultCategoryChoosen = true;
             }
         }
@@ -83,13 +74,11 @@ namespace Memorq.ViewModels
 
             if (DefaultCategory == null)
             {
-                DefaultCategoryName = GetDictResource("DefaultCategoryNotChosen");
                 IsDefaultCategoryChoosen = false;
                 UserSettings.Default.DefaultCategory = -1;
             }
             else
             {
-                DefaultCategoryName = string.Format("{0}: {1}", GetDictResource("Category"), DefaultCategory.Name);
                 IsDefaultCategoryChoosen = true;
                 UserSettings.Default.DefaultCategory = categoryManagerViewModel.SelectedCategory.Id;
             }
