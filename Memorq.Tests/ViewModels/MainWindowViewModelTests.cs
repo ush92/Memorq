@@ -16,13 +16,15 @@ namespace Memorq.Tests.ViewModels
     {
         private readonly Mock<ICategoryService> _categoryService = new();
         private readonly Mock<IItemService> _itemService = new();
+        private readonly Mock<IJsonConverter> _jsonConverter = new();
         private readonly Mock<IWindowFactory> _windowFactory = new();
         private readonly Mock<IStringResourcesDictionary> _stringResourcesDictionary = new();
 
         [Fact]
         public void IfNoDefaultCategoryThenIsDefaultCategoryChoosenIsFalse()
         {
-            var mainWindowViewModel = new MainWindowViewModel(_categoryService.Object, _itemService.Object, _windowFactory.Object, _stringResourcesDictionary.Object);
+            var mainWindowViewModel = new MainWindowViewModel(_categoryService.Object, _itemService.Object, _jsonConverter.Object,
+                                                              _windowFactory.Object, _stringResourcesDictionary.Object);
             mainWindowViewModel.DefaultCategory = null;
             mainWindowViewModel.IsDefaultCategoryChoosen.Should().BeFalse();
         }
@@ -30,7 +32,8 @@ namespace Memorq.Tests.ViewModels
         [Fact]
         public void IfDefaultCategoryThenIsDefaultCategoryChoosenIsTrue()
         {
-            var mainWindowViewModel = new MainWindowViewModel(_categoryService.Object, _itemService.Object, _windowFactory.Object, _stringResourcesDictionary.Object);
+            var mainWindowViewModel = new MainWindowViewModel(_categoryService.Object, _itemService.Object, _jsonConverter.Object,
+                                                              _windowFactory.Object, _stringResourcesDictionary.Object);
             mainWindowViewModel.DefaultCategory = new();
             mainWindowViewModel.IsDefaultCategoryChoosen.Should().BeTrue();
         }
@@ -38,7 +41,8 @@ namespace Memorq.Tests.ViewModels
         [Fact]
         public void IfNoDefaultCategoryThenDefaultCategoryNameHasDictionaryValueDefaultCategoryNotChosen()
         {
-            var mainWindowViewModel = new MainWindowViewModel(_categoryService.Object, _itemService.Object, _windowFactory.Object, _stringResourcesDictionary.Object);
+            var mainWindowViewModel = new MainWindowViewModel(_categoryService.Object, _itemService.Object, _jsonConverter.Object,
+                                                              _windowFactory.Object, _stringResourcesDictionary.Object);
             mainWindowViewModel.DefaultCategory = null;
             mainWindowViewModel.DefaultCategoryName.Should().Be(_stringResourcesDictionary.Object.GetResource("DefaultCategoryNotChosen"));
         }
@@ -46,7 +50,8 @@ namespace Memorq.Tests.ViewModels
         [Fact]
         public void IfDefaultCategoryThenDefaultCategoryNameIsTheSame()
         {
-            var mainWindowViewModel = new MainWindowViewModel(_categoryService.Object, _itemService.Object, _windowFactory.Object, _stringResourcesDictionary.Object);
+            var mainWindowViewModel = new MainWindowViewModel(_categoryService.Object, _itemService.Object, _jsonConverter.Object,
+                                                              _windowFactory.Object, _stringResourcesDictionary.Object);
             mainWindowViewModel.DefaultCategory = new();
             mainWindowViewModel.DefaultCategoryName.Should().Be(mainWindowViewModel.DefaultCategory.Name);
         }

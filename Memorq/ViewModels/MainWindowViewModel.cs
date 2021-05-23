@@ -3,6 +3,8 @@ using Memorq.Models;
 using Memorq.Services;
 using Memorq.Views;
 using Memorq.Views.Dialogs;
+using System.Collections.Generic;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Memorq.ViewModels
@@ -13,6 +15,7 @@ namespace Memorq.ViewModels
         private readonly IItemService _itemService;
         private readonly IWindowFactory _windowFactory;
         private readonly IStringResourcesDictionary _stringResourcesDictionary;
+        private readonly IJsonConverter _jsonConverter;
 
 
         private Category _defaultCategory;
@@ -40,11 +43,12 @@ namespace Memorq.ViewModels
             }
         }
 
-        public MainWindowViewModel(ICategoryService categoryService, IItemService itemService,
+        public MainWindowViewModel(ICategoryService categoryService, IItemService itemService, IJsonConverter jsonConverter,
                                    IWindowFactory windowFactory, IStringResourcesDictionary stringResourcesDictionary)
         {
             _categoryService = categoryService;
             _itemService = itemService;
+            _jsonConverter = jsonConverter;
             _windowFactory = windowFactory;
             _stringResourcesDictionary = stringResourcesDictionary;
 
@@ -58,7 +62,7 @@ namespace Memorq.ViewModels
 
             if (categoryManager.ShowDialog() == true)
             {
-                DefaultCategory = categoryManagerViewModel.SelectedCategory;
+                DefaultCategory = _categoryService.GetCategory(categoryManagerViewModel.SelectedCategory.Id);
                 UserSettings.Default.DefaultCategory = categoryManagerViewModel.SelectedCategory.Id;
             }
             else
