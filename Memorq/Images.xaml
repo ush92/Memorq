@@ -13,5 +13,6 @@
     <BitmapImage x:Key="CategoryManager" UriSource="Images/manager.png" />
     <BitmapImage x:Key="ImportExport" UriSource="Images/importExport.png" />
     <BitmapImage x:Key="Exit" UriSource="Images/exit.png" />
+    <BitmapImage x:Key="MarkDescription_img" UriSource="Images/mark.png" />
     <BitmapImage x:Key="About" UriSource="Images/memorq.ico" />
 </ResourceDictionary>

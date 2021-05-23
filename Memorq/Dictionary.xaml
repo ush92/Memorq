@@ -34,9 +34,18 @@
     <system:String x:Key="ResetItem">Resetuj współczynniki nauki</system:String>
     <system:String x:Key="SwapQuestionAnswer">Zamień pyt./odp.</system:String>
 
-    <!-- ImportExport -->
+    <!-- Import Export -->
     <system:String x:Key="Import">Import pytań</system:String>
     <system:String x:Key="Export">Eksport pytań</system:String>
+
+    <!-- Mark Description -->
+    <system:String x:Key="MarkDescription">Opis ocen</system:String>
+    <system:String x:Key="Mark5">5: doskonała odpowiedź bez zastanowienia</system:String>
+    <system:String x:Key="Mark4">4: dobra odpowiedź po chwili zawahania</system:String>
+    <system:String x:Key="Mark3">3: zapamiętanie NOWEGO elementu lub dobra odpowiedź przypomniana z wielką trudnością</system:String>
+    <system:String x:Key="Mark2">2: błąd: uczucie "to było proste" lub przejęzyczenie</system:String>
+    <system:String x:Key="Mark1">1: błąd: odpowiedź wydaje się znajoma</system:String>
+    <system:String x:Key="Mark0">0: kompletne zaćmienie</system:String>
 
     <!-- Main Window -->
     <system:String x:Key="DefaultCategoryNotChosen">Wybierz/utwórz kategorię, aby kontynuować</system:String>

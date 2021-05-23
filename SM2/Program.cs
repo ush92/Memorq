@@ -1,12 +1,6 @@
 ﻿using System;
 
 int grade;
-//5: doskonała odpowiedź bez zastanowienia
-//4: dobra odpowiedź po chwili zawahania
-//3: dobra odpowiedź przypomniana z wielką trudnością
-//2: zła odpowiedź; uczucie "to było proste"; przejęzyczenie
-//1: zła odpowiedź; odpowiedź wydaje się znajoma
-//0: kompletne zaćmienie
 
 int repetition = 0; //ilość poprawnych odpowiedzi z rzędu. Bazowa wartosc dla nowego elementu = 0
 double efactor = 2.5;  //wspolczynnik łatwości zapamiętywania. Bazowa wartosc dla nowego elementu = 2.5

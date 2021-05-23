@@ -49,6 +49,11 @@
                 <MenuItem Header="..." />
             </MenuItem>
             <MenuItem Header="{StaticResource Menu_Help}">
+                <MenuItem Header="{StaticResource MarkDescription}" Command="{Binding ShowMarkDescriptionCommand}">
+                    <MenuItem.Icon>
+                        <Image Source="{StaticResource MarkDescription_img}"/>
+                    </MenuItem.Icon>
+                </MenuItem>
                 <MenuItem Header="{StaticResource Menu_Help_About}" Command="{Binding ShowAboutCommand}">
                     <MenuItem.Icon>
                         <Image Source="{StaticResource About}"/>
@@ -56,7 +61,7 @@
                 </MenuItem>
             </MenuItem>
         </Menu>
-
+        
         <StatusBar DockPanel.Dock="Bottom" Name="statusBar" Height="30" HorizontalContentAlignment="Stretch">
             <DockPanel LastChildFill="True"
                    Width="{Binding ActualWidth, ElementName=statusBar, Mode=OneWay}">

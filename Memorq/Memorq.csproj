@@ -15,6 +15,7 @@
     <None Remove="Images\importExport.png" />
     <None Remove="Images\learn.png" />
     <None Remove="Images\manager.png" />
+    <None Remove="Images\mark.png" />
     <None Remove="Images\memorq.ico" />
     <None Remove="Images\newElements.png" />
     <None Remove="memorq.ico" />
@@ -36,6 +37,7 @@
     <Resource Include="Images\importExport.png" />
     <Resource Include="Images\learn.png" />
     <Resource Include="Images\manager.png" />
+    <Resource Include="Images\mark.png" />
     <Resource Include="Images\memorq.ico" />
     <Resource Include="Images\newElements.png" />
     <Resource Include="memorq.ico" />
