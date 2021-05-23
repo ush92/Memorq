@@ -1,24 +1,22 @@
 ﻿using Memorq.Infrastructure;
 using Memorq.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Memorq.ViewModels
 {
     public class ImportExportViewModel : BaseViewModel
     {
-        private readonly ICategoryService _categoryProvider;
-        private readonly IItemService _itemProvider;
+        private readonly ICategoryService _categoryService;
+        private readonly IItemService _itemService;
         private readonly IWindowFactory _windowFactory;
+        private readonly IStringResourcesDictionary _stringResourcesDictionary;
 
-        public ImportExportViewModel(ICategoryService categoryProvider, IItemService itemProvider, IWindowFactory windowFactory)
+        public ImportExportViewModel(ICategoryService categoryService, IItemService itemService,
+                                     IWindowFactory windowFactory, IStringResourcesDictionary stringResourcesDictionary)
         {
-            _categoryProvider = categoryProvider;
-            _itemProvider = itemProvider;
+            _categoryService = categoryService;
+            _itemService = itemService;
             _windowFactory = windowFactory;
+            _stringResourcesDictionary = stringResourcesDictionary;
         }
     }
 }

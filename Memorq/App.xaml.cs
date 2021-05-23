@@ -37,8 +37,9 @@ namespace Memorq
             services.Scan(s => s.FromCallingAssembly()
                 .AddClasses(c => c.AssignableToAny(typeof(Window), typeof(BaseViewModel)))
                 .AsSelf()
-                .WithTransientLifetime()); 
+                .WithTransientLifetime());
 
+            services.AddTransient<IStringResourcesDictionary, StringResourcesDictionary>();
             services.AddTransient<ICategoryService, CategoryService>();
             services.AddTransient<IItemService, ItemService>();
             services.AddTransient<IWindowFactory, WindowFactory>();

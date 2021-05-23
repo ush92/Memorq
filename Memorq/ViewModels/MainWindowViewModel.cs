@@ -9,9 +9,11 @@ namespace Memorq.ViewModels
 {
     public class MainWindowViewModel : BaseViewModel
     {
-        private readonly ICategoryService _categoryProvider;
-        private readonly IItemService _itemProvider;
+        private readonly ICategoryService _categoryService;
+        private readonly IItemService _itemService;
         private readonly IWindowFactory _windowFactory;
+        private readonly IStringResourcesDictionary _stringResourcesDictionary;
+
 
         private Category _defaultCategory;
         public Category DefaultCategory
@@ -22,44 +24,29 @@ namespace Memorq.ViewModels
                 _defaultCategory = value;
                 OnPropertyChanged(nameof(DefaultCategory));
                 OnPropertyChanged(nameof(DefaultCategoryName));
-            }
-        }
-
-        public string DefaultCategoryName => DefaultCategory?.Name ?? GetDictResource("DefaultCategoryNotChosen");
-
-
-        private bool _isDefaultCategoryChoosen;
-        public bool IsDefaultCategoryChoosen
-        {
-            get => _isDefaultCategoryChoosen;
-            set
-            {
-                _isDefaultCategoryChoosen = value;
                 OnPropertyChanged(nameof(IsDefaultCategoryChoosen));
             }
         }
+        public string DefaultCategoryName => DefaultCategory?.Name ?? _stringResourcesDictionary.GetResource("DefaultCategoryNotChosen");
+        public bool IsDefaultCategoryChoosen => DefaultCategory != null;
 
         private void InitDefaultCategory()
         {
-            DefaultCategory = _categoryProvider.GetCategory(UserSettings.Default.DefaultCategory);
+            DefaultCategory = _categoryService.GetCategory(UserSettings.Default.DefaultCategory);
             if (DefaultCategory == null)
             {
-                IsDefaultCategoryChoosen = false;
-
                 UserSettings.Default.DefaultCategory = -1;
                 UserSettings.Default.Save();
             }
-            else
-            {
-                IsDefaultCategoryChoosen = true;
-            }
         }
 
-        public MainWindowViewModel(ICategoryService categoryProvider, IItemService itemProvider, IWindowFactory windowFactory)
+        public MainWindowViewModel(ICategoryService categoryService, IItemService itemService,
+                                   IWindowFactory windowFactory, IStringResourcesDictionary stringResourcesDictionary)
         {
-            _categoryProvider = categoryProvider;
-            _itemProvider = itemProvider;
+            _categoryService = categoryService;
+            _itemService = itemService;
             _windowFactory = windowFactory;
+            _stringResourcesDictionary = stringResourcesDictionary;
 
             InitDefaultCategory();
         }
@@ -74,15 +61,12 @@ namespace Memorq.ViewModels
 
             if (DefaultCategory == null)
             {
-                IsDefaultCategoryChoosen = false;
                 UserSettings.Default.DefaultCategory = -1;
             }
             else
             {
-                IsDefaultCategoryChoosen = true;
                 UserSettings.Default.DefaultCategory = categoryManagerViewModel.SelectedCategory.Id;
             }
-
             UserSettings.Default.Save();
         });
 
