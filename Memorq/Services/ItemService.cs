@@ -9,21 +9,18 @@ namespace Memorq.Services
         public List<Item> GetItems(int categoryId)
         {
             using SQLiteConnection connection = new SQLiteConnection(App.databasePath);
-            connection.CreateTable<Item>();
             return connection.Table<Item>().Where(c => c.CategoryId.Equals(categoryId)).OrderBy(c => c.Question).ToList();
         }
 
         public void InsertItem(Item item)
         {
             using SQLiteConnection connection = new SQLiteConnection(App.databasePath);
-            connection.CreateTable<Item>();
             connection.Insert(item);
         }
 
         public void UpdateItem(Item item)
         {
             using SQLiteConnection connection = new SQLiteConnection(App.databasePath);
-            connection.CreateTable<Item>();
             connection.Update(item);
         }
 

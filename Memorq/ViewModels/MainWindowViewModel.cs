@@ -14,9 +14,6 @@ namespace Memorq.ViewModels
         private readonly IWindowFactory _windowFactory;
 
         private Category _defaultCategory;
-        private string _defaultCategoryName;
-        private bool _isDefaultCategoryChoosen;
-
         public Category DefaultCategory
         {
             get => _defaultCategory;
@@ -27,6 +24,7 @@ namespace Memorq.ViewModels
             }
         }
 
+        private string _defaultCategoryName;
         public string DefaultCategoryName
         {
             get => _defaultCategoryName;
@@ -37,6 +35,7 @@ namespace Memorq.ViewModels
             }
         }
 
+        private bool _isDefaultCategoryChoosen;
         public bool IsDefaultCategoryChoosen
         {
             get => _isDefaultCategoryChoosen;
