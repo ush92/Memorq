@@ -72,7 +72,7 @@
             </DockPanel>
         </StatusBar>
         <Grid>
-            <Grid x:Name="MainEntry" Visibility="Visible">
+            <Grid x:Name="MainEntry" Visibility="Hidden">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="2*" />
@@ -110,21 +110,17 @@
                     </Button>
                 </Grid>
 
-                <Grid DockPanel.Dock="Left"  Grid.Column="0">
+                <Grid DockPanel.Dock="Left" Grid.Column="0" Margin="0,0,90,0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="1*" />
                         <RowDefinition Height="9*" />
                     </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="8*" />
-                        <ColumnDefinition Width="1*" />
-                    </Grid.ColumnDefinitions>
                     <Label Grid.Row="0" Content="Memorq 1.0.1"/>
                     <Label Grid.Row="1" Content="'Tell me and I forget. Teach me and I remember. Involve me and I learn.' - Benjamin Franklin"/>
                 </Grid>
             </Grid>
 
-            <Grid x:Name="AddItemEntry" Visibility="Hidden">
+            <Grid x:Name="AddItemEntry" Visibility="Visible">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="1*" />
@@ -142,27 +138,27 @@
                     <Button Click="AddItemBackToMainEntryBtnClick" Grid.Row="0" Grid.Column="1" BorderThickness="0.5">
                         Koniec
                     </Button>
-                    <Button Grid.Row="1" Grid.Column="1" BorderThickness="0.5">
+                    <Button Grid.Row="1" Grid.Column="1" BorderThickness="0.5" Background="#CCE1F2" >
                         5
                     </Button>
-                    <Button Grid.Row="2" Grid.Column="1" BorderThickness="0.5">
+                    <Button Grid.Row="2" Grid.Column="1" BorderThickness="0.5" Background="#C6F8E5">
                         4
                     </Button>
-                    <Button Grid.Row="3" Grid.Column="1" BorderThickness="0.5">
+                    <Button Grid.Row="3" Grid.Column="1" BorderThickness="0.5" Background="#FBF7D5">
                         3
                     </Button>
-                    <Button Grid.Row="4" Grid.Column="1" BorderThickness="0.5">
+                    <Button Grid.Row="4" Grid.Column="1" BorderThickness="0.5" Background=" #F9DED7">
                         2
                     </Button>
-                    <Button Grid.Row="5" Grid.Column="1" BorderThickness="0.5">
+                    <Button Grid.Row="5" Grid.Column="1" BorderThickness="0.5" Background="#F5CDDE">
                         1
                     </Button>
-                    <Button Grid.Row="6" Grid.Column="1" BorderThickness="0.5">
+                    <Button Grid.Row="6" Grid.Column="1" BorderThickness="0.5" Background="#E2BEF1">
                         0
                     </Button>
                 </Grid>
 
-                <Grid Grid.Column="0">
+                <Grid DockPanel.Dock="Left" Grid.Column="0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="5*" />
                         <RowDefinition Height="5*" />
@@ -171,8 +167,8 @@
                         <ColumnDefinition Width="8*" />
                         <ColumnDefinition Width="1*" />
                     </Grid.ColumnDefinitions>
-                    <Label Grid.Row="0" Content="Memorq 1.0.1"/>
-                    <Label Grid.Row="1" Content="'Tell me and I forget. Teach me and I remember. Involve me and I learn.' - Benjamin Franklin"/>
+                    <RichTextBox Grid.Row="0" BorderThickness="0.5"/>
+                    <RichTextBox Grid.Row="1" BorderThickness="0.5"/>
                 </Grid>
             </Grid>
         </Grid>

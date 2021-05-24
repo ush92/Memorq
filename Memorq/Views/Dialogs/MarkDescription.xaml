@@ -9,12 +9,12 @@
         Title="{StaticResource MarkDescription}" Height="330" Width="560" ResizeMode="NoResize">
     <Grid>
         <Label Content="{StaticResource MarkDescription}" HorizontalAlignment="Left" Margin="10,17,0,0" VerticalAlignment="Top" Width="510"/>
-        <Label Content="{StaticResource Mark5}" HorizontalAlignment="Left" Margin="10,48,0,0" VerticalAlignment="Top" Width="510" Background="PaleGreen"/>
-        <Label Content="{StaticResource Mark4}" HorizontalAlignment="Left" Margin="10,79,0,0" VerticalAlignment="Top" Width="510" Background="PaleGreen"/>
-        <Label Content="{StaticResource Mark3}" HorizontalAlignment="Left" Margin="10,110,0,0" VerticalAlignment="Top" Width="510" Background="PaleGreen"/>
-        <Label Content="{StaticResource Mark2}" HorizontalAlignment="Left" Margin="10,141,0,0" VerticalAlignment="Top" Width="510" Background="PaleVioletRed"/>
-        <Label Content="{StaticResource Mark1}" HorizontalAlignment="Left" Margin="10,172,0,0" VerticalAlignment="Top" Width="510" Background="PaleVioletRed"/>
-        <Label Content="{StaticResource Mark0}" HorizontalAlignment="Left" Margin="10,203,0,0" VerticalAlignment="Top" Width="510" Background="PaleVioletRed"/>
+        <Label Content="{StaticResource Mark5}" HorizontalAlignment="Left" Margin="10,48,0,0" VerticalAlignment="Top" Width="510" Background="#CCE1F2"/>
+        <Label Content="{StaticResource Mark4}" HorizontalAlignment="Left" Margin="10,79,0,0" VerticalAlignment="Top" Width="510" Background="#C6F8E5"/>
+        <Label Content="{StaticResource Mark3}" HorizontalAlignment="Left" Margin="10,110,0,0" VerticalAlignment="Top" Width="510" Background="#FBF7D5"/>
+        <Label Content="{StaticResource Mark2}" HorizontalAlignment="Left" Margin="10,141,0,0" VerticalAlignment="Top" Width="510" Background="#F9DED7"/>
+        <Label Content="{StaticResource Mark1}" HorizontalAlignment="Left" Margin="10,172,0,0" VerticalAlignment="Top" Width="510" Background="#F5CDDE"/>
+        <Label Content="{StaticResource Mark0}" HorizontalAlignment="Left" Margin="10,203,0,0" VerticalAlignment="Top" Width="510" Background="#E2BEF1"/>
 
         <Button Content="OK" IsCancel="True" HorizontalAlignment="Left" Margin="452,258,0,0" VerticalAlignment="Top" Width="68"/>
     </Grid>
