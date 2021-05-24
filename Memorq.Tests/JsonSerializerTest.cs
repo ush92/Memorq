@@ -13,6 +13,17 @@ namespace Memorq.Tests
         private readonly Fixture fixture = new();
 
         [Fact]
+        public void JsonSerializerWorksProperly()
+        {
+            var listToSerialize = fixture.CreateMany<Category>().ToList();
+
+            var jsonString = JsonSerializer.Serialize(listToSerialize);
+            var deserializedList = JsonSerializer.Deserialize<List<Category>>(jsonString);
+
+            deserializedList.Should().BeEquivalentTo(listToSerialize);
+        }
+
+        [Fact]
         public void JsonSerializerWorksProperlyWithIgnoreJsonAtributes()
         {
             fixture.Customize<Item>(o => o

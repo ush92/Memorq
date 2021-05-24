@@ -19,7 +19,8 @@
         </ResourceDictionary>
     </Window.Resources>
 
-    <DockPanel LastChildFill="False">
+    <DockPanel LastChildFill="true">
+
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="{StaticResource Menu_File}">
                 <MenuItem Header="{StaticResource Menu_File_Manager}" Command="{Binding ShowCategoryManagerCommand}">
@@ -61,7 +62,7 @@
                 </MenuItem>
             </MenuItem>
         </Menu>
-        
+
         <StatusBar DockPanel.Dock="Bottom" Name="statusBar" Height="30" HorizontalContentAlignment="Stretch">
             <DockPanel LastChildFill="True"
                    Width="{Binding ActualWidth, ElementName=statusBar, Mode=OneWay}">
@@ -70,48 +71,110 @@
                 <Label x:Name="TooltipLabel" DockPanel.Dock="Left" Content="tooltip" Height="30"  />
             </DockPanel>
         </StatusBar>
+        <Grid>
+            <Grid x:Name="MainEntry" Visibility="Visible">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2*" />
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="1*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="8*" />
+                        <ColumnDefinition Width="1*" />
+                    </Grid.ColumnDefinitions>
+                    <Button x:Name="LearnBtn" Grid.Row="0" Grid.Column="1" IsEnabled="{Binding Path=IsDefaultCategoryChoosen}" MouseEnter="LearnBtn_MouseEnter" MouseLeave="LearnBtn_MouseLeave" BorderThickness="0.5">
+                        <StackPanel>
+                            <Image Source="{StaticResource LearnBtn_right_img}" Width="50" Height="50"/>
+                            <TextBlock Text="{StaticResource LearnBtn_right}" FontSize="12" HorizontalAlignment="Center"></TextBlock>
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="AddBtn" Click="AddBtnClick" Grid.Row="1" Grid.Column="1" IsEnabled="{Binding Path=IsDefaultCategoryChoosen}" MouseEnter="AddBtn_MouseEnter" MouseLeave="AddBtn_MouseLeave" BorderThickness="0.5">
+                        <StackPanel>
+                            <Image Source="{StaticResource AddBtn_right_img}" Width="40" Height="40"/>
+                            <TextBlock Text="{StaticResource AddBtn_right}" FontSize="12" HorizontalAlignment="Center"></TextBlock>
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="NewBtn" Grid.Row="2" Grid.Column="1" IsEnabled="{Binding Path=IsDefaultCategoryChoosen}" MouseEnter="NewBtn_MouseEnter" MouseLeave="NewBtn_MouseLeave" BorderThickness="0.5">
+                        <StackPanel>
+                            <Image Source="{StaticResource NewBtn_right_img}" Width="50" Height="50"/>
+                            <TextBlock Text="{StaticResource NewBtn_right}" FontSize="12" HorizontalAlignment="Center"></TextBlock>
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="ForceBtn" Grid.Row="3" Grid.Column="1" IsEnabled="{Binding Path=IsDefaultCategoryChoosen}" MouseEnter="ForceBtn_MouseEnter" MouseLeave="ForceBtn_MouseLeave" BorderThickness="0.5">
+                        <StackPanel>
+                            <Image Source="{StaticResource ForceBtn_right_img}" Width="50" Height="50"/>
+                            <TextBlock Text="{StaticResource ForceBtn_right}" FontSize="12" HorizontalAlignment="Center"></TextBlock>
+                        </StackPanel>
+                    </Button>
+                </Grid>
 
-        <Grid DockPanel.Dock="Right" Width="110">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="2*" />
-                <RowDefinition Height="1*" />
-                <RowDefinition Height="1*" />
-                <RowDefinition Height="1*" />
+                <Grid DockPanel.Dock="Left"  Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="9*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="8*" />
+                        <ColumnDefinition Width="1*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0" Content="Memorq 1.0.1"/>
+                    <Label Grid.Row="1" Content="'Tell me and I forget. Teach me and I remember. Involve me and I learn.' - Benjamin Franklin"/>
+                </Grid>
+            </Grid>
 
-            </Grid.RowDefinitions>
-            <Button x:Name="LearnBtn" Grid.Row="0" IsEnabled="{Binding Path=IsDefaultCategoryChoosen}" MouseEnter="LearnBtn_MouseEnter" MouseLeave="LearnBtn_MouseLeave" BorderThickness="0.5">
-                <StackPanel>
-                    <Image Source="{StaticResource LearnBtn_right_img}" Width="50" Height="50"/>
-                    <TextBlock Text="{StaticResource LearnBtn_right}" FontSize="12" HorizontalAlignment="Center"></TextBlock>
-                </StackPanel>
-            </Button>
-            <Button x:Name="AddBtn" Grid.Row="1" IsEnabled="{Binding Path=IsDefaultCategoryChoosen}" MouseEnter="AddBtn_MouseEnter" MouseLeave="AddBtn_MouseLeave" BorderThickness="0.5">
-                <StackPanel>
-                    <Image Source="{StaticResource AddBtn_right_img}" Width="40" Height="40"/>
-                    <TextBlock Text="{StaticResource AddBtn_right}" FontSize="12" HorizontalAlignment="Center"></TextBlock>
-                </StackPanel>
-            </Button>
-            <Button x:Name="NewBtn" Grid.Row="2" IsEnabled="{Binding Path=IsDefaultCategoryChoosen}" MouseEnter="NewBtn_MouseEnter" MouseLeave="NewBtn_MouseLeave" BorderThickness="0.5">
-                <StackPanel>
-                    <Image Source="{StaticResource NewBtn_right_img}" Width="50" Height="50"/>
-                    <TextBlock Text="{StaticResource NewBtn_right}" FontSize="12" HorizontalAlignment="Center"></TextBlock>
-                </StackPanel>
-            </Button>
-            <Button x:Name="ForceBtn" Grid.Row="3" IsEnabled="{Binding Path=IsDefaultCategoryChoosen}" MouseEnter="ForceBtn_MouseEnter" MouseLeave="ForceBtn_MouseLeave" BorderThickness="0.5">
-                <StackPanel>
-                    <Image Source="{StaticResource ForceBtn_right_img}" Width="50" Height="50"/>
-                    <TextBlock Text="{StaticResource ForceBtn_right}" FontSize="12" HorizontalAlignment="Center"></TextBlock>
-                </StackPanel>
-            </Button>
-        </Grid>
+            <Grid x:Name="AddItemEntry" Visibility="Hidden">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="1*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="8*" />
+                        <ColumnDefinition Width="1*" />
+                    </Grid.ColumnDefinitions>
+                    <Button Click="AddItemBackToMainEntryBtnClick" Grid.Row="0" Grid.Column="1" BorderThickness="0.5">
+                        Koniec
+                    </Button>
+                    <Button Grid.Row="1" Grid.Column="1" BorderThickness="0.5">
+                        5
+                    </Button>
+                    <Button Grid.Row="2" Grid.Column="1" BorderThickness="0.5">
+                        4
+                    </Button>
+                    <Button Grid.Row="3" Grid.Column="1" BorderThickness="0.5">
+                        3
+                    </Button>
+                    <Button Grid.Row="4" Grid.Column="1" BorderThickness="0.5">
+                        2
+                    </Button>
+                    <Button Grid.Row="5" Grid.Column="1" BorderThickness="0.5">
+                        1
+                    </Button>
+                    <Button Grid.Row="6" Grid.Column="1" BorderThickness="0.5">
+                        0
+                    </Button>
+                </Grid>
 
-        <Grid DockPanel.Dock="Left" Width="675">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="1*" />
-                <RowDefinition Height="9*" />
-            </Grid.RowDefinitions>
-            <Label Grid.Row="0" Content="Memorq 1.0.1"/>
-            <Label Grid.Row="1" Content="'Tell me and I forget. Teach me and I remember. Involve me and I learn.' - Benjamin Franklin"/>
+                <Grid Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="5*" />
+                        <RowDefinition Height="5*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="8*" />
+                        <ColumnDefinition Width="1*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0" Content="Memorq 1.0.1"/>
+                    <Label Grid.Row="1" Content="'Tell me and I forget. Teach me and I remember. Involve me and I learn.' - Benjamin Franklin"/>
+                </Grid>
+            </Grid>
         </Grid>
     </DockPanel>
 </Window>

@@ -14,6 +14,18 @@ namespace Memorq.Views
             TooltipLabel.Content = (string)Application.Current.FindResource("DefaultTooltip");
         }
 
+        private void AddBtnClick(object sender, RoutedEventArgs e)
+        {
+            MainEntry.Visibility = Visibility.Hidden;
+            AddItemEntry.Visibility = Visibility.Visible;
+        }
+
+        private void AddItemBackToMainEntryBtnClick(object sender, RoutedEventArgs e)
+        {
+            AddItemEntry.Visibility = Visibility.Hidden;
+            MainEntry.Visibility = Visibility.Visible;
+        }   
+
         #region Tooltips
 
         private void LearnBtn_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
