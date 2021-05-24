@@ -83,5 +83,9 @@
     <system:String x:Key="BtnForceTooltip">Wymusza powtórkę elementów poza kolejką</system:String>
     <system:String x:Key="CategoryStatsTooltip">Ilość pytań w kategorii / Elementy bez oceny / Powtórki na dziś</system:String>
 
-    
+
+    <!-- Add Item (Main Window) -->
+    <system:String x:Key="EnterQuestion">Podaj pytanie:</system:String>
+    <system:String x:Key="EnterAnswer">Podaj odpowiedź:</system:String>
+
 </ResourceDictionary>

@@ -3,6 +3,7 @@ using Memorq.Models;
 using Memorq.Services;
 using Memorq.Views;
 using Memorq.Views.Dialogs;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Memorq.ViewModels
@@ -13,6 +14,27 @@ namespace Memorq.ViewModels
         private readonly IItemService _itemService;
         private readonly IWindowFactory _windowFactory;
         private readonly IStringResourcesDictionary _stringResourcesDictionary;
+
+        private Visibility _mainViewMode;
+        public Visibility MainViewMode
+        {
+            get => _mainViewMode;
+            set
+            {
+                _mainViewMode = value;
+                OnPropertyChanged(nameof(MainViewMode));
+            }
+        }
+        private Visibility _addItemMode;
+        public Visibility AddItemMode
+        {
+            get => _addItemMode;
+            set
+            {
+                _addItemMode = value;
+                OnPropertyChanged(nameof(AddItemMode));
+            }
+        }
 
         private Category _defaultCategory;
         public Category DefaultCategory
@@ -28,6 +50,38 @@ namespace Memorq.ViewModels
         }
         public string DefaultCategoryName => DefaultCategory?.Name ?? _stringResourcesDictionary.GetResource("DefaultCategoryNotChosen");
         public bool IsDefaultCategoryChoosen => DefaultCategory != null;
+
+        private string _newItemQuestion;
+        public string NewItemQuestion
+        {
+            get => _newItemQuestion;
+            set
+            {
+                _newItemQuestion = value;
+                OnPropertyChanged(nameof(NewItemQuestion));
+            }
+        }
+        private string _newItemAnswer;
+        public string NewItemAnswer
+        {
+            get => _newItemAnswer;
+            set
+            {
+                _newItemAnswer = value;
+                OnPropertyChanged(nameof(NewItemAnswer));
+            }
+        }
+
+        private bool _isItemReadyToAdd;
+        public bool IsItemReadyToAdd
+        {
+            get => _isItemReadyToAdd;
+            set
+            {
+                _isItemReadyToAdd = value;
+                OnPropertyChanged(nameof(IsItemReadyToAdd));
+            }
+        }
 
         private void InitDefaultCategory()
         {
@@ -48,6 +102,7 @@ namespace Memorq.ViewModels
             _stringResourcesDictionary = stringResourcesDictionary;
 
             InitDefaultCategory();
+            ShowMainPanel.Execute(null);
         }
 
         public ICommand ShowCategoryManagerCommand => new RelayCommand(_ =>
@@ -71,9 +126,11 @@ namespace Memorq.ViewModels
                     UserSettings.Default.DefaultCategory = -1;
                 }
             }
+
+            if (DefaultCategory == null) ShowMainPanel.Execute(null);
+
             UserSettings.Default.Save();
         });
-
         public ICommand ShowImportExportCommand => new RelayCommand(_ =>
         {
             var importExport = _windowFactory.CreateWindow<ImportExport>();
@@ -81,10 +138,39 @@ namespace Memorq.ViewModels
             importExportViewModel.DefaultCategoryId = DefaultCategory.Id;
             importExportViewModel.ItemList = _itemService.GetItems(DefaultCategory.Id);
 
-            importExport.ShowDialog();         
+            importExport.ShowDialog();
         });
 
         public ICommand ShowMarkDescriptionCommand => new RelayCommand(_ => _windowFactory.CreateWindow<MarkDescription>().ShowDialog());
         public ICommand ShowAboutCommand => new RelayCommand(_ => _windowFactory.CreateWindow<About>().ShowDialog());
+
+        public ICommand ShowMainPanel => new RelayCommand(_ => {
+            MainViewMode = Visibility.Visible;
+            AddItemMode = Visibility.Collapsed;
+            ResetPanels();
+        });
+
+        public ICommand ShowAddItemPanel => new RelayCommand(_ =>
+        {
+            AddItemMode = Visibility.Visible;
+            MainViewMode = Visibility.Collapsed;
+            ResetPanels();
+        });
+
+        public ICommand CheckIfItemReadyToAdd => new RelayCommand(_ =>
+            IsItemReadyToAdd = (!NewItemQuestion.Trim().Equals(string.Empty) && !NewItemAnswer.Trim().Equals(string.Empty))
+        );
+
+        public ICommand AddItemCommand => new RelayCommand<string>(grade => {
+
+            MessageBox.Show(NewItemQuestion + " " + NewItemAnswer + " " + grade);
+        });
+
+        private void ResetPanels()
+        {
+            NewItemQuestion = string.Empty;
+            NewItemAnswer = string.Empty;
+            IsItemReadyToAdd = false;
+        }
     }
 }

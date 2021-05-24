@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
         Icon="../memorq.ico"
         Title="Memorq" Height="450" Width="800">
@@ -71,8 +72,9 @@
                 <Label x:Name="TooltipLabel" DockPanel.Dock="Left" Content="tooltip" Height="30"  />
             </DockPanel>
         </StatusBar>
+
         <Grid>
-            <Grid x:Name="MainEntry" Visibility="Hidden">
+            <Grid Visibility="{Binding Path=MainViewMode}">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="2*" />
@@ -84,25 +86,25 @@
                         <ColumnDefinition Width="8*" />
                         <ColumnDefinition Width="1*" />
                     </Grid.ColumnDefinitions>
-                    <Button x:Name="LearnBtn" Grid.Row="0" Grid.Column="1" IsEnabled="{Binding Path=IsDefaultCategoryChoosen}" MouseEnter="LearnBtn_MouseEnter" MouseLeave="LearnBtn_MouseLeave" BorderThickness="0.5">
+                    <Button Grid.Row="0" Grid.Column="1" IsEnabled="{Binding Path=IsDefaultCategoryChoosen}" MouseEnter="LearnBtn_MouseEnter" MouseLeave="LearnBtn_MouseLeave" BorderThickness="0.5">
                         <StackPanel>
                             <Image Source="{StaticResource LearnBtn_right_img}" Width="50" Height="50"/>
                             <TextBlock Text="{StaticResource LearnBtn_right}" FontSize="12" HorizontalAlignment="Center"></TextBlock>
                         </StackPanel>
                     </Button>
-                    <Button x:Name="AddBtn" Click="AddBtnClick" Grid.Row="1" Grid.Column="1" IsEnabled="{Binding Path=IsDefaultCategoryChoosen}" MouseEnter="AddBtn_MouseEnter" MouseLeave="AddBtn_MouseLeave" BorderThickness="0.5">
+                    <Button Command="{Binding ShowAddItemPanel}" Grid.Row="1" Grid.Column="1" IsEnabled="{Binding Path=IsDefaultCategoryChoosen}" MouseEnter="AddBtn_MouseEnter" MouseLeave="AddBtn_MouseLeave" BorderThickness="0.5">
                         <StackPanel>
                             <Image Source="{StaticResource AddBtn_right_img}" Width="40" Height="40"/>
                             <TextBlock Text="{StaticResource AddBtn_right}" FontSize="12" HorizontalAlignment="Center"></TextBlock>
                         </StackPanel>
                     </Button>
-                    <Button x:Name="NewBtn" Grid.Row="2" Grid.Column="1" IsEnabled="{Binding Path=IsDefaultCategoryChoosen}" MouseEnter="NewBtn_MouseEnter" MouseLeave="NewBtn_MouseLeave" BorderThickness="0.5">
+                    <Button Grid.Row="2" Grid.Column="1" IsEnabled="{Binding Path=IsDefaultCategoryChoosen}" MouseEnter="NewBtn_MouseEnter" MouseLeave="NewBtn_MouseLeave" BorderThickness="0.5">
                         <StackPanel>
                             <Image Source="{StaticResource NewBtn_right_img}" Width="50" Height="50"/>
                             <TextBlock Text="{StaticResource NewBtn_right}" FontSize="12" HorizontalAlignment="Center"></TextBlock>
                         </StackPanel>
                     </Button>
-                    <Button x:Name="ForceBtn" Grid.Row="3" Grid.Column="1" IsEnabled="{Binding Path=IsDefaultCategoryChoosen}" MouseEnter="ForceBtn_MouseEnter" MouseLeave="ForceBtn_MouseLeave" BorderThickness="0.5">
+                    <Button Grid.Row="3" Grid.Column="1" IsEnabled="{Binding Path=IsDefaultCategoryChoosen}" MouseEnter="ForceBtn_MouseEnter" MouseLeave="ForceBtn_MouseLeave" BorderThickness="0.5">
                         <StackPanel>
                             <Image Source="{StaticResource ForceBtn_right_img}" Width="50" Height="50"/>
                             <TextBlock Text="{StaticResource ForceBtn_right}" FontSize="12" HorizontalAlignment="Center"></TextBlock>
@@ -120,7 +122,7 @@
                 </Grid>
             </Grid>
 
-            <Grid x:Name="AddItemEntry" Visibility="Visible">
+            <Grid Visibility="{Binding Path=AddItemMode}">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="1*" />
@@ -135,42 +137,56 @@
                         <ColumnDefinition Width="8*" />
                         <ColumnDefinition Width="1*" />
                     </Grid.ColumnDefinitions>
-                    <Button Click="AddItemBackToMainEntryBtnClick" Grid.Row="0" Grid.Column="1" BorderThickness="0.5">
-                        Koniec
-                    </Button>
-                    <Button Grid.Row="1" Grid.Column="1" BorderThickness="0.5" Background="#CCE1F2" >
-                        5
-                    </Button>
-                    <Button Grid.Row="2" Grid.Column="1" BorderThickness="0.5" Background="#C6F8E5">
-                        4
-                    </Button>
-                    <Button Grid.Row="3" Grid.Column="1" BorderThickness="0.5" Background="#FBF7D5">
-                        3
-                    </Button>
-                    <Button Grid.Row="4" Grid.Column="1" BorderThickness="0.5" Background=" #F9DED7">
-                        2
-                    </Button>
-                    <Button Grid.Row="5" Grid.Column="1" BorderThickness="0.5" Background="#F5CDDE">
-                        1
-                    </Button>
-                    <Button Grid.Row="6" Grid.Column="1" BorderThickness="0.5" Background="#E2BEF1">
-                        0
-                    </Button>
+                    <Button Command="{Binding ShowMainPanel}" Content="{StaticResource Cancel}" Grid.Row="0" Grid.Column="1" BorderThickness="0.5"/>
+
+                    <Button Command="{Binding AddItemCommand}" CommandParameter = "5" IsEnabled="{Binding IsItemReadyToAdd}"
+                            Content="5" Grid.Row="1" Grid.Column="1" BorderThickness="0.5" Background="#CCE1F2" FontSize="20"/>
+                    <Button Command="{Binding AddItemCommand}" CommandParameter = "4" IsEnabled="{Binding IsItemReadyToAdd}"
+                            Content="4" Grid.Row="2" Grid.Column="1" BorderThickness="0.5" Background="#C6F8E5" FontSize="20"/>
+                    <Button Command="{Binding AddItemCommand}" CommandParameter = "3" IsEnabled="{Binding IsItemReadyToAdd}"
+                            Content="3" Grid.Row="3" Grid.Column="1" BorderThickness="0.5" Background="#FBF7D5" FontSize="20"/>
+                    <Button Command="{Binding AddItemCommand}" CommandParameter = "2" IsEnabled="{Binding IsItemReadyToAdd}"
+                            Content="2" Grid.Row="4" Grid.Column="1" BorderThickness="0.5" Background="#F9DED7" FontSize="20"/>
+                    <Button Command="{Binding AddItemCommand}" CommandParameter = "1" IsEnabled="{Binding IsItemReadyToAdd}"
+                            Content="1" Grid.Row="5" Grid.Column="1" BorderThickness="0.5" Background="#F5CDDE" FontSize="20"/>
+                    <Button Command="{Binding AddItemCommand}" CommandParameter = "0" IsEnabled="{Binding IsItemReadyToAdd}"
+                            Content="0" Grid.Row="6" Grid.Column="1" BorderThickness="0.5" Background="#E2BEF1" FontSize="20"/>
                 </Grid>
 
                 <Grid DockPanel.Dock="Left" Grid.Column="0">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="5*" />
-                        <RowDefinition Height="5*" />
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="6*" />
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="6*" />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="8*" />
                         <ColumnDefinition Width="1*" />
                     </Grid.ColumnDefinitions>
-                    <RichTextBox Grid.Row="0" BorderThickness="0.5"/>
-                    <RichTextBox Grid.Row="1" BorderThickness="0.5"/>
+                    
+                    <Label Grid.Row="0" Content="{StaticResource EnterQuestion}" />
+                    <TextBox Text="{Binding Path=NewItemQuestion, UpdateSourceTrigger=PropertyChanged}" x:Name="NewItemQuestionTb" Grid.Row="1" BorderThickness="0.5"
+                             TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="TextChanged">
+                                <i:InvokeCommandAction Command="{Binding CheckIfItemReadyToAdd}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </TextBox>
+                    
+                    <Label Grid.Row="2" Content="{StaticResource EnterAnswer}"/>
+                    <TextBox Text="{Binding Path=NewItemAnswer, UpdateSourceTrigger=PropertyChanged}" x:Name="NewItemAnswerTb" Grid.Row="3" BorderThickness="0.5"
+                             TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="TextChanged">
+                                <i:InvokeCommandAction Command="{Binding CheckIfItemReadyToAdd}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </TextBox> 
                 </Grid>
             </Grid>
         </Grid>
+
     </DockPanel>
 </Window>

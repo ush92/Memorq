@@ -3,11 +3,6 @@ using Memorq.Infrastructure;
 using Memorq.Services;
 using Memorq.ViewModels;
 using Moq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace Memorq.Tests.ViewModels
@@ -38,7 +33,7 @@ namespace Memorq.Tests.ViewModels
         }
 
         [Fact]
-        public void IfNoDefaultCategoryThenDefaultCategoryNameHasDictionaryValueDefaultCategoryNotChosen()
+        public void IfNoDefaultCategoryThenDefaultCategoryNameHasDictionaryValue()
         {
             var mainWindowViewModel = new MainWindowViewModel(_categoryService.Object, _itemService.Object,
                                                               _windowFactory.Object, _stringResourcesDictionary.Object);
@@ -53,6 +48,39 @@ namespace Memorq.Tests.ViewModels
                                                               _windowFactory.Object, _stringResourcesDictionary.Object);
             mainWindowViewModel.DefaultCategory = new();
             mainWindowViewModel.DefaultCategoryName.Should().Be(mainWindowViewModel.DefaultCategory.Name);
+        }
+
+        [Fact]
+        public void IfNewItemQuestionIsNotFilledThenIsItemReadyToAddIsFalse()
+        {
+            var mainWindowViewModel = new MainWindowViewModel(_categoryService.Object, _itemService.Object,
+                                                              _windowFactory.Object, _stringResourcesDictionary.Object);
+            mainWindowViewModel.NewItemQuestion = string.Empty;
+            mainWindowViewModel.NewItemAnswer = "answer";
+            mainWindowViewModel.CheckIfItemReadyToAdd.Execute(null);
+            mainWindowViewModel.IsItemReadyToAdd.Should().Be(false);
+        }
+
+        [Fact]
+        public void IfNewItemAnswerIsNotFilledThenIsItemReadyToAddIsFalse()
+        {
+            var mainWindowViewModel = new MainWindowViewModel(_categoryService.Object, _itemService.Object,
+                                                              _windowFactory.Object, _stringResourcesDictionary.Object);
+            mainWindowViewModel.NewItemQuestion = "question";
+            mainWindowViewModel.NewItemAnswer = string.Empty;
+            mainWindowViewModel.CheckIfItemReadyToAdd.Execute(null);
+            mainWindowViewModel.IsItemReadyToAdd.Should().Be(false);
+        }
+
+        [Fact]
+        public void IfNewItemQuestionAndAnswerAreFilledThenIsItemReadyToAddIsTrue()
+        {
+            var mainWindowViewModel = new MainWindowViewModel(_categoryService.Object, _itemService.Object,
+                                                              _windowFactory.Object, _stringResourcesDictionary.Object);
+            mainWindowViewModel.NewItemQuestion = "question";
+            mainWindowViewModel.NewItemAnswer = "answer";
+            mainWindowViewModel.CheckIfItemReadyToAdd.Execute(null);
+            mainWindowViewModel.IsItemReadyToAdd.Should().Be(true);
         }
 
         //[Fact]
