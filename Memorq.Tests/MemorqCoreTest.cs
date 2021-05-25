@@ -19,28 +19,24 @@ namespace Memorq.Tests
             return newItem;
         }
 
-        [Fact]
-        public void IfNewItemGradeIsZeroThenEFactorEquals1_7000000000000002()
+        [Theory]
+        [InlineData(1.7000000000000002, 1.96, 2.1799999999999997, 2.36, 2.5, 2.6)]
+        public void NewItemFirstGradeSetsProperEFactor(double a, double b, double c, double d, double e, double f)
         {
-            var newItem = CreateDefaultItem();
-            int grade = 0;
-
+            var newItem = new Item[6];
             MemorqCore memorqCore = new();
-            memorqCore.UpdateItemStats(newItem, grade);
+            for (int i = 0; i < 6; i++)
+            {
+                newItem[i] = CreateDefaultItem();
+                memorqCore.UpdateItemStats(newItem[i], i);
+            }
 
-            newItem.EFactor.Should().Be(1.7000000000000002);
-        }
-
-        [Fact]
-        public void IfNewItemGradeIsFiveThenEFactorEquals2_6()
-        {
-            var newItem = CreateDefaultItem();
-            int grade = 5;
-
-            MemorqCore memorqCore = new();
-            memorqCore.UpdateItemStats(newItem, grade);
-
-            newItem.EFactor.Should().Be(2.6);
+            newItem[0].EFactor.Should().Be(a);
+            newItem[1].EFactor.Should().Be(b);
+            newItem[2].EFactor.Should().Be(c);
+            newItem[3].EFactor.Should().Be(d);
+            newItem[4].EFactor.Should().Be(e);
+            newItem[5].EFactor.Should().Be(f);
         }
 
         [Fact]
