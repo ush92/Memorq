@@ -26,14 +26,12 @@ namespace Memorq.Tests
         [InlineData(3, 2.36)]
         [InlineData(4, 2.5)]
         [InlineData(5, 2.6)]
-        public void NewItemFirstGradeSetsProperEFactor(int grade, double efactor)
+        public void NewItemFirstGradeSetsExpectedEFactor(int grade, double efactor)
         {
             var newItem = CreateDefaultItem();
             MemorqCore memorqCore = new();
- 
-            newItem = CreateDefaultItem();
             memorqCore.UpdateItemStats(newItem, grade);
-            
+
             newItem.EFactor.Should().Be(efactor);
         }
 
@@ -136,18 +134,23 @@ namespace Memorq.Tests
             newItem.Repetition.Should().Be(0);
         }
 
-        [Fact]
-        public void IfItemGetsThreeGrades3InRowThenIntervalEqualsThirteen()
+        [Theory]
+        [InlineData(1, 1, 1, 1)]
+        [InlineData(1, 1, 5, 1)]
+        [InlineData(3, 3, 3, 13)]
+        [InlineData(1, 3, 5, 6)]
+        [InlineData(5, 5, 5, 16)]
+        [InlineData(5, 3, 1, 1)]
+        [InlineData(5, 3, 5, 15)]
+        public void ItemGradedThreeTimesHasExpectedInterval(int grade1, int grade2, int grade3, int interval)
         {
             var newItem = CreateDefaultItem();
-            int grade = 3;
-
             MemorqCore memorqCore = new();
-            memorqCore.UpdateItemStats(newItem, grade);
-            memorqCore.UpdateItemStats(newItem, grade);
-            memorqCore.UpdateItemStats(newItem, grade);
+            memorqCore.UpdateItemStats(newItem, grade1);
+            memorqCore.UpdateItemStats(newItem, grade2);
+            memorqCore.UpdateItemStats(newItem, grade3);
 
-            newItem.Interval.Should().Be(13);
+            newItem.Interval.Should().Be(interval);
         }
 
         [Fact]
