@@ -16,19 +16,10 @@ namespace Memorq.Services
         public void InsertItem(Item item)
         {
             using SQLiteConnection connection = new SQLiteConnection(App.databasePath);
-
-            //item.CategoryId = categoryId;
-            item.Repetition = 0;
-            item.EFactor = 2.5;
-            item.Interval = 0;
-            item.LastGrade = null;
-            item.InsertDate = DateTime.Now;
-            item.LastRepetitionDate = null;
-
             connection.Insert(item);
         }
 
-        public void InsertItemsForCategory(List<Item> items, int categoryId)
+        public void InsertItemsFromImport(List<Item> items, int categoryId)
         {
             using SQLiteConnection connection = new SQLiteConnection(App.databasePath);     
             connection.RunInTransaction(() =>

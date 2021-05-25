@@ -1,13 +1,9 @@
 ﻿using Memorq.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Memorq.Core
 {
-    public class SM2
+    public sealed class MemorqCore : IMemorqCore
     {
         private int nextRepetition = 0;
         private double nextEfactor = 0;
@@ -45,6 +41,7 @@ namespace Memorq.Core
             nextEfactor = item.EFactor + (0.1 - (5 - grade) * (0.08 + (5 - grade) * 0.02));
 
             if (nextEfactor < 1.3) nextEfactor = 1.3;
+            if (nextInterval > 712) nextInterval = 712;
 
             item.Repetition = nextRepetition;
             item.EFactor = nextEfactor;

@@ -6,7 +6,7 @@
     <system:String x:Key="Name">Nazwa</system:String>
     <system:String x:Key="Question">Pytanie</system:String>
     <system:String x:Key="Answer">Odpowiedź</system:String>
-    <system:String x:Key="Quit">Zamknij</system:String>
+    <system:String x:Key="Quit">Zakończ</system:String>
     <system:String x:Key="Cancel">Anuluj</system:String>
     <system:String x:Key="Category">Kategoria</system:String>
 

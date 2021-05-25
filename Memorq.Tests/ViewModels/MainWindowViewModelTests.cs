@@ -1,4 +1,5 @@
 ﻿using FluentAssertions;
+using Memorq.Core;
 using Memorq.Infrastructure;
 using Memorq.Services;
 using Memorq.ViewModels;
@@ -13,11 +14,12 @@ namespace Memorq.Tests.ViewModels
         private readonly Mock<IItemService> _itemService = new();
         private readonly Mock<IWindowFactory> _windowFactory = new();
         private readonly Mock<IStringResourcesDictionary> _stringResourcesDictionary = new();
+        private readonly Mock<IMemorqCore> _memorqCore = new();
 
         [Fact]
         public void IfNoDefaultCategoryThenIsDefaultCategoryChoosenIsFalse()
         {
-            var mainWindowViewModel = new MainWindowViewModel(_categoryService.Object, _itemService.Object,
+            var mainWindowViewModel = new MainWindowViewModel(_categoryService.Object, _itemService.Object, _memorqCore.Object,
                                                               _windowFactory.Object, _stringResourcesDictionary.Object);
             mainWindowViewModel.DefaultCategory = null;
             mainWindowViewModel.IsDefaultCategoryChoosen.Should().BeFalse();
@@ -26,7 +28,7 @@ namespace Memorq.Tests.ViewModels
         [Fact]
         public void IfDefaultCategoryThenIsDefaultCategoryChoosenIsTrue()
         {
-            var mainWindowViewModel = new MainWindowViewModel(_categoryService.Object, _itemService.Object,
+            var mainWindowViewModel = new MainWindowViewModel(_categoryService.Object, _itemService.Object, _memorqCore.Object,
                                                               _windowFactory.Object, _stringResourcesDictionary.Object);
             mainWindowViewModel.DefaultCategory = new();
             mainWindowViewModel.IsDefaultCategoryChoosen.Should().BeTrue();
@@ -35,7 +37,7 @@ namespace Memorq.Tests.ViewModels
         [Fact]
         public void IfNoDefaultCategoryThenDefaultCategoryNameHasDictionaryValue()
         {
-            var mainWindowViewModel = new MainWindowViewModel(_categoryService.Object, _itemService.Object,
+            var mainWindowViewModel = new MainWindowViewModel(_categoryService.Object, _itemService.Object, _memorqCore.Object,
                                                               _windowFactory.Object, _stringResourcesDictionary.Object);
             mainWindowViewModel.DefaultCategory = null;
             mainWindowViewModel.DefaultCategoryName.Should().Be(_stringResourcesDictionary.Object.GetResource("DefaultCategoryNotChosen"));
@@ -44,7 +46,7 @@ namespace Memorq.Tests.ViewModels
         [Fact]
         public void IfDefaultCategoryThenDefaultCategoryNameIsTheSame()
         {
-            var mainWindowViewModel = new MainWindowViewModel(_categoryService.Object, _itemService.Object,
+            var mainWindowViewModel = new MainWindowViewModel(_categoryService.Object, _itemService.Object, _memorqCore.Object,
                                                               _windowFactory.Object, _stringResourcesDictionary.Object);
             mainWindowViewModel.DefaultCategory = new();
             mainWindowViewModel.DefaultCategoryName.Should().Be(mainWindowViewModel.DefaultCategory.Name);
@@ -53,7 +55,7 @@ namespace Memorq.Tests.ViewModels
         [Fact]
         public void IfNewItemQuestionIsNotFilledThenIsItemReadyToAddIsFalse()
         {
-            var mainWindowViewModel = new MainWindowViewModel(_categoryService.Object, _itemService.Object,
+            var mainWindowViewModel = new MainWindowViewModel(_categoryService.Object, _itemService.Object, _memorqCore.Object,
                                                               _windowFactory.Object, _stringResourcesDictionary.Object);
             mainWindowViewModel.NewItemQuestion = string.Empty;
             mainWindowViewModel.NewItemAnswer = "answer";
@@ -64,7 +66,7 @@ namespace Memorq.Tests.ViewModels
         [Fact]
         public void IfNewItemAnswerIsNotFilledThenIsItemReadyToAddIsFalse()
         {
-            var mainWindowViewModel = new MainWindowViewModel(_categoryService.Object, _itemService.Object,
+            var mainWindowViewModel = new MainWindowViewModel(_categoryService.Object, _itemService.Object, _memorqCore.Object,
                                                               _windowFactory.Object, _stringResourcesDictionary.Object);
             mainWindowViewModel.NewItemQuestion = "question";
             mainWindowViewModel.NewItemAnswer = string.Empty;
@@ -75,7 +77,7 @@ namespace Memorq.Tests.ViewModels
         [Fact]
         public void IfNewItemQuestionAndAnswerAreFilledThenIsItemReadyToAddIsTrue()
         {
-            var mainWindowViewModel = new MainWindowViewModel(_categoryService.Object, _itemService.Object,
+            var mainWindowViewModel = new MainWindowViewModel(_categoryService.Object, _itemService.Object, _memorqCore.Object,
                                                               _windowFactory.Object, _stringResourcesDictionary.Object);
             mainWindowViewModel.NewItemQuestion = "question";
             mainWindowViewModel.NewItemAnswer = "answer";

@@ -50,6 +50,7 @@ for (int i = 0; i < 10; i++)
     nextEfactor = efactor + (0.1 - (5 - grade) * (0.08 + (5 - grade) * 0.02));
 
     if (nextEfactor < 1.3) nextEfactor = 1.3;
+    //if (nextInterval > 712) nextInterval = 712;
 
     Console.WriteLine();
     Console.WriteLine("New values: repetition: {0}   efactor: {1}   interval: {2}", nextRepetition, nextEfactor, nextInterval);

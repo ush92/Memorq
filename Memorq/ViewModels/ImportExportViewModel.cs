@@ -51,7 +51,7 @@ namespace Memorq.ViewModels
                     json = File.ReadAllText(openFileDialog.FileName);
                     var importedItems = JsonSerializer.Deserialize<List<Item>>(json);
 
-                    _itemService.InsertItemsForCategory(importedItems, DefaultCategoryId);
+                    _itemService.InsertItemsFromImport(importedItems, DefaultCategoryId);
 
                     MessageBox.Show(_stringResourcesDictionary.GetResource("MsgImportSuccess"),
                         appName, MessageBoxButton.OK, MessageBoxImage.Information);

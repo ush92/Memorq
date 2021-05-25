@@ -1,4 +1,5 @@
-﻿using Memorq.Infrastructure;
+﻿using Memorq.Core;
+using Memorq.Infrastructure;
 using Memorq.Models;
 using Memorq.Services;
 using Memorq.Views;
@@ -43,6 +44,7 @@ namespace Memorq
             services.AddTransient<ICategoryService, CategoryService>();
             services.AddTransient<IItemService, ItemService>();
             services.AddTransient<IWindowFactory, WindowFactory>();
+            services.AddTransient<IMemorqCore, MemorqCore>();
         }
     }
 }

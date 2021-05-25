@@ -8,7 +8,7 @@ namespace Memorq.Services
         List<Item> GetItems(int categoryId);
 
         void InsertItem(Item item);
-        void InsertItemsForCategory(List<Item> item, int categoryId);
+        void InsertItemsFromImport(List<Item> item, int categoryId);
         void DeleteItem(int id);
         void UpdateItem(Item item);
     }

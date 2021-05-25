@@ -1,8 +1,10 @@
-﻿using Memorq.Infrastructure;
+﻿using Memorq.Core;
+using Memorq.Infrastructure;
 using Memorq.Models;
 using Memorq.Services;
 using Memorq.Views;
 using Memorq.Views.Dialogs;
+using System;
 using System.Windows;
 using System.Windows.Input;
 
@@ -14,6 +16,7 @@ namespace Memorq.ViewModels
         private readonly IItemService _itemService;
         private readonly IWindowFactory _windowFactory;
         private readonly IStringResourcesDictionary _stringResourcesDictionary;
+        private readonly IMemorqCore _memorqCore;
 
         private Visibility _mainViewMode;
         public Visibility MainViewMode
@@ -93,13 +96,14 @@ namespace Memorq.ViewModels
             }
         }
 
-        public MainWindowViewModel(ICategoryService categoryService, IItemService itemService,
+        public MainWindowViewModel(ICategoryService categoryService, IItemService itemService, IMemorqCore memorqCore,
                                    IWindowFactory windowFactory, IStringResourcesDictionary stringResourcesDictionary)
         {
             _categoryService = categoryService;
             _itemService = itemService;
             _windowFactory = windowFactory;
             _stringResourcesDictionary = stringResourcesDictionary;
+            _memorqCore = memorqCore;
 
             InitDefaultCategory();
             ShowMainPanel.Execute(null);
@@ -163,7 +167,24 @@ namespace Memorq.ViewModels
 
         public ICommand AddItemCommand => new RelayCommand<string>(grade => {
 
-            MessageBox.Show(NewItemQuestion + " " + NewItemAnswer + " " + grade);
+            if(true) //todo: add question/answer verification
+            {
+                Item itemToAdd = new Item
+                {
+                    CategoryId = DefaultCategory.Id,
+                    Question = NewItemQuestion.Trim(),
+                    Answer = NewItemAnswer.Trim(),
+                    InsertDate = DateTime.Now,
+                    Repetition = 0,
+                    EFactor = 2.5,
+                    Interval = 0
+                };
+
+                _memorqCore.UpdateItemStats(itemToAdd, Int32.Parse(grade));
+                _itemService.InsertItem(itemToAdd);
+
+                ResetPanels();
+            }
         });
 
         private void ResetPanels()
