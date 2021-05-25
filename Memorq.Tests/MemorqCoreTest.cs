@@ -20,23 +20,21 @@ namespace Memorq.Tests
         }
 
         [Theory]
-        [InlineData(1.7000000000000002, 1.96, 2.1799999999999997, 2.36, 2.5, 2.6)]
-        public void NewItemFirstGradeSetsProperEFactor(double a, double b, double c, double d, double e, double f)
+        [InlineData(0, 1.7000000000000002)]
+        [InlineData(1, 1.96)]
+        [InlineData(2, 2.1799999999999997)]
+        [InlineData(3, 2.36)]
+        [InlineData(4, 2.5)]
+        [InlineData(5, 2.6)]
+        public void NewItemFirstGradeSetsProperEFactor(int grade, double efactor)
         {
-            var newItem = new Item[6];
+            var newItem = CreateDefaultItem();
             MemorqCore memorqCore = new();
-            for (int i = 0; i < 6; i++)
-            {
-                newItem[i] = CreateDefaultItem();
-                memorqCore.UpdateItemStats(newItem[i], i);
-            }
-
-            newItem[0].EFactor.Should().Be(a);
-            newItem[1].EFactor.Should().Be(b);
-            newItem[2].EFactor.Should().Be(c);
-            newItem[3].EFactor.Should().Be(d);
-            newItem[4].EFactor.Should().Be(e);
-            newItem[5].EFactor.Should().Be(f);
+ 
+            newItem = CreateDefaultItem();
+            memorqCore.UpdateItemStats(newItem, grade);
+            
+            newItem.EFactor.Should().Be(efactor);
         }
 
         [Fact]
