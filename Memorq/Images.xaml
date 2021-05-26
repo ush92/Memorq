@@ -2,17 +2,23 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:system="clr-namespace:System;assembly=mscorlib">
 
-    <!-- Right Panel buttons -->
-    <BitmapImage x:Key="LearnBtn_right_img" UriSource="Images/learn.png" />
-    <BitmapImage x:Key="AddBtn_right_img" UriSource="Images/add.png" />
-    <BitmapImage x:Key="NewBtn_right_img" UriSource="Images/newElements.png" />
-    <BitmapImage x:Key="ForceBtn_right_img" UriSource="Images/forceLearning.png" />
-
-
     <!-- Main Menu -->
     <BitmapImage x:Key="CategoryManager" UriSource="Images/manager.png" />
     <BitmapImage x:Key="ImportExport" UriSource="Images/importExport.png" />
     <BitmapImage x:Key="Exit" UriSource="Images/exit.png" />
     <BitmapImage x:Key="MarkDescription_img" UriSource="Images/mark.png" />
     <BitmapImage x:Key="About" UriSource="Images/memorq.ico" />
+
+    <!-- Main Panel -->
+    <BitmapImage x:Key="LearnBtn_right_img" UriSource="Images/learn.png" />
+    <BitmapImage x:Key="AddBtn_right_img" UriSource="Images/add.png" />
+    <BitmapImage x:Key="NewBtn_right_img" UriSource="Images/newElements.png" />
+    <BitmapImage x:Key="ForceBtn_right_img" UriSource="Images/forceLearning.png" />
+
+    <!-- Other Panels -->
+    <BitmapImage x:Key="BackToMainPanel_img" UriSource="Images/arrowLeft.png" />
+    <BitmapImage x:Key="Tip_img" UriSource="Images/tip.png" />
+    <BitmapImage x:Key="OK_img" UriSource="Images/OK.png" />
+    <BitmapImage x:Key="Next_img" UriSource="Images/arrowRight.png" />
+
 </ResourceDictionary>

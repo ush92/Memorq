@@ -1,5 +1,6 @@
 ﻿using Memorq.ViewModels;
 using System.Windows;
+using System.Windows.Media;
 
 namespace Memorq.Views
 {
@@ -12,6 +13,7 @@ namespace Memorq.Views
             mainWindowViewModel.OwnerWindow = this;
 
             TooltipLabel.Content = (string)Application.Current.FindResource("DefaultTooltip");
+            RenderOptions.SetBitmapScalingMode(this, BitmapScalingMode.HighQuality);
         }
 
         #region Tooltips

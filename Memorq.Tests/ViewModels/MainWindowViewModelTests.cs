@@ -87,7 +87,18 @@ namespace Memorq.Tests.ViewModels
         }
 
         [Fact]
-        public void IfShowAddItemPanelButtonIsClickedAddItemPanelIsVisible()
+        public void IfShowMainPanelButtonIsClickedThenMainPanelIsVisible()
+        {
+            var mainWindowViewModel = new MainWindowViewModel(_categoryService.Object, _itemService.Object, _memorqCore.Object,
+                                                              _windowFactory.Object, _stringResourcesDictionary.Object);
+
+            mainWindowViewModel.MainViewMode = Visibility.Collapsed;
+            mainWindowViewModel.ShowMainPanel.Execute(null);
+            mainWindowViewModel.MainViewMode.Should().Be(Visibility.Visible);
+        }
+
+        [Fact]
+        public void IfShowAddItemPanelButtonIsClickedThenAddItemPanelIsVisible()
         {
             var mainWindowViewModel = new MainWindowViewModel(_categoryService.Object, _itemService.Object, _memorqCore.Object,
                                                               _windowFactory.Object, _stringResourcesDictionary.Object);
@@ -98,15 +109,17 @@ namespace Memorq.Tests.ViewModels
         }
 
         [Fact]
-        public void IfShowMainPanelButtonIsClickedMainPanelIsVisible()
+        public void IfShowForcePanelButtonIsClickedThenForcePanelIsVisible()
         {
             var mainWindowViewModel = new MainWindowViewModel(_categoryService.Object, _itemService.Object, _memorqCore.Object,
                                                               _windowFactory.Object, _stringResourcesDictionary.Object);
 
-            mainWindowViewModel.MainViewMode = Visibility.Collapsed;
-            mainWindowViewModel.ShowMainPanel.Execute(null);
-            mainWindowViewModel.MainViewMode.Should().Be(Visibility.Visible);
+            mainWindowViewModel.ForceMode = Visibility.Collapsed;
+            mainWindowViewModel.ShowForcePanel.Execute(null);
+            mainWindowViewModel.ForceMode.Should().Be(Visibility.Visible);
         }
+
+
 
         //[Fact]
         //public void ShowCategoryManagerCommandShouldSetDefaultCategory()

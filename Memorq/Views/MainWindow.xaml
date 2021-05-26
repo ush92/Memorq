@@ -6,7 +6,7 @@
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
         Icon="../memorq.ico"
-        Title="Memorq" Height="450" Width="800">
+        Title="Memorq" Height="450" Width="800" ResizeMode="NoResize">
 
     <Window.InputBindings>
         <KeyBinding Command="{Binding ShowAboutCommand}" Key="F1"/>
@@ -80,6 +80,7 @@
 
         <Grid>
             <Grid Visibility="{Binding Path=MainViewMode}">
+                <!-- Visibility="Collapsed" Visibility="{Binding Path=MainViewMode}"> -->
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="2*" />
@@ -128,6 +129,7 @@
             </Grid>
 
             <Grid Visibility="{Binding Path=AddItemMode}">
+                <!-- "{StaticResource ShowAnswer}" Visibility="{Binding Path=AddItemMode}"> -->
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="8*" />
@@ -142,7 +144,12 @@
                         <ColumnDefinition Width="8*" />
                         <ColumnDefinition Width="1*" />
                     </Grid.ColumnDefinitions>
-                    <Button x:Name="AddItem_BackToMainViewBtn" Command="{Binding ShowMainPanel}" Content="{StaticResource Quit}" Grid.Row="0" Grid.Column="1" BorderThickness="0.5" MouseEnter="AddItem_BackToMainViewBtn_MouseEnter" MouseLeave="AddItem_BackToMainViewBtn_MouseLeave"/>
+                    <Button x:Name="AddItem_BackToMainViewBtn" Command="{Binding ShowMainPanel}" Grid.Row="0" Grid.Column="1" BorderThickness="0.5" MouseEnter="AddItem_BackToMainViewBtn_MouseEnter" MouseLeave="AddItem_BackToMainViewBtn_MouseLeave">
+                        <StackPanel>
+                            <Image Source="{StaticResource BackToMainPanel_img}" Width="30" Height="30"/>
+                            <TextBlock Text="{StaticResource Quit}" FontSize="12" HorizontalAlignment="Center"></TextBlock>
+                        </StackPanel>
+                    </Button>
 
                     <Button x:Name="AddItemGrade5Btn" Command="{Binding AddItemCommand}" CommandParameter = "5" IsEnabled="{Binding IsItemReadyToAdd}"
                             Content="5" Grid.Row="1" Grid.Column="1" BorderThickness="0.5" Background="#CCE1F2" FontSize="20" MouseEnter="AddItemGrade5Btn_MouseEnter" MouseLeave="AddItemGrade5Btn_MouseLeave"/>
@@ -170,7 +177,7 @@
                         <ColumnDefinition Width="1*" />
                     </Grid.ColumnDefinitions>
 
-                <Label x:Name="EnterQuestionLabel" Grid.Row="0" Content="{StaticResource EnterQuestion}" MouseEnter="EnterQuestionLabel_MouseEnter" MouseLeave="EnterQuestionLabel_MouseLeave" />
+                    <Label x:Name="EnterQuestionLabel" Grid.Row="0" Content="{StaticResource EnterQuestion}" MouseEnter="EnterQuestionLabel_MouseEnter" MouseLeave="EnterQuestionLabel_MouseLeave" />
                     <TextBox Text="{Binding Path=NewItemQuestion, UpdateSourceTrigger=PropertyChanged}" x:Name="NewItemQuestionTb" Grid.Row="1" BorderThickness="0.5"
                              TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" MouseEnter="NewItemQuestionTb_MouseEnter" MouseLeave="NewItemQuestionTb_MouseLeave">
                         <i:Interaction.Triggers>
@@ -188,26 +195,46 @@
                                 <i:InvokeCommandAction Command="{Binding CheckIfItemReadyToAdd}"/>
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
-                    </TextBox> 
+                    </TextBox>
                 </Grid>
             </Grid>
 
             <Grid Visibility="{Binding Path=ForceMode}">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="8*" />
-                        <RowDefinition Height="10*" />
-                        <RowDefinition Height="9*" />
-                        <RowDefinition Height="8*" />
-                        <RowDefinition Height="7*" />
-                        <RowDefinition Height="6*" />
-                        <RowDefinition Height="5*" />
+                        <RowDefinition Height="2*" />
+                        <RowDefinition Height="3*" />
+                        <RowDefinition Height="4*" />
+                        <RowDefinition Height="4*" />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="8*" />
                         <ColumnDefinition Width="1*" />
                     </Grid.ColumnDefinitions>
-                    <Button x:Name="Force_BackToMainViewBtn" Command="{Binding ShowMainPanel}" Content="{StaticResource Quit}" Grid.Row="0" Grid.Column="1" BorderThickness="0.5"/>
+                    <Button x:Name="Force_BackToMainViewBtn" Command="{Binding ShowMainPanel}" Grid.Row="0" Grid.Column="1" BorderThickness="0.5">
+                        <StackPanel>
+                            <Image Source="{StaticResource BackToMainPanel_img}" Width="25" Height="25"/>
+                            <TextBlock Text="{StaticResource Quit}" FontSize="12" HorizontalAlignment="Center"></TextBlock>
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="Force_TipBtn" Command="{Binding ShowMainPanel}" Grid.Row="1" Grid.Column="1" BorderThickness="0.5">
+                        <StackPanel>
+                            <Image Source="{StaticResource Tip_img}" Width="23" Height="23"/>
+                            <TextBlock Text="{StaticResource Tip}" FontSize="12" HorizontalAlignment="Center"></TextBlock>
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="Force_ShowAnswerBtn" Command="{Binding ShowMainPanel}" Grid.Row="2" Grid.Column="1" BorderThickness="0.5">
+                        <StackPanel>
+                            <Image Source="{StaticResource OK_img}" Width="25" Height="25"/>
+                            <TextBlock Text="{StaticResource ShowAnswer}" TextWrapping="Wrap" TextAlignment="Center" Width="75"/>
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="Force_NextBtn" Command="{Binding ShowMainPanel}" Grid.Row="3" Grid.Column="1" BorderThickness="0.5">
+                        <StackPanel>
+                            <Image Source="{StaticResource Next_img}" Width="25" Height="25"/>
+                            <TextBlock Text="{StaticResource Next}" TextWrapping="Wrap" TextAlignment="Center" Width="75"/>
+                        </StackPanel>
+                    </Button>
                 </Grid>
 
                 <Grid DockPanel.Dock="Left" Grid.Column="0">
@@ -222,8 +249,8 @@
                         <ColumnDefinition Width="1*" />
                     </Grid.ColumnDefinitions>
 
-                    <Label Grid.Row="2" Content="lol" />
-                    <TextBox Text="lolole" Grid.Row="3" BorderThickness="0.5"
+                    <Label Grid.Row="0" Content="lol" />
+                    <TextBox Text="lolole" Grid.Row="1" BorderThickness="0.5"
                              TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" >
                     </TextBox>
 

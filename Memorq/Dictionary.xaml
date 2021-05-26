@@ -9,6 +9,9 @@
     <system:String x:Key="Quit">Zakończ</system:String>
     <system:String x:Key="Cancel">Anuluj</system:String>
     <system:String x:Key="Category">Kategoria</system:String>
+    <system:String x:Key="Tip">Podpowiedź</system:String>
+    <system:String x:Key="ShowAnswer">Pokaż odpowiedź</system:String>
+    <system:String x:Key="Next">Następne</system:String>
 
     <!-- Messages and verification labels -->
     <system:String x:Key="MsgCategoryDuplicate">Kategoria o podanej nazwie istnieje już w bazie kategorii</system:String>
