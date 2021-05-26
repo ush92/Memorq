@@ -148,7 +148,8 @@ namespace Memorq.ViewModels
         public ICommand ShowMarkDescriptionCommand => new RelayCommand(_ => _windowFactory.CreateWindow<MarkDescription>().ShowDialog());
         public ICommand ShowAboutCommand => new RelayCommand(_ => _windowFactory.CreateWindow<About>().ShowDialog());
 
-        public ICommand ShowMainPanel => new RelayCommand(_ => {
+        public ICommand ShowMainPanel => new RelayCommand(_ =>
+        {
             MainViewMode = Visibility.Visible;
             AddItemMode = Visibility.Collapsed;
             ResetPanels();
@@ -165,26 +166,41 @@ namespace Memorq.ViewModels
             IsItemReadyToAdd = (!NewItemQuestion.Trim().Equals(string.Empty) && !NewItemAnswer.Trim().Equals(string.Empty))
         );
 
-        public ICommand AddItemCommand => new RelayCommand<string>(grade => {
+        public ICommand AddItemCommand => new RelayCommand<string>(grade =>
+        {
 
-            if(true) //todo: add question/answer verification
+            if (NewItemQuestion.Trim().Length > 255)
             {
-                Item itemToAdd = new Item
-                {
-                    CategoryId = DefaultCategory.Id,
-                    Question = NewItemQuestion.Trim(),
-                    Answer = NewItemAnswer.Trim(),
-                    InsertDate = DateTime.Now,
-                    Repetition = 0,
-                    EFactor = 2.5,
-                    Interval = 0
-                };
+                MessageBox.Show(_stringResourcesDictionary.GetResource("MsgQuestionTooLong"),
+                    appName, MessageBoxButton.OK, MessageBoxImage.Warning);
 
-                _memorqCore.UpdateItemStats(itemToAdd, Int32.Parse(grade));
-                _itemService.InsertItem(itemToAdd);
-
-                ResetPanels();
+                return;
             }
+
+            if (NewItemAnswer.Trim().Length > 255)
+            {
+                MessageBox.Show(_stringResourcesDictionary.GetResource("MsgAnswerTooLong"),
+                    appName, MessageBoxButton.OK, MessageBoxImage.Warning);
+
+                return;
+            }
+
+            Item itemToAdd = new Item
+            {
+                CategoryId = DefaultCategory.Id,
+                Question = NewItemQuestion.Trim(),
+                Answer = NewItemAnswer.Trim(),
+                InsertDate = DateTime.Now,
+                Repetition = 0,
+                EFactor = 2.5,
+                Interval = 0
+            };
+
+            _memorqCore.UpdateItemStats(itemToAdd, Int32.Parse(grade));
+            _itemService.InsertItem(itemToAdd);
+
+            ResetPanels();
+
         });
 
         private void ResetPanels()

@@ -47,9 +47,9 @@
     <system:String x:Key="MarkDescription">Opis ocen</system:String>
     <system:String x:Key="Mark5">5: doskonała odpowiedź bez zastanowienia</system:String>
     <system:String x:Key="Mark4">4: dobra odpowiedź po chwili zawahania</system:String>
-    <system:String x:Key="Mark3">3: zapamiętanie NOWEGO elementu lub dobra odpowiedź przypomniana z wielką trudnością</system:String>
-    <system:String x:Key="Mark2">2: błąd: uczucie "to było proste" lub przejęzyczenie</system:String>
-    <system:String x:Key="Mark1">1: błąd: odpowiedź wydaje się znajoma</system:String>
+    <system:String x:Key="Mark3">3: zapamiętanie nowego elementu lub dobra odpowiedź przypomniana z trudem</system:String>
+    <system:String x:Key="Mark2">2: błąd - uczucie "to było proste" lub przejęzyczenie</system:String>
+    <system:String x:Key="Mark1">1: błąd, ale odpowiedź wydaje się znajoma</system:String>
     <system:String x:Key="Mark0">0: kompletne zaćmienie</system:String>
 
     <!-- Main Window -->
@@ -65,8 +65,6 @@
     <system:String x:Key="Menu_File_Manager">Menedżer kategorii</system:String>
     <system:String x:Key="Menu_File_ImportExport">Import/Eksport kategorii</system:String>
     <system:String x:Key="Menu_File_Exit">Wyjście</system:String>
-
-    <system:String x:Key="Menu_Edit">Edycja</system:String>
     
     <system:String x:Key="Menu_Stats">Statystyki</system:String>
     
@@ -74,18 +72,22 @@
     
     <system:String x:Key="Menu_Help">Pomoc</system:String>
     <system:String x:Key="Menu_Help_About">O programie</system:String>
-    
-    <!-- Tooltips -->
-    <system:String x:Key="DefaultTooltip">Memorq jest gotowe</system:String>
-    <system:String x:Key="BtnAddTooltip">Dodaj nowe pytania do bazy nauki</system:String>
-    <system:String x:Key="BtnLearnTooltip">Rozpocznij powtórkę elementów wyznaczonych na dziś</system:String>
-    <system:String x:Key="BtnNewTooltip">Rozpocznij naukę nowych elementów</system:String>
-    <system:String x:Key="BtnForceTooltip">Wymusza powtórkę elementów poza kolejką</system:String>
-    <system:String x:Key="CategoryStatsTooltip">Ilość pytań w kategorii / Elementy bez oceny / Powtórki na dziś</system:String>
-
 
     <!-- Add Item (Main Window) -->
     <system:String x:Key="EnterQuestion">Podaj pytanie:</system:String>
     <system:String x:Key="EnterAnswer">Podaj odpowiedź:</system:String>
+
+    <!-- Tooltips -->
+    <system:String x:Key="DefaultTooltip">Memorq jest gotowe</system:String>
+    <system:String x:Key="BtnAddTooltip">Dodaj nowe elementy do bazy nauki</system:String>
+    <system:String x:Key="BtnLearnTooltip">Rozpocznij powtórkę elementów wyznaczonych na dziś</system:String>
+    <system:String x:Key="BtnNewTooltip">Rozpocznij naukę nowych elementów</system:String>
+    <system:String x:Key="BtnForceTooltip">Powtórka elementów poza kolejką i bez oceny</system:String>
+    <system:String x:Key="CategoryStatsTooltip">Ilość pytań w kategorii / Elementy bez oceny / Powtórki na dziś</system:String>
+    
+    <system:String x:Key="BackToMainViewTooltip">Wróć do ekranu startowego</system:String>
+    <system:String x:Key="DefaultAddItemTooltip">Dodaj nowe elementy do bazy nauki</system:String>
+    <system:String x:Key="AddItemQuestionTooltip">Wpisz treść pytania</system:String>
+    <system:String x:Key="AddItemAnswerTooltip">Wpisz treść odpowiedzi</system:String>
 
 </ResourceDictionary>

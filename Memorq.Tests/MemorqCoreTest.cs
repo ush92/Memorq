@@ -135,20 +135,27 @@ namespace Memorq.Tests
         }
 
         [Theory]
-        [InlineData(1, 1, 1, 1)]
-        [InlineData(1, 1, 5, 1)]
-        [InlineData(3, 3, 3, 13)]
-        [InlineData(1, 3, 5, 6)]
-        [InlineData(5, 5, 5, 16)]
-        [InlineData(5, 3, 1, 1)]
-        [InlineData(5, 3, 5, 15)]
-        public void ItemGradedThreeTimesHasExpectedInterval(int grade1, int grade2, int grade3, int interval)
+        [InlineData(0, 0, 0, 0, 0, 1)]
+        [InlineData(0, 0, 0, 0, 5, 1)]
+        [InlineData(0, 0, 0, 3, 3, 6)]
+        [InlineData(3, 3, 1, 3, 5, 6)]
+        [InlineData(1, 2, 3, 4, 5, 9)]
+        [InlineData(2, 4, 3, 5, 4, 26)]
+        [InlineData(3, 3, 3, 3, 3, 52)]
+        [InlineData(4, 3, 4, 4, 4, 78)]
+        [InlineData(4, 4, 4, 4, 4, 95)]
+        [InlineData(5, 5, 3, 5, 5, 109)]
+        [InlineData(5, 5, 5, 3, 5, 120)]
+        [InlineData(5, 5, 5, 5, 5, 131)]
+        public void ItemGradedFiveTimesHasExpectedInterval(int grade1, int grade2, int grade3, int grade4, int grade5, int interval)
         {
             var newItem = CreateDefaultItem();
             MemorqCore memorqCore = new();
             memorqCore.UpdateItemStats(newItem, grade1);
             memorqCore.UpdateItemStats(newItem, grade2);
             memorqCore.UpdateItemStats(newItem, grade3);
+            memorqCore.UpdateItemStats(newItem, grade4);
+            memorqCore.UpdateItemStats(newItem, grade5);
 
             newItem.Interval.Should().Be(interval);
         }
