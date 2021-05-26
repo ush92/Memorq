@@ -109,7 +109,7 @@
                             <TextBlock Text="{StaticResource NewBtn_right}" FontSize="12" HorizontalAlignment="Center"></TextBlock>
                         </StackPanel>
                     </Button>
-                    <Button Grid.Row="3" Grid.Column="1" IsEnabled="{Binding Path=IsDefaultCategoryChoosen}" MouseEnter="ForceBtn_MouseEnter" MouseLeave="ForceBtn_MouseLeave" BorderThickness="0.5">
+                    <Button Command="{Binding ShowForcePanel}" Grid.Row="3" Grid.Column="1" IsEnabled="{Binding Path=IsDefaultCategoryChoosen}" MouseEnter="ForceBtn_MouseEnter" MouseLeave="ForceBtn_MouseLeave" BorderThickness="0.5">
                         <StackPanel>
                             <Image Source="{StaticResource ForceBtn_right_img}" Width="50" Height="50"/>
                             <TextBlock Text="{StaticResource ForceBtn_right}" FontSize="12" HorizontalAlignment="Center"></TextBlock>
@@ -189,6 +189,48 @@
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
                     </TextBox> 
+                </Grid>
+            </Grid>
+
+            <Grid Visibility="{Binding Path=ForceMode}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="8*" />
+                        <RowDefinition Height="10*" />
+                        <RowDefinition Height="9*" />
+                        <RowDefinition Height="8*" />
+                        <RowDefinition Height="7*" />
+                        <RowDefinition Height="6*" />
+                        <RowDefinition Height="5*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="8*" />
+                        <ColumnDefinition Width="1*" />
+                    </Grid.ColumnDefinitions>
+                    <Button x:Name="Force_BackToMainViewBtn" Command="{Binding ShowMainPanel}" Content="{StaticResource Quit}" Grid.Row="0" Grid.Column="1" BorderThickness="0.5"/>
+                </Grid>
+
+                <Grid DockPanel.Dock="Left" Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="6*" />
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="6*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="8*" />
+                        <ColumnDefinition Width="1*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Grid.Row="2" Content="lol" />
+                    <TextBox Text="lolole" Grid.Row="3" BorderThickness="0.5"
+                             TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" >
+                    </TextBox>
+
+                    <Label Grid.Row="2" Content="lol" />
+                    <TextBox Text="ololol" Grid.Row="3" BorderThickness="0.5"
+                             TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" >
+                    </TextBox>
                 </Grid>
             </Grid>
         </Grid>

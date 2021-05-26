@@ -4,6 +4,7 @@ using Memorq.Infrastructure;
 using Memorq.Services;
 using Memorq.ViewModels;
 using Moq;
+using System.Windows;
 using Xunit;
 
 namespace Memorq.Tests.ViewModels
@@ -83,6 +84,28 @@ namespace Memorq.Tests.ViewModels
             mainWindowViewModel.NewItemAnswer = "answer";
             mainWindowViewModel.CheckIfItemReadyToAdd.Execute(null);
             mainWindowViewModel.IsItemReadyToAdd.Should().Be(true);
+        }
+
+        [Fact]
+        public void IfShowAddItemPanelButtonIsClickedAddItemPanelIsVisible()
+        {
+            var mainWindowViewModel = new MainWindowViewModel(_categoryService.Object, _itemService.Object, _memorqCore.Object,
+                                                              _windowFactory.Object, _stringResourcesDictionary.Object);
+
+            mainWindowViewModel.AddItemMode = Visibility.Collapsed;
+            mainWindowViewModel.ShowAddItemPanel.Execute(null);
+            mainWindowViewModel.AddItemMode.Should().Be(Visibility.Visible);
+        }
+
+        [Fact]
+        public void IfShowMainPanelButtonIsClickedMainPanelIsVisible()
+        {
+            var mainWindowViewModel = new MainWindowViewModel(_categoryService.Object, _itemService.Object, _memorqCore.Object,
+                                                              _windowFactory.Object, _stringResourcesDictionary.Object);
+
+            mainWindowViewModel.MainViewMode = Visibility.Collapsed;
+            mainWindowViewModel.ShowMainPanel.Execute(null);
+            mainWindowViewModel.MainViewMode.Should().Be(Visibility.Visible);
         }
 
         //[Fact]

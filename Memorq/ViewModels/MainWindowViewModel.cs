@@ -38,6 +38,16 @@ namespace Memorq.ViewModels
                 OnPropertyChanged(nameof(AddItemMode));
             }
         }
+        private Visibility _forceMode;
+        public Visibility ForceMode
+        {
+            get => _forceMode;
+            set
+            {
+                _forceMode = value;
+                OnPropertyChanged(nameof(ForceMode));
+            }
+        }
 
         private Category _defaultCategory;
         public Category DefaultCategory
@@ -151,14 +161,27 @@ namespace Memorq.ViewModels
         public ICommand ShowMainPanel => new RelayCommand(_ =>
         {
             MainViewMode = Visibility.Visible;
+
             AddItemMode = Visibility.Collapsed;
+            ForceMode = Visibility.Collapsed;
             ResetPanels();
         });
 
         public ICommand ShowAddItemPanel => new RelayCommand(_ =>
         {
             AddItemMode = Visibility.Visible;
+
             MainViewMode = Visibility.Collapsed;
+            ForceMode = Visibility.Collapsed;
+            ResetPanels();
+        });
+
+        public ICommand ShowForcePanel => new RelayCommand(_ =>
+        {
+            ForceMode = Visibility.Visible;
+
+            MainViewMode = Visibility.Collapsed;
+            AddItemMode = Visibility.Collapsed;
             ResetPanels();
         });
 
@@ -200,7 +223,6 @@ namespace Memorq.ViewModels
             _itemService.InsertItem(itemToAdd);
 
             ResetPanels();
-
         });
 
         private void ResetPanels()
