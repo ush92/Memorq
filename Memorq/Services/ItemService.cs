@@ -2,6 +2,7 @@
 using SQLite;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace Memorq.Services
 {
@@ -13,6 +14,14 @@ namespace Memorq.Services
             return connection.Table<Item>().Where(c => c.CategoryId.Equals(categoryId)).OrderBy(c => c.Question).ToList();
         }
 
+        public Item GetRandomItem(int categoryId)
+        {
+            var random = new Random();
+            using SQLiteConnection connection = new SQLiteConnection(App.databasePath);
+            int count = connection.Table<Item>().Where(c => c.CategoryId.Equals(categoryId)).Count();
+            return connection.Table<Item>().Where(c => c.CategoryId.Equals(categoryId)).Skip(random.Next(0, count)).FirstOrDefault();
+        }
+
         public void InsertItem(Item item)
         {
             using SQLiteConnection connection = new SQLiteConnection(App.databasePath);
@@ -21,7 +30,7 @@ namespace Memorq.Services
 
         public void InsertItemsFromImport(List<Item> items, int categoryId)
         {
-            using SQLiteConnection connection = new SQLiteConnection(App.databasePath);     
+            using SQLiteConnection connection = new SQLiteConnection(App.databasePath);
             connection.RunInTransaction(() =>
             {
                 foreach (var item in items)
@@ -36,19 +45,19 @@ namespace Memorq.Services
 
                     connection.Insert(item);
                 }
-            });         
+            });
         }
 
-    public void UpdateItem(Item item)
-    {
-        using SQLiteConnection connection = new SQLiteConnection(App.databasePath);
-        connection.Update(item);
-    }
+        public void UpdateItem(Item item)
+        {
+            using SQLiteConnection connection = new SQLiteConnection(App.databasePath);
+            connection.Update(item);
+        }
 
-    public void DeleteItem(int id)
-    {
-        using SQLiteConnection connection = new SQLiteConnection(App.databasePath);
-        connection.Table<Item>().Delete(i => i.Id == id);
+        public void DeleteItem(int id)
+        {
+            using SQLiteConnection connection = new SQLiteConnection(App.databasePath);
+            connection.Table<Item>().Delete(i => i.Id == id);
+        }
     }
-}
 }

@@ -5,6 +5,8 @@ using Memorq.Services;
 using Memorq.Views;
 using Memorq.Views.Dialogs;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 
@@ -17,6 +19,8 @@ namespace Memorq.ViewModels
         private readonly IWindowFactory _windowFactory;
         private readonly IStringResourcesDictionary _stringResourcesDictionary;
         private readonly IMemorqCore _memorqCore;
+
+        private Random random = new();
 
         private Visibility _mainViewMode;
         public Visibility MainViewMode
@@ -84,7 +88,6 @@ namespace Memorq.ViewModels
                 OnPropertyChanged(nameof(NewItemAnswer));
             }
         }
-
         private bool _isItemReadyToAdd;
         public bool IsItemReadyToAdd
         {
@@ -95,6 +98,29 @@ namespace Memorq.ViewModels
                 OnPropertyChanged(nameof(IsItemReadyToAdd));
             }
         }
+
+        private List<Item> _forceItemSet;
+        private string _forceQuestion;
+        public string ForceQuestion
+        {
+            get => _forceQuestion;
+            set
+            {
+                _forceQuestion = value;
+                OnPropertyChanged(nameof(ForceQuestion));
+            }
+        }
+        private string _forceAnswer;
+        public string ForceAnswer
+        {
+            get => _forceAnswer;
+            set
+            {
+                _forceAnswer = value;
+                OnPropertyChanged(nameof(ForceAnswer));
+            }
+        }
+
 
         private void InitDefaultCategory()
         {
@@ -176,14 +202,6 @@ namespace Memorq.ViewModels
             ResetPanels();
         });
 
-        public ICommand ShowForcePanel => new RelayCommand(_ =>
-        {
-            ForceMode = Visibility.Visible;
-
-            MainViewMode = Visibility.Collapsed;
-            AddItemMode = Visibility.Collapsed;
-            ResetPanels();
-        });
 
         public ICommand CheckIfItemReadyToAdd => new RelayCommand(_ =>
             IsItemReadyToAdd = (!NewItemQuestion.Trim().Equals(string.Empty) && !NewItemAnswer.Trim().Equals(string.Empty))
@@ -225,10 +243,50 @@ namespace Memorq.ViewModels
             ResetPanels();
         });
 
+        public ICommand ShowForcePanel => new RelayCommand(_ =>
+        {
+            if (_itemService.GetItems(DefaultCategory.Id).Count == 0)
+            {
+                MessageBox.Show(_stringResourcesDictionary.GetResource("MsgNoItemsInCategory"),
+                                appName, MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else
+            {
+                ForceMode = Visibility.Visible;
+
+                MainViewMode = Visibility.Collapsed;
+                AddItemMode = Visibility.Collapsed;
+                ResetPanels();
+
+                _forceItemSet = _itemService.GetItems(DefaultCategory.Id);
+                Item forceCurrentItem = _forceItemSet.Skip(random.Next(0, _forceItemSet.Count)).FirstOrDefault();
+                _forceItemSet.Remove(forceCurrentItem);
+                ForceQuestion = forceCurrentItem.Question;
+            }
+        });
+
+        public ICommand ForcePanelShowTip => new RelayCommand(_ =>
+        {
+
+        });
+
+        public ICommand ForcePanelShowAnswer => new RelayCommand(_ =>
+        {
+
+        });
+
+        public ICommand ForcePanelNextItem => new RelayCommand(_ =>
+        {
+
+        });
+
         private void ResetPanels()
         {
             NewItemQuestion = string.Empty;
             NewItemAnswer = string.Empty;
+            ForceQuestion = string.Empty;
+            ForceAnswer = string.Empty;
+            _forceItemSet = null;
             IsItemReadyToAdd = false;
         }
     }
