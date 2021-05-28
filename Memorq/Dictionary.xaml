@@ -30,6 +30,8 @@
     <system:String x:Key="MsgExportError">Wystąpił problem z zapisem pliku</system:String>
     <system:String x:Key="MsgExportSuccess">Elementy zostały poprawnie wyeksportowane</system:String>
     <system:String x:Key="MsgNoItemsInCategory">W wybranej kategorii nie ma pytań. Dodaj pytania, aby kontynuować</system:String>
+    <system:String x:Key="MsgForceModeAllItemsPassed">Wszystkie elementy zostały powtórzone</system:String>
+    
 
     <!-- Category Manager -->
     <system:String x:Key="ChooseCategory">Wybierz kategorię</system:String>
@@ -47,6 +49,12 @@
     <system:String x:Key="Import">Importuj pytania z pliku</system:String>
     <system:String x:Key="Export">Eksportuj pytania do pliku</system:String>
 
+    <!-- Settings -->
+    <system:String x:Key="Settings_ShowTimer">Pokazuj czas odpowiedzi</system:String>
+    <system:String x:Key="Settings_ReverseMode">Tryb odwrotny - zamienia pytanie z odpowiedzią</system:String>
+    <system:String x:Key="Settings_ColorLabel">Kolor tła</system:String>
+    <system:String x:Key="Settings_ColorTip">Przykłady kolorów</system:String>
+
     <!-- Mark Description -->
     <system:String x:Key="MarkDescription">Opis ocen</system:String>
     <system:String x:Key="Mark5">5: doskonała odpowiedź bez zastanowienia</system:String>
@@ -63,16 +71,18 @@
     <system:String x:Key="AddBtn_right">Dodaj</system:String>
     <system:String x:Key="NewBtn_right">Nowe pytania</system:String>
     <system:String x:Key="ForceBtn_right">Wymuś naukę</system:String>
-
-    
+  
     <system:String x:Key="Menu_File">Plik</system:String>
     <system:String x:Key="Menu_File_Manager">Menedżer kategorii</system:String>
     <system:String x:Key="Menu_File_ImportExport">Import/Eksport kategorii</system:String>
     <system:String x:Key="Menu_File_Exit">Wyjście</system:String>
     
     <system:String x:Key="Menu_Stats">Statystyki</system:String>
-    
+    <system:String x:Key="Menu_Stats_Schedule">Harmonogram powtórek</system:String>
+    <system:String x:Key="Menu_Stats_HardItems">Trudne elementy</system:String>
+
     <system:String x:Key="Menu_Options">Opcje</system:String>
+    <system:String x:Key="Menu_Options_Settings">Ustawienia</system:String>
     
     <system:String x:Key="Menu_Help">Pomoc</system:String>
     <system:String x:Key="Menu_Help_About">O programie</system:String>

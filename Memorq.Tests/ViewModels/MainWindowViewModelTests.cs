@@ -1,6 +1,8 @@
-﻿using FluentAssertions;
+﻿using AutoFixture;
+using FluentAssertions;
 using Memorq.Core;
 using Memorq.Infrastructure;
+using Memorq.Models;
 using Memorq.Services;
 using Memorq.ViewModels;
 using Moq;
@@ -16,6 +18,8 @@ namespace Memorq.Tests.ViewModels
         private readonly Mock<IWindowFactory> _windowFactory = new();
         private readonly Mock<IStringResourcesDictionary> _stringResourcesDictionary = new();
         private readonly Mock<IMemorqCore> _memorqCore = new();
+
+        private readonly Fixture fixture = new();
 
         [Fact]
         public void IfNoDefaultCategoryThenIsDefaultCategoryChoosenIsFalse()
@@ -109,17 +113,40 @@ namespace Memorq.Tests.ViewModels
         }
 
         [Fact]
-        public void IfShowForcePanelButtonIsClickedThenForcePanelIsVisible()
+        public void IfForceModeTipButtonIsClickedAndAnswerIsHiddenThenFirstLetterOfAnswerAppearsInAnswerField()
         {
             var mainWindowViewModel = new MainWindowViewModel(_categoryService.Object, _itemService.Object, _memorqCore.Object,
                                                               _windowFactory.Object, _stringResourcesDictionary.Object);
 
-            mainWindowViewModel.ForceMode = Visibility.Collapsed;
-            mainWindowViewModel.ShowForcePanel.Execute(null);
-            mainWindowViewModel.ForceMode.Should().Be(Visibility.Visible);
+            mainWindowViewModel.ForceCurrentItem = fixture.Create<Item>();
+            mainWindowViewModel.ForceAnswer = string.Empty;
+            mainWindowViewModel.ForcePanelShowTip.Execute(null);
+            mainWindowViewModel.ForceAnswer.Should().Be(mainWindowViewModel.ForceCurrentItem.Answer[0].ToString());
         }
 
+        [Fact]
+        public void IfForceModeTipButtonIsClickedAndAnswerIsShownThenAnswerFieldIsNotChanged()
+        {
+            var mainWindowViewModel = new MainWindowViewModel(_categoryService.Object, _itemService.Object, _memorqCore.Object,
+                                                              _windowFactory.Object, _stringResourcesDictionary.Object);
 
+            mainWindowViewModel.ForceCurrentItem = fixture.Create<Item>();
+            mainWindowViewModel.ForceAnswer = mainWindowViewModel.ForceCurrentItem.Answer;
+            mainWindowViewModel.ForcePanelShowTip.Execute(null);
+            mainWindowViewModel.ForceAnswer.Should().Be(mainWindowViewModel.ForceCurrentItem.Answer);
+        }
+
+        [Fact]
+        public void IfForceModeShowAnswerButtonIsClickedThenAnswerIsVisible()
+        {
+            var mainWindowViewModel = new MainWindowViewModel(_categoryService.Object, _itemService.Object, _memorqCore.Object,
+                                                              _windowFactory.Object, _stringResourcesDictionary.Object);
+
+            mainWindowViewModel.ForceCurrentItem = fixture.Create<Item>();
+            mainWindowViewModel.ForceAnswer = string.Empty;
+            mainWindowViewModel.ForcePanelShowAnswer.Execute(null);
+            mainWindowViewModel.ForceAnswer.Should().Be(mainWindowViewModel.ForceCurrentItem.Answer);
+        }
 
         //[Fact]
         //public void ShowCategoryManagerCommandShouldSetDefaultCategory()

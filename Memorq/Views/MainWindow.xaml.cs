@@ -1,4 +1,5 @@
 ﻿using Memorq.ViewModels;
+using System.Threading;
 using System.Windows;
 using System.Windows.Media;
 
@@ -12,6 +13,7 @@ namespace Memorq.Views
             DataContext = mainWindowViewModel;
             mainWindowViewModel.OwnerWindow = this;
 
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             TooltipLabel.Content = (string)Application.Current.FindResource("DefaultTooltip");
             RenderOptions.SetBitmapScalingMode(this, BitmapScalingMode.HighQuality);
         }

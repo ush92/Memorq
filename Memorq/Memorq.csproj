@@ -14,6 +14,7 @@
     <None Remove="Images\arrowRight.png" />
     <None Remove="Images\exit.png" />
     <None Remove="Images\forceLearning.png" />
+    <None Remove="Images\hardItems.png" />
     <None Remove="Images\importExport.png" />
     <None Remove="Images\learn.png" />
     <None Remove="Images\manager.png" />
@@ -21,6 +22,10 @@
     <None Remove="Images\memorq.ico" />
     <None Remove="Images\newElements.png" />
     <None Remove="Images\OK.png" />
+    <None Remove="Images\schedule.png" />
+    <None Remove="Images\settings.png" />
+    <None Remove="Images\splash.png" />
+    <None Remove="Images\splashScreen.png" />
     <None Remove="Images\tip.png" />
     <None Remove="memorq.ico" />
     <None Remove="Views\memorq.ico" />
@@ -40,6 +45,7 @@
     <Resource Include="Images\arrowRight.png" />
     <Resource Include="Images\exit.png" />
     <Resource Include="Images\forceLearning.png" />
+    <Resource Include="Images\hardItems.png" />
     <Resource Include="Images\importExport.png" />
     <Resource Include="Images\learn.png" />
     <Resource Include="Images\manager.png" />
@@ -47,8 +53,14 @@
     <Resource Include="Images\memorq.ico" />
     <Resource Include="Images\newElements.png" />
     <Resource Include="Images\OK.png" />
+    <Resource Include="Images\schedule.png" />
+    <Resource Include="Images\settings.png" />
     <Resource Include="Images\tip.png" />
     <Resource Include="memorq.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <SplashScreen Include="Images\splashScreen.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -63,6 +75,9 @@
     <None Update="UserSettings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>UserSettings.Designer.cs</LastGenOutput>
+    </None>
+    <None Update="Views\SettingsWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
     </None>
   </ItemGroup>
 

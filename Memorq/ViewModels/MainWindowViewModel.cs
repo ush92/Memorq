@@ -100,6 +100,7 @@ namespace Memorq.ViewModels
         }
 
         private List<Item> _forceItemSet;
+        public Item ForceCurrentItem { get; set; }
         private string _forceQuestion;
         public string ForceQuestion
         {
@@ -180,7 +181,7 @@ namespace Memorq.ViewModels
 
             importExport.ShowDialog();
         });
-
+        public ICommand ShowSettingsCommand => new RelayCommand(_ => _windowFactory.CreateWindow<SettingsWindow>().ShowDialog());
         public ICommand ShowMarkDescriptionCommand => new RelayCommand(_ => _windowFactory.CreateWindow<MarkDescription>().ShowDialog());
         public ICommand ShowAboutCommand => new RelayCommand(_ => _windowFactory.CreateWindow<About>().ShowDialog());
 
@@ -259,25 +260,36 @@ namespace Memorq.ViewModels
                 ResetPanels();
 
                 _forceItemSet = _itemService.GetItems(DefaultCategory.Id);
-                Item forceCurrentItem = _forceItemSet.Skip(random.Next(0, _forceItemSet.Count)).FirstOrDefault();
-                _forceItemSet.Remove(forceCurrentItem);
-                ForceQuestion = forceCurrentItem.Question;
+                ForcePanelNextItem.Execute(null);
             }
         });
 
         public ICommand ForcePanelShowTip => new RelayCommand(_ =>
         {
-
+            if (ForceAnswer.Equals(string.Empty))
+            {
+                ForceAnswer = ForceCurrentItem.Answer[0].ToString();
+            }
         });
 
-        public ICommand ForcePanelShowAnswer => new RelayCommand(_ =>
-        {
-
-        });
+        public ICommand ForcePanelShowAnswer => new RelayCommand(_ => ForceAnswer = ForceCurrentItem.Answer);
 
         public ICommand ForcePanelNextItem => new RelayCommand(_ =>
         {
+            ForceCurrentItem = _forceItemSet.Skip(random.Next(0, _forceItemSet.Count)).FirstOrDefault();
+            if (ForceCurrentItem != null)
+            {
+                _forceItemSet.Remove(ForceCurrentItem);
+                ForceQuestion = ForceCurrentItem.Question;
+                ForceAnswer = string.Empty;
+            }
+            else
+            {
+                MessageBox.Show(_stringResourcesDictionary.GetResource("MsgForceModeAllItemsPassed"),
+                appName, MessageBoxButton.OK, MessageBoxImage.Information);
 
+                ShowMainPanel.Execute(null);
+            }
         });
 
         private void ResetPanels()
@@ -287,6 +299,7 @@ namespace Memorq.ViewModels
             ForceQuestion = string.Empty;
             ForceAnswer = string.Empty;
             _forceItemSet = null;
+            ForceCurrentItem = null;
             IsItemReadyToAdd = false;
         }
     }

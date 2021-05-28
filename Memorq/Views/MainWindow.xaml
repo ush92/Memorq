@@ -42,10 +42,23 @@
                 </MenuItem>
             </MenuItem>
             <MenuItem Header="{StaticResource Menu_Stats}">
-                <MenuItem Header="..." />
+                <MenuItem Header="{StaticResource Menu_Stats_Schedule}" Command="{Binding ShowAboutCommand}">
+                    <MenuItem.Icon>
+                        <Image Source="{StaticResource Schedule_img}"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="{StaticResource Menu_Stats_HardItems}" Command="{Binding ShowAboutCommand}">
+                    <MenuItem.Icon>
+                        <Image Source="{StaticResource HardItems_img}"/>
+                    </MenuItem.Icon>
+                </MenuItem>
             </MenuItem>
             <MenuItem Header="{StaticResource Menu_Options}">
-                <MenuItem Header="..." />
+                <MenuItem Header="{StaticResource Menu_Options_Settings}" Command="{Binding ShowSettingsCommand}">
+                    <MenuItem.Icon>
+                        <Image Source="{StaticResource Settings_img}"/>
+                    </MenuItem.Icon>
+                </MenuItem>
             </MenuItem>
             <MenuItem Header="{StaticResource Menu_Help}">
                 <MenuItem Header="{StaticResource MarkDescription}" Command="{Binding ShowMarkDescriptionCommand}">
@@ -73,7 +86,7 @@
                     <Label x:Name="CategoryStatsLabel2" Grid.Column="1" Content="10000" FontSize="11" Width="110" Height="30" MouseEnter="CategoryStatsLabel_MouseEnter" MouseLeave="CategoryStatsLabel_MouseLeave" />
                     <Label x:Name="CategoryStatsLabel3" Grid.Column="2" Content="10000" FontSize="11" Width="110" Height="30" MouseEnter="CategoryStatsLabel_MouseEnter" MouseLeave="CategoryStatsLabel_MouseLeave" />
                 </Grid>
-                <Button x:Name="DefaultCategoryLabel" Content="{Binding Path=DefaultCategoryName}" Command="{Binding ShowCategoryManagerCommand}" DockPanel.Dock="Right" Width="244" Height="25" BorderThickness="0"/>
+                <Button x:Name="DefaultCategoryLabel" Content="{Binding Path=DefaultCategoryName}" Command="{Binding ShowCategoryManagerCommand}" DockPanel.Dock="Right" Width="204" Height="25" BorderThickness="0"/>
                 <Label x:Name="TooltipLabel" DockPanel.Dock="Left" Content="tooltip" Height="30"  />
             </DockPanel>
         </StatusBar>
@@ -217,19 +230,19 @@
                             <TextBlock Text="{StaticResource Quit}" FontSize="12" HorizontalAlignment="Center"></TextBlock>
                         </StackPanel>
                     </Button>
-                    <Button x:Name="Force_TipBtn" Command="{Binding ShowMainPanel}" Grid.Row="1" Grid.Column="1" BorderThickness="0.5">
+                    <Button x:Name="Force_TipBtn" Command="{Binding ForcePanelShowTip}" Grid.Row="1" Grid.Column="1" BorderThickness="0.5">
                         <StackPanel>
                             <Image Source="{StaticResource Tip_img}" Width="23" Height="23"/>
                             <TextBlock Text="{StaticResource Tip}" FontSize="12" HorizontalAlignment="Center"></TextBlock>
                         </StackPanel>
                     </Button>
-                    <Button x:Name="Force_ShowAnswerBtn" Command="{Binding ShowMainPanel}" Grid.Row="2" Grid.Column="1" BorderThickness="0.5">
+                    <Button x:Name="Force_ShowAnswerBtn" Command="{Binding ForcePanelShowAnswer}" Grid.Row="2" Grid.Column="1" BorderThickness="0.5">
                         <StackPanel>
                             <Image Source="{StaticResource OK_img}" Width="25" Height="25"/>
                             <TextBlock Text="{StaticResource ShowAnswer}" TextWrapping="Wrap" TextAlignment="Center" Width="75"/>
                         </StackPanel>
                     </Button>
-                    <Button x:Name="Force_NextBtn" Command="{Binding ShowMainPanel}" Grid.Row="3" Grid.Column="1" BorderThickness="0.5">
+                    <Button x:Name="Force_NextBtn" Command="{Binding ForcePanelNextItem}" Grid.Row="3" Grid.Column="1" BorderThickness="0.5">
                         <StackPanel>
                             <Image Source="{StaticResource Next_img}" Width="25" Height="25"/>
                             <TextBlock Text="{StaticResource Next}" TextWrapping="Wrap" TextAlignment="Center" Width="75"/>
