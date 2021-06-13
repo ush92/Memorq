@@ -13,8 +13,10 @@
 
     <Grid>
         <Label Content="Memorq 1.0.1" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-        <Label Content="Autor: Mateusz Trzyna" HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top"/>
-        <Button Content="OK" IsCancel="True" HorizontalAlignment="Left" Margin="230,84,0,0" VerticalAlignment="Top" Width="26"/>
-        <Image Source="/memorq.ico" HorizontalAlignment="Left" Height="60" Margin="213,14,0,0" VerticalAlignment="Top" Width="60"/>
+        <Label Content="Autor: Mateusz Trzyna" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
+        <Label Content="Algorithm SM-2, © Copyright SuperMemo World, 1991" HorizontalAlignment="Left" Margin="10,84,0,0" VerticalAlignment="Top" FontSize="9" Height="26"/>
+        <Button Content="OK" IsCancel="True" HorizontalAlignment="Left" Margin="243,84,0,0" VerticalAlignment="Top" Width="26"/>
+        <Image Source="/memorq.ico" HorizontalAlignment="Left" Height="60" Margin="179,10,0,0" VerticalAlignment="Top" Width="60"/>
+
     </Grid>
 </Window>

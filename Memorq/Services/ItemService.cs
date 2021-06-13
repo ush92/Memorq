@@ -2,7 +2,6 @@
 using SQLite;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 
 namespace Memorq.Services
 {
@@ -12,6 +11,25 @@ namespace Memorq.Services
         {
             using SQLiteConnection connection = new SQLiteConnection(App.databasePath);
             return connection.Table<Item>().Where(c => c.CategoryId.Equals(categoryId)).OrderBy(c => c.Question).ToList();
+        }
+
+        public List<Item> GetItemsWithoutGrade(int categoryId)
+        {
+            using SQLiteConnection connection = new SQLiteConnection(App.databasePath);
+            return connection.Table<Item>()
+                .Where(c => c.CategoryId.Equals(categoryId) && c.LastGrade == null)
+                .ToList();
+        }
+
+        public List<Item> GetItemsForTodayRepetition(int categoryId)
+        {
+            var today = DateTime.Today;
+            using SQLiteConnection connection = new SQLiteConnection(App.databasePath);
+            return connection.Table<Item>()
+                .Where(c => c.CategoryId.Equals(categoryId))
+                .Where(c => c.Repetition == 0 ||
+                      (c.LastRepetitionDate.HasValue && c.LastRepetitionDate.Value.AddDays(c.Interval) <= today))
+                .ToList();
         }
 
         public Item GetRandomItem(int categoryId)
