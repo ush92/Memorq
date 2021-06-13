@@ -7,3 +7,9 @@ Następnie na podstawie ocen będzie wyliczany czas do następnej powtórki dane
 Dodatkowo funkcje: wyszukiwanie elementów, statystyki nauki, import i eksport bazy pytań i inne ustawienia programu.
 
 technologia: WPF (.NET Core)
+
+
+Memorq wykorzystuje algorytm SM-2:
+Algorithm SM-2, (C) Copyright SuperMemo World, 1991
+https://www.supermemo.com/pl
+http://supermemopedia.com/wiki/Licensing_SuperMemo_Algorithm
