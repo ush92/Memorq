@@ -117,7 +117,7 @@
                             <TextBlock Text="{StaticResource AddBtn_right}" FontSize="12" HorizontalAlignment="Center"></TextBlock>
                         </StackPanel>
                     </Button>
-                    <Button Grid.Row="2" Grid.Column="1" IsEnabled="{Binding Path=IsDefaultCategoryChoosen}" MouseEnter="NewBtn_MouseEnter" MouseLeave="NewBtn_MouseLeave" BorderThickness="0.5">
+                    <Button Command="{Binding ShowGradeNewItemsMode}" Grid.Row="2" Grid.Column="1" IsEnabled="{Binding Path=IsDefaultCategoryChoosen}" MouseEnter="NewBtn_MouseEnter" MouseLeave="NewBtn_MouseLeave" BorderThickness="0.5">
                         <StackPanel>
                             <Image Source="{StaticResource NewBtn_right_img}" Width="50" Height="50"/>
                             <TextBlock Text="{StaticResource NewBtn_right}" FontSize="12" HorizontalAlignment="Center"></TextBlock>
@@ -142,7 +142,7 @@
             </Grid>
 
             <Grid Visibility="{Binding Path=AddItemMode}">
-                <!-- "{StaticResource ShowAnswer}" Visibility="{Binding Path=AddItemMode}"> -->
+                <!--  Visibility="Collapsed" Visibility="{Binding Path=AddItemMode}"> -->
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="8*" />
@@ -202,6 +202,77 @@
 
                     <Label x:Name="EnterAnswerLabel" Grid.Row="2" Content="{StaticResource EnterAnswer}" MouseEnter="EnterAnswerLabel_MouseEnter" MouseLeave="EnterAnswerLabel_MouseLeave"/>
                     <TextBox Text="{Binding Path=NewItemAnswer, UpdateSourceTrigger=PropertyChanged}" x:Name="NewItemAnswerTb" Grid.Row="3" BorderThickness="0.5"
+                             TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" MouseEnter="NewItemAnswerTb_MouseEnter" MouseLeave="NewItemAnswerTb_MouseLeave">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="TextChanged">
+                                <i:InvokeCommandAction Command="{Binding CheckIfItemReadyToAdd}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </TextBox>
+                </Grid>
+            </Grid>
+
+            <Grid Visibility="{Binding Path=GradeNewItemsMode}">
+                <!-- Visibility="Collapsed" Visibility="{Binding Path=GradeNewItemsMode}"> -->
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="8*" />
+                        <RowDefinition Height="10*" />
+                        <RowDefinition Height="9*" />
+                        <RowDefinition Height="8*" />
+                        <RowDefinition Height="7*" />
+                        <RowDefinition Height="6*" />
+                        <RowDefinition Height="5*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="8*" />
+                        <ColumnDefinition Width="1*" />
+                    </Grid.ColumnDefinitions>
+                    <Button x:Name="GradeNewItems_BackToMainViewBtn" Command="{Binding ShowMainPanel}" Grid.Row="0" Grid.Column="1" BorderThickness="0.5" MouseEnter="AddItem_BackToMainViewBtn_MouseEnter" MouseLeave="AddItem_BackToMainViewBtn_MouseLeave">
+                        <StackPanel>
+                            <Image Source="{StaticResource BackToMainPanel_img}" Width="30" Height="30"/>
+                            <TextBlock Text="{StaticResource Quit}" FontSize="12" HorizontalAlignment="Center"></TextBlock>
+                        </StackPanel>
+                    </Button>
+
+                    <Button x:Name="GradeNewItems5Btn" Command="{Binding AddItemCommand}" CommandParameter = "5" IsEnabled="{Binding IsItemReadyToAdd}"
+                            Content="5" Grid.Row="1" Grid.Column="1" BorderThickness="0.5" Background="#CCE1F2" FontSize="20" MouseEnter="AddItemGrade5Btn_MouseEnter" MouseLeave="AddItemGrade5Btn_MouseLeave"/>
+                    <Button x:Name="GradeNewItems4Btn" Command="{Binding AddItemCommand}" CommandParameter = "4" IsEnabled="{Binding IsItemReadyToAdd}"
+                            Content="4" Grid.Row="2" Grid.Column="1" BorderThickness="0.5" Background="#C6F8E5" FontSize="20" MouseEnter="AddItemGrade4Btn_MouseEnter" MouseLeave="AddItemGrade4Btn_MouseLeave"/>
+                    <Button x:Name="GradeNewItems3Btn" Command="{Binding AddItemCommand}" CommandParameter = "3" IsEnabled="{Binding IsItemReadyToAdd}"
+                            Content="3" Grid.Row="3" Grid.Column="1" BorderThickness="0.5" Background="#FBF7D5" FontSize="20" MouseEnter="AddItemGrade3Btn_MouseEnter" MouseLeave="AddItemGrade3Btn_MouseLeave"/>
+                    <Button x:Name="GradeNewItems2Btn" Command="{Binding AddItemCommand}" CommandParameter = "2" IsEnabled="{Binding IsItemReadyToAdd}"
+                            Content="2" Grid.Row="4" Grid.Column="1" BorderThickness="0.5" Background="#F9DED7" FontSize="20" MouseEnter="AddItemGrade2Btn_MouseEnter" MouseLeave="AddItemGrade2Btn_MouseLeave"/>
+                    <Button x:Name="NGradeNewItems1Btn" Command="{Binding AddItemCommand}" CommandParameter = "1" IsEnabled="{Binding IsItemReadyToAdd}"
+                            Content="1" Grid.Row="5" Grid.Column="1" BorderThickness="0.5" Background="#F5CDDE" FontSize="20" MouseEnter="AddItemGrade1Btn_MouseEnter" MouseLeave="AddItemGrade1Btn_MouseLeave"/>
+                    <Button x:Name="GradeNewItems0Btn" Command="{Binding AddItemCommand}" CommandParameter = "0" IsEnabled="{Binding IsItemReadyToAdd}"
+                            Content="0" Grid.Row="6" Grid.Column="1" BorderThickness="0.5" Background="#E2BEF1" FontSize="20" MouseEnter="AddItemGrade0Btn_MouseEnter" MouseLeave="AddItemGrade0Btn_MouseLeave"/>
+                </Grid>
+
+                <Grid DockPanel.Dock="Left" Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="6*" />
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="6*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="8*" />
+                        <ColumnDefinition Width="1*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label x:Name="GradeNewItemsEnterQuestionLabel" Grid.Row="0" Content="{StaticResource EnterQuestion}" MouseEnter="EnterQuestionLabel_MouseEnter" MouseLeave="EnterQuestionLabel_MouseLeave" />
+                    <TextBox Text="{Binding Path=NewItemQuestion, UpdateSourceTrigger=PropertyChanged}" x:Name="GradeNewItemsQuestionTb" Grid.Row="1" BorderThickness="0.5"
+                             TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" MouseEnter="NewItemQuestionTb_MouseEnter" MouseLeave="NewItemQuestionTb_MouseLeave">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="TextChanged">
+                                <i:InvokeCommandAction Command="{Binding CheckIfItemReadyToAdd}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </TextBox>
+
+                    <Label x:Name="GradeNewItemsEnterAnswerLabel" Grid.Row="2" Content="{StaticResource EnterAnswer}" MouseEnter="EnterAnswerLabel_MouseEnter" MouseLeave="EnterAnswerLabel_MouseLeave"/>
+                    <TextBox Text="{Binding Path=NewItemAnswer, UpdateSourceTrigger=PropertyChanged}" x:Name="GradeNewItemsAnswerTb" Grid.Row="3" BorderThickness="0.5"
                              TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" MouseEnter="NewItemAnswerTb_MouseEnter" MouseLeave="NewItemAnswerTb_MouseLeave">
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="TextChanged">

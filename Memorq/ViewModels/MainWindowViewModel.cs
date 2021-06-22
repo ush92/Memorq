@@ -52,6 +52,16 @@ namespace Memorq.ViewModels
                 OnPropertyChanged(nameof(ForceMode));
             }
         }
+        private Visibility _gradeNewItemsMode;
+        public Visibility GradeNewItemsMode
+        {
+            get => _gradeNewItemsMode;
+            set
+            {
+                _gradeNewItemsMode = value;
+                OnPropertyChanged(nameof(GradeNewItemsMode));
+            }
+        }
 
         private Category _defaultCategory;
         public Category DefaultCategory
@@ -191,6 +201,7 @@ namespace Memorq.ViewModels
 
             AddItemMode = Visibility.Collapsed;
             ForceMode = Visibility.Collapsed;
+            GradeNewItemsMode = Visibility.Collapsed;
             ResetPanels();
         });
 
@@ -200,6 +211,7 @@ namespace Memorq.ViewModels
 
             MainViewMode = Visibility.Collapsed;
             ForceMode = Visibility.Collapsed;
+            GradeNewItemsMode = Visibility.Collapsed;
             ResetPanels();
         });
 
@@ -257,6 +269,7 @@ namespace Memorq.ViewModels
 
                 MainViewMode = Visibility.Collapsed;
                 AddItemMode = Visibility.Collapsed;
+                GradeNewItemsMode = Visibility.Collapsed;
                 ResetPanels();
 
                 _forceItemSet = _itemService.GetItems(DefaultCategory.Id);
@@ -289,6 +302,30 @@ namespace Memorq.ViewModels
                 appName, MessageBoxButton.OK, MessageBoxImage.Information);
 
                 ShowMainPanel.Execute(null);
+            }
+        });
+
+        public ICommand ShowGradeNewItemsMode => new RelayCommand(_ =>
+        {
+            if (_itemService.GetItems(DefaultCategory.Id).Count == 0)
+            {
+                MessageBox.Show(_stringResourcesDictionary.GetResource("MsgNoItemsInCategory"),
+                                appName, MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else
+            {
+                GradeNewItemsMode = Visibility.Visible;
+
+                MainViewMode = Visibility.Collapsed;
+                AddItemMode = Visibility.Collapsed;
+                ForceMode = Visibility.Collapsed;
+                ResetPanels();
+
+                _forceItemSet = _itemService.GetItems(DefaultCategory.Id);
+                ForcePanelNextItem.Execute(null);
+
+                MessageBox.Show("grade new items",
+                                appName, MessageBoxButton.OK, MessageBoxImage.Information);
             }
         });
 
