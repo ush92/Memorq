@@ -2,6 +2,7 @@
 using SQLite;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Memorq.Services
 {
@@ -25,11 +26,10 @@ namespace Memorq.Services
         {
             var today = DateTime.Today;
             using SQLiteConnection connection = new SQLiteConnection(App.databasePath);
-            return connection.Table<Item>()
-                .Where(c => c.CategoryId.Equals(categoryId))
-                .Where(c => c.Repetition == 0 ||
-                      (c.LastRepetitionDate.HasValue && c.LastRepetitionDate.Value.AddDays(c.Interval) <= today))
-                .ToList();
+            var items = connection.Table<Item>().Where(c => c.CategoryId.Equals(categoryId)).OrderBy(c => c.Question).ToList();
+            return items.Where(c => c.Repetition == 0 ||
+                              (c.LastRepetitionDate.HasValue && c.LastRepetitionDate.Value.AddDays(c.Interval) <= today))
+                              .ToList();
         }
 
         public Item GetRandomItem(int categoryId)

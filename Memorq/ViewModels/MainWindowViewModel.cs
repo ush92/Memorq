@@ -73,10 +73,47 @@ namespace Memorq.ViewModels
                 OnPropertyChanged(nameof(DefaultCategory));
                 OnPropertyChanged(nameof(DefaultCategoryName));
                 OnPropertyChanged(nameof(IsDefaultCategoryChoosen));
+
+                OnPropertyChanged(nameof(AllItemsCount));
+                OnPropertyChanged(nameof(NoGradeItemsCount));
+                OnPropertyChanged(nameof(ToRepetitionItemsCount));
             }
         }
         public string DefaultCategoryName => DefaultCategory?.Name ?? _stringResourcesDictionary.GetResource("DefaultCategoryNotChosen");
         public bool IsDefaultCategoryChoosen => DefaultCategory != null;
+        public int AllItemsCount
+        {
+            get
+            {
+                if (IsDefaultCategoryChoosen)
+                {
+                    return _itemService.GetItems(DefaultCategory.Id).Count;
+                }
+                else return 0;
+            }
+        }
+        public int NoGradeItemsCount
+        {
+            get
+            {
+                if (IsDefaultCategoryChoosen)
+                {
+                    return _itemService.GetItemsWithoutGrade(DefaultCategory.Id).Count;
+                }
+                else return 0;
+            }
+        }
+        public int ToRepetitionItemsCount
+        {
+            get
+            {
+                if (IsDefaultCategoryChoosen)
+                {
+                    return _itemService.GetItemsForTodayRepetition(DefaultCategory.Id).Count;
+                }
+                else return 0;
+            }
+        }
 
         private string _newItemQuestion;
         public string NewItemQuestion
@@ -132,7 +169,6 @@ namespace Memorq.ViewModels
             }
         }
 
-
         private void InitDefaultCategory()
         {
             DefaultCategory = _categoryService.GetCategory(UserSettings.Default.DefaultCategory);
@@ -154,6 +190,11 @@ namespace Memorq.ViewModels
 
             InitDefaultCategory();
             ShowMainPanel.Execute(null);
+
+            _itemService.GetItemsForTodayRepetition(100);
+
+            //MessageBox.Show(_itemService.GetItemsForTodayRepetition(DefaultCategory.Id).Count.ToString(),
+            //    appName, MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         public ICommand ShowCategoryManagerCommand => new RelayCommand(_ =>

@@ -82,9 +82,9 @@
                         <ColumnDefinition Width="1*" />
                         <ColumnDefinition Width="1*" />
                     </Grid.ColumnDefinitions>
-                    <Label x:Name="CategoryStatsLabel1" Grid.Column="0" Content="10000" FontSize="11" Width="110" Height="30" MouseEnter="CategoryStatsLabel_MouseEnter" MouseLeave="CategoryStatsLabel_MouseLeave" />
-                    <Label x:Name="CategoryStatsLabel2" Grid.Column="1" Content="10000" FontSize="11" Width="110" Height="30" MouseEnter="CategoryStatsLabel_MouseEnter" MouseLeave="CategoryStatsLabel_MouseLeave" />
-                    <Label x:Name="CategoryStatsLabel3" Grid.Column="2" Content="10000" FontSize="11" Width="110" Height="30" MouseEnter="CategoryStatsLabel_MouseEnter" MouseLeave="CategoryStatsLabel_MouseLeave" />
+                    <Label Content="{Binding Path=AllItemsCount}" x:Name="CategoryStatsLabel1" Grid.Column="0"  FontSize="11" Width="110" Height="30" MouseEnter="CategoryStatsLabel_MouseEnter" MouseLeave="CategoryStatsLabel_MouseLeave" />
+                    <Label Content="{Binding Path=NoGradeItemsCount}" x:Name="CategoryStatsLabel2" Grid.Column="1" FontSize="11" Width="110" Height="30" MouseEnter="CategoryStatsLabel_MouseEnter" MouseLeave="CategoryStatsLabel_MouseLeave" />
+                    <Label Content="{Binding Path=ToRepetitionItemsCount}" x:Name="CategoryStatsLabel3" Grid.Column="2" FontSize="11" Width="110" Height="30" MouseEnter="CategoryStatsLabel_MouseEnter" MouseLeave="CategoryStatsLabel_MouseLeave" />
                 </Grid>
                 <Button x:Name="DefaultCategoryLabel" Content="{Binding Path=DefaultCategoryName}" Command="{Binding ShowCategoryManagerCommand}" DockPanel.Dock="Right" Width="204" Height="25" BorderThickness="0"/>
                 <Label x:Name="TooltipLabel" DockPanel.Dock="Left" Content="tooltip" Height="30"  />
