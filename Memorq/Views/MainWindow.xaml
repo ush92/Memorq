@@ -105,7 +105,7 @@
                         <ColumnDefinition Width="8*" />
                         <ColumnDefinition Width="1*" />
                     </Grid.ColumnDefinitions>
-                    <Button Grid.Row="0" Grid.Column="1" IsEnabled="{Binding Path=IsDefaultCategoryChoosen}" MouseEnter="LearnBtn_MouseEnter" MouseLeave="LearnBtn_MouseLeave" BorderThickness="0.5">
+                    <Button Command="{Binding ShowLearnPanel}" Grid.Row="0" Grid.Column="1" IsEnabled="{Binding Path=IsDefaultCategoryChoosen}" MouseEnter="LearnBtn_MouseEnter" MouseLeave="LearnBtn_MouseLeave" BorderThickness="0.5">
                         <StackPanel>
                             <Image Source="{StaticResource LearnBtn_right_img}" Width="50" Height="50"/>
                             <TextBlock Text="{StaticResource LearnBtn_right}" FontSize="12" HorizontalAlignment="Center"></TextBlock>
@@ -117,7 +117,7 @@
                             <TextBlock Text="{StaticResource AddBtn_right}" FontSize="12" HorizontalAlignment="Center"></TextBlock>
                         </StackPanel>
                     </Button>
-                    <Button Command="{Binding ShowGradeNewItemsMode}" Grid.Row="2" Grid.Column="1" IsEnabled="{Binding Path=IsDefaultCategoryChoosen}" MouseEnter="NewBtn_MouseEnter" MouseLeave="NewBtn_MouseLeave" BorderThickness="0.5">
+                    <Button Command="{Binding ShowGradeNewItemsPanel}" Grid.Row="2" Grid.Column="1" IsEnabled="{Binding Path=IsDefaultCategoryChoosen}" MouseEnter="NewBtn_MouseEnter" MouseLeave="NewBtn_MouseLeave" BorderThickness="0.5">
                         <StackPanel>
                             <Image Source="{StaticResource NewBtn_right_img}" Width="50" Height="50"/>
                             <TextBlock Text="{StaticResource NewBtn_right}" FontSize="12" HorizontalAlignment="Center"></TextBlock>
@@ -295,25 +295,107 @@
                     <Label x:Name="GradeNewItemsEnterQuestionLabel" Grid.Row="0" Content="{StaticResource Question}" MouseEnter="EnterQuestionLabel_MouseEnter" MouseLeave="EnterQuestionLabel_MouseLeave" />
                     <TextBox Text="{Binding Path=ToGradeQuestion, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" x:Name="GradeNewItemsQuestionTb" Grid.Row="1" BorderThickness="0.5"
                              TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" MouseEnter="NewItemQuestionTb_MouseEnter" MouseLeave="NewItemQuestionTb_MouseLeave">
-                        <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="TextChanged">
-                                <i:InvokeCommandAction Command="{Binding CheckIfItemReadyToAdd}"/>
-                            </i:EventTrigger>
-                        </i:Interaction.Triggers>
                     </TextBox>
 
                     <Label x:Name="GradeNewItemsEnterAnswerLabel" Grid.Row="2" Content="{StaticResource Answer}" MouseEnter="EnterAnswerLabel_MouseEnter" MouseLeave="EnterAnswerLabel_MouseLeave"/>
                     <TextBox Text="{Binding Path=ToGradeAnswer, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" x:Name="GradeNewItemsAnswerTb" Grid.Row="3" BorderThickness="0.5"
                              TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" MouseEnter="NewItemAnswerTb_MouseEnter" MouseLeave="NewItemAnswerTb_MouseLeave">
-                        <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="TextChanged">
-                                <i:InvokeCommandAction Command="{Binding CheckIfItemReadyToAdd}"/>
-                            </i:EventTrigger>
-                        </i:Interaction.Triggers>
                     </TextBox>
                 </Grid>
             </Grid>
+            
+            <Grid Visibility="{Binding Path=LearnMode}">
+                <!-- Visibility="Collapsed" Visibility="{Binding Path=LearnMode}"> -->
 
+                <Grid Visibility="{Binding Path=LearnModeAnswerPanel}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2*" />
+                        <RowDefinition Height="3*" />
+                        <RowDefinition Height="4*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="8*" />
+                        <ColumnDefinition Width="1*" />
+                    </Grid.ColumnDefinitions>
+                    <Button x:Name="LearnMode_BackToMainViewBtn1" Command="{Binding ShowMainPanel}" Grid.Row="0" Grid.Column="1" BorderThickness="0.5">
+                        <StackPanel>
+                            <Image Source="{StaticResource BackToMainPanel_img}" Width="25" Height="25"/>
+                            <TextBlock Text="{StaticResource Quit}" FontSize="12" HorizontalAlignment="Center"></TextBlock>
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="LearnMode_TipBtn" Command="{Binding LearnModeShowTip}" Grid.Row="1" Grid.Column="1" BorderThickness="0.5">
+                        <StackPanel>
+                            <Image Source="{StaticResource Tip_img}" Width="23" Height="23"/>
+                            <TextBlock Text="{StaticResource Tip}" FontSize="12" HorizontalAlignment="Center"></TextBlock>
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="LearnMode_ShowAnswerBtn" Command="{Binding LearnModeShowAnswer}" Grid.Row="2" Grid.Column="1" BorderThickness="0.5">
+                        <StackPanel>
+                            <Image Source="{StaticResource OK_img}" Width="25" Height="25"/>
+                            <TextBlock Text="{StaticResource ShowAnswer}" TextWrapping="Wrap" TextAlignment="Center" Width="75"/>
+                        </StackPanel>
+                    </Button>
+                </Grid>
+
+                <Grid Visibility="{Binding Path=LearnModeGradesPanel}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="8*" />
+                        <RowDefinition Height="10*" />
+                        <RowDefinition Height="9*" />
+                        <RowDefinition Height="8*" />
+                        <RowDefinition Height="7*" />
+                        <RowDefinition Height="6*" />
+                        <RowDefinition Height="5*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="8*" />
+                        <ColumnDefinition Width="1*" />
+                    </Grid.ColumnDefinitions>
+                    <Button x:Name="LearnMode_BackToMainViewBtn2" Command="{Binding ShowMainPanel}" Grid.Row="0" Grid.Column="1" BorderThickness="0.5" MouseEnter="AddItem_BackToMainViewBtn_MouseEnter" MouseLeave="AddItem_BackToMainViewBtn_MouseLeave">
+                        <StackPanel>
+                            <Image Source="{StaticResource BackToMainPanel_img}" Width="30" Height="30"/>
+                            <TextBlock Text="{StaticResource Quit}" FontSize="12" HorizontalAlignment="Center"></TextBlock>
+                        </StackPanel>
+                    </Button>
+
+                    <Button x:Name="LearnMode5Btn" Command="{Binding LearnModeGradeCommand}" CommandParameter = "5" 
+                            Content="5" Grid.Row="1" Grid.Column="1" BorderThickness="0.5" Background="#CCE1F2" FontSize="20" MouseEnter="AddItemGrade5Btn_MouseEnter" MouseLeave="AddItemGrade5Btn_MouseLeave"/>
+                    <Button x:Name="LearnMode4Btn" Command="{Binding LearnModeGradeCommand}" CommandParameter = "4" 
+                            Content="4" Grid.Row="2" Grid.Column="1" BorderThickness="0.5" Background="#C6F8E5" FontSize="20" MouseEnter="AddItemGrade4Btn_MouseEnter" MouseLeave="AddItemGrade4Btn_MouseLeave"/>
+                    <Button x:Name="LearnMode3Btn" Command="{Binding LearnModeGradeCommand}" CommandParameter = "3" 
+                            Content="3" Grid.Row="3" Grid.Column="1" BorderThickness="0.5" Background="#FBF7D5" FontSize="20" MouseEnter="AddItemGrade3Btn_MouseEnter" MouseLeave="AddItemGrade3Btn_MouseLeave"/>
+                    <Button x:Name="LearnMode2Btn" Command="{Binding LearnModeGradeCommand}" CommandParameter = "2" 
+                            Content="2" Grid.Row="4" Grid.Column="1" BorderThickness="0.5" Background="#F9DED7" FontSize="20" MouseEnter="AddItemGrade2Btn_MouseEnter" MouseLeave="AddItemGrade2Btn_MouseLeave"/>
+                    <Button x:Name="LearnMode1Btn" Command="{Binding LearnModeGradeCommand}" CommandParameter = "1" 
+                            Content="1" Grid.Row="5" Grid.Column="1" BorderThickness="0.5" Background="#F5CDDE" FontSize="20" MouseEnter="AddItemGrade1Btn_MouseEnter" MouseLeave="AddItemGrade1Btn_MouseLeave"/>
+                    <Button x:Name="LearnMode0Btn" Command="{Binding LearnModeGradeCommand}" CommandParameter = "0" 
+                            Content="0" Grid.Row="6" Grid.Column="1" BorderThickness="0.5" Background="#E2BEF1" FontSize="20" MouseEnter="AddItemGrade0Btn_MouseEnter" MouseLeave="AddItemGrade0Btn_MouseLeave"/>
+                </Grid>
+
+                <Grid DockPanel.Dock="Left" Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="6*" />
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="6*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="8*" />
+                        <ColumnDefinition Width="1*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label x:Name="LearnModeEnterQuestionLabel" Grid.Row="0" Content="{StaticResource Question}" MouseEnter="EnterQuestionLabel_MouseEnter" MouseLeave="EnterQuestionLabel_MouseLeave" />
+                    <TextBox Text="{Binding Path=LearnQuestion, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" x:Name="LearnModeQuestionTb" Grid.Row="1" BorderThickness="0.5"
+                             TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" MouseEnter="EnterQuestionLabel_MouseEnter" MouseLeave="NewItemQuestionTb_MouseLeave">
+                    </TextBox>
+
+                    <Label x:Name="LearnModeEnterAnswerLabel" Grid.Row="2" Content="{StaticResource Answer}" MouseEnter="EnterQuestionLabel_MouseEnter" MouseLeave="EnterAnswerLabel_MouseLeave"/>
+                    <TextBox Text="{Binding Path=LearnAnswer, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" x:Name="LearnModeAnswerTb" Grid.Row="3" BorderThickness="0.5"
+                             TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" MouseEnter="NewItemAnswerTb_MouseEnter" MouseLeave="NewItemAnswerTb_MouseLeave">
+                    </TextBox>
+                </Grid>
+            </Grid>
+            
             <Grid Visibility="{Binding Path=ForceMode}">
                 <!-- Visibility="Collapsed" Visibility="{Binding Path=ForceMode}"> -->
                 <Grid>

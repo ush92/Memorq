@@ -22,6 +22,8 @@ namespace Memorq.ViewModels
 
         private Random random = new();
 
+        #region Visibility properties
+
         private Visibility _mainViewMode;
         public Visibility MainViewMode
         {
@@ -52,7 +54,7 @@ namespace Memorq.ViewModels
                 OnPropertyChanged(nameof(ForceMode));
             }
         }
-        
+
         private Visibility _gradeNewItemsMode;
         public Visibility GradeNewItemsMode
         {
@@ -83,6 +85,39 @@ namespace Memorq.ViewModels
                 OnPropertyChanged(nameof(GradeNewItemGradesPanel));
             }
         }
+
+        private Visibility _learnMode;
+        public Visibility LearnMode
+        {
+            get => _learnMode;
+            set
+            {
+                _learnMode = value;
+                OnPropertyChanged(nameof(LearnMode));
+            }
+        }
+        private Visibility _learnModeAnswerPanel;
+        public Visibility LearnModeAnswerPanel
+        {
+            get => _learnModeAnswerPanel;
+            set
+            {
+                _learnModeAnswerPanel = value;
+                OnPropertyChanged(nameof(LearnModeAnswerPanel));
+            }
+        }
+        private Visibility _learnModeGradesPanel;
+        public Visibility LearnModeGradesPanel
+        {
+            get => _learnModeGradesPanel;
+            set
+            {
+                _learnModeGradesPanel = value;
+                OnPropertyChanged(nameof(LearnModeGradesPanel));
+            }
+        }
+
+        #endregion
 
         private Category _defaultCategory;
         public Category DefaultCategory
@@ -213,6 +248,29 @@ namespace Memorq.ViewModels
             }
         }
 
+        private List<Item> _learnSet;
+        public Item LearnCurrentItem { get; set; }
+        private string _learnQuestion;
+        public string LearnQuestion
+        {
+            get => _learnQuestion;
+            set
+            {
+                _learnQuestion = value;
+                OnPropertyChanged(nameof(LearnQuestion));
+            }
+        }
+        private string _learnAnswer;
+        public string LearnAnswer
+        {
+            get => _learnAnswer;
+            set
+            {
+                _learnAnswer = value;
+                OnPropertyChanged(nameof(LearnAnswer));
+            }
+        }
+
         private void InitDefaultCategory()
         {
             DefaultCategory = _categoryService.GetCategory(UserSettings.Default.DefaultCategory);
@@ -282,7 +340,7 @@ namespace Memorq.ViewModels
             ResetPanels();
             MainViewMode = Visibility.Visible;
         });
-  
+
         public ICommand ShowAddItemPanel => new RelayCommand(_ =>
         {
             CollapsePanels();
@@ -327,7 +385,7 @@ namespace Memorq.ViewModels
 
             ResetPanels();
         });
-   
+
         public ICommand ShowForcePanel => new RelayCommand(_ =>
         {
             if (_itemService.GetItems(DefaultCategory.Id).Count == 0)
@@ -371,7 +429,7 @@ namespace Memorq.ViewModels
             }
         });
 
-        public ICommand ShowGradeNewItemsMode => new RelayCommand(_ =>
+        public ICommand ShowGradeNewItemsPanel => new RelayCommand(_ =>
         {
             if (_itemService.GetItemsWithoutGrade(DefaultCategory.Id).Count == 0)
             {
@@ -430,16 +488,104 @@ namespace Memorq.ViewModels
             GradeNewItemsNextItem.Execute(null);
         });
 
+        public ICommand ShowLearnPanel => new RelayCommand(_ =>
+        {
+            if (_itemService.GetItems(DefaultCategory.Id).Count == 0)
+            {
+                MessageBox.Show(_stringResourcesDictionary.GetResource("MsgNoItemsInCategory"),
+                                appName, MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else if (_itemService.GetItemsForTodayRepetition(DefaultCategory.Id).Count == 0)
+            {
+                MessageBox.Show(_stringResourcesDictionary.GetResource("MsgLearnModeAllItemsPassed"),
+                                appName, MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else
+            {
+                CollapsePanels();
+                ResetPanels();
+                LearnMode = Visibility.Visible;
+                LearnModeAnswerPanel = Visibility.Visible;
+
+                _learnSet = _itemService.GetItemsForTodayRepetition(DefaultCategory.Id);
+                LearnNextItem.Execute(null);
+            }
+        });
+        public ICommand LearnNextItem => new RelayCommand(_ =>
+        {
+            LearnCurrentItem = _learnSet.Skip(random.Next(0, _learnSet.Count)).FirstOrDefault();
+            if (LearnCurrentItem != null)
+            {
+                _learnSet.Remove(LearnCurrentItem);
+                LearnQuestion = LearnCurrentItem.Question;
+                LearnAnswer = string.Empty;
+
+                LearnModeAnswerPanel = Visibility.Visible;
+                LearnModeGradesPanel = Visibility.Collapsed;
+            }
+            else
+            {
+                _learnSet = _itemService.GetItemsForTodayRepetition(DefaultCategory.Id);
+                LearnCurrentItem = _learnSet.Skip(random.Next(0, _learnSet.Count)).FirstOrDefault();
+                if (LearnCurrentItem != null)
+                {
+                    _learnSet.Remove(LearnCurrentItem);
+                    LearnQuestion = LearnCurrentItem.Question;
+                    LearnAnswer = string.Empty;
+
+                    LearnModeAnswerPanel = Visibility.Visible;
+                    LearnModeGradesPanel = Visibility.Collapsed;
+                }
+                else
+                {
+                    MessageBox.Show(_stringResourcesDictionary.GetResource("MsgLearnModeAllItemsPassed"),
+                                appName, MessageBoxButton.OK, MessageBoxImage.Information);
+                    ShowMainPanel.Execute(null);
+                }
+            }
+        });
+        public ICommand LearnModeShowAnswer => new RelayCommand(_ =>
+        {
+            LearnAnswer = LearnCurrentItem.Answer;
+            LearnModeAnswerPanel = Visibility.Collapsed;
+            LearnModeGradesPanel = Visibility.Visible;
+        });
+        public ICommand LearnModeShowTip => new RelayCommand(_ =>
+        {
+            if (LearnAnswer.Equals(string.Empty))
+            {
+                LearnAnswer = LearnCurrentItem.Answer[0].ToString();
+            }
+        });
+        public ICommand LearnModeGradeCommand => new RelayCommand<string>(grade =>
+        {
+            _memorqCore.UpdateItemStats(LearnCurrentItem, Int32.Parse(grade));
+            _itemService.UpdateItem(LearnCurrentItem);
+            RefreshCategory();
+            LearnNextItem.Execute(null);
+        });
+
         private void ResetPanels()
         {
             RefreshCategory();
             NewItemQuestion = string.Empty;
             NewItemAnswer = string.Empty;
+            IsItemReadyToAdd = false;
+
             ForceQuestion = string.Empty;
             ForceAnswer = string.Empty;
             _forceItemSet = null;
             ForceCurrentItem = null;
-            IsItemReadyToAdd = false;
+
+            ToGradeQuestion = string.Empty;
+            ToGradeAnswer = string.Empty;
+            _itemsToGradeSet = null;
+            ToGradeCurrentItem = null;
+
+            LearnAnswer = string.Empty;
+            LearnQuestion = string.Empty;
+            _learnSet = null;
+            LearnCurrentItem = null;
         }
         private void RefreshCategory()
         {
@@ -450,9 +596,14 @@ namespace Memorq.ViewModels
             MainViewMode = Visibility.Collapsed;
             AddItemMode = Visibility.Collapsed;
             ForceMode = Visibility.Collapsed;
+
             GradeNewItemsMode = Visibility.Collapsed;
             GradeNewItemAnswerPanel = Visibility.Collapsed;
             GradeNewItemGradesPanel = Visibility.Collapsed;
+
+            LearnMode = Visibility.Collapsed;
+            LearnModeAnswerPanel = Visibility.Collapsed;
+            LearnModeGradesPanel = Visibility.Collapsed;
         }
     }
 }

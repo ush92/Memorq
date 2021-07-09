@@ -24,7 +24,7 @@ namespace Memorq.Services
 
         public List<Item> GetItemsForTodayRepetition(int categoryId)
         {
-            var today = DateTime.Today;
+            var today = DateTime.Now;
             using SQLiteConnection connection = new SQLiteConnection(App.databasePath);
             var items = connection.Table<Item>().Where(c => c.CategoryId.Equals(categoryId)).OrderBy(c => c.Question).ToList();
             return items.Where(c => c.Repetition == 0 ||

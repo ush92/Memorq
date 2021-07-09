@@ -33,7 +33,7 @@
     <system:String x:Key="MsgNoItemsToGradeInCategory">W wybranej kategorii nie ma pytań wymagających oceny</system:String>
     <system:String x:Key="MsgForceModeAllItemsPassed">Wszystkie elementy zostały powtórzone</system:String>
     <system:String x:Key="MsgItemsToGradeAllItemsPassed">Wszystkie nowe elementy zostały ocenione</system:String>
-
+    <system:String x:Key="MsgLearnModeAllItemsPassed">Wszystkie elementy wyznaczone na dziś zostały powtórzone</system:String>
 
     <!-- Category Manager -->
     <system:String x:Key="ChooseCategory">Wybierz kategorię</system:String>
