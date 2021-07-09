@@ -148,16 +148,28 @@ namespace Memorq.Tests.ViewModels
             mainWindowViewModel.ForceAnswer.Should().Be(mainWindowViewModel.ForceCurrentItem.Answer);
         }
 
-        //[Fact]
-        //public void ShowCategoryManagerCommandShouldSetDefaultCategory()
-        //{
-        //    //_windowFactory.Setup()
-        //    var mainWindowViewModel = new MainWindowViewModel(_categoryService.Object, _itemService.Object, _windowFactory.Object, _stringResourcesDictionary.Object);
-        //    mainWindowViewModel.ShowCategoryManagerCommand.Execute(null);
+        [Fact]
+        public void IfGradeNewItemShowAnswerButtonIsClickedThenGradePanelIsVisible()
+        {
+            var mainWindowViewModel = new MainWindowViewModel(_categoryService.Object, _itemService.Object, _memorqCore.Object,
+                                                              _windowFactory.Object, _stringResourcesDictionary.Object);
 
+            mainWindowViewModel.ToGradeCurrentItem = fixture.Create<Item>();
+            mainWindowViewModel.GradeNewItemGradesPanel = Visibility.Collapsed;
+            mainWindowViewModel.GradeNewItemsShowAnswer.Execute(null);
+            mainWindowViewModel.GradeNewItemGradesPanel.Should().Be(Visibility.Visible);
+        }
 
-        //    mainWindowViewModel.DefaultCategory.Should().Be(10);
+        [Fact]
+        public void IfGradeNewItemShowAnswerButtonIsClickedThenAnswerIsVisible()
+        {
+            var mainWindowViewModel = new MainWindowViewModel(_categoryService.Object, _itemService.Object, _memorqCore.Object,
+                                                              _windowFactory.Object, _stringResourcesDictionary.Object);
 
-        //}
+            mainWindowViewModel.ToGradeCurrentItem = fixture.Create<Item>();
+            mainWindowViewModel.ToGradeAnswer = string.Empty;
+            mainWindowViewModel.GradeNewItemsShowAnswer.Execute(null);
+            mainWindowViewModel.ToGradeAnswer.Should().Be(mainWindowViewModel.ToGradeCurrentItem.Answer);
+        }
     }
 }

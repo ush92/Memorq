@@ -231,13 +231,13 @@
                             <TextBlock Text="{StaticResource Quit}" FontSize="12" HorizontalAlignment="Center"></TextBlock>
                         </StackPanel>
                     </Button>
-                    <Button x:Name="GradeNewItems_TipBtn" Command="{Binding ToGradePanelShowTip}" Grid.Row="1" Grid.Column="1" BorderThickness="0.5">
+                    <Button x:Name="GradeNewItems_TipBtn" Command="{Binding GradeNewItemsShowTip}" Grid.Row="1" Grid.Column="1" BorderThickness="0.5">
                         <StackPanel>
                             <Image Source="{StaticResource Tip_img}" Width="23" Height="23"/>
                             <TextBlock Text="{StaticResource Tip}" FontSize="12" HorizontalAlignment="Center"></TextBlock>
                         </StackPanel>
                     </Button>
-                    <Button x:Name="GradeNewItems_ShowAnswerBtn" Command="{Binding ToGradePanelShowAnswer}" Grid.Row="2" Grid.Column="1" BorderThickness="0.5">
+                    <Button x:Name="GradeNewItems_ShowAnswerBtn" Command="{Binding GradeNewItemsShowAnswer}" Grid.Row="2" Grid.Column="1" BorderThickness="0.5">
                         <StackPanel>
                             <Image Source="{StaticResource OK_img}" Width="25" Height="25"/>
                             <TextBlock Text="{StaticResource ShowAnswer}" TextWrapping="Wrap" TextAlignment="Center" Width="75"/>

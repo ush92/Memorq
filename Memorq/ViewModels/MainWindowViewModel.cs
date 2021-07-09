@@ -409,13 +409,13 @@ namespace Memorq.ViewModels
                 ShowMainPanel.Execute(null);
             }
         });
-        public ICommand ToGradePanelShowAnswer => new RelayCommand(_ =>
+        public ICommand GradeNewItemsShowAnswer => new RelayCommand(_ =>
         {
             ToGradeAnswer = ToGradeCurrentItem.Answer;
             GradeNewItemAnswerPanel = Visibility.Collapsed;
             GradeNewItemGradesPanel = Visibility.Visible;
         });
-        public ICommand ToGradePanelShowTip => new RelayCommand(_ =>
+        public ICommand GradeNewItemsShowTip => new RelayCommand(_ =>
         {
             if (ToGradeAnswer.Equals(string.Empty))
             {
