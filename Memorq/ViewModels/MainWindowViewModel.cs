@@ -331,6 +331,13 @@ namespace Memorq.ViewModels
             importExport.ShowDialog();
             RefreshCategory();
         });
+        public ICommand ShowHardItemsCommand => new RelayCommand(_ => 
+        {
+            var hardItemsDialog = _windowFactory.CreateWindow<HardItems>();
+            var hardItemsViewModel = (HardItemsViewModel)hardItemsDialog.DataContext;
+            hardItemsViewModel.ItemList = _itemService.GetHardItems(DefaultCategory.Id);
+            hardItemsDialog.ShowDialog();
+        });
         public ICommand ShowSettingsCommand => new RelayCommand(_ => _windowFactory.CreateWindow<SettingsWindow>().ShowDialog());
         public ICommand ShowMarkDescriptionCommand => new RelayCommand(_ => _windowFactory.CreateWindow<MarkDescription>().ShowDialog());
         public ICommand ShowAboutCommand => new RelayCommand(_ => _windowFactory.CreateWindow<About>().ShowDialog());

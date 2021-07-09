@@ -7,6 +7,10 @@
         mc:Ignorable="d"
         Icon="../../Images/mark.png"
         Title="{StaticResource MarkDescription}" Height="330" Width="560" ResizeMode="NoResize">
+
+    <Window.InputBindings>
+        <KeyBinding Command="{Binding CloseWindowCommand}" Key="Esc"/>
+    </Window.InputBindings>
     <Grid>
         <Label Content="{StaticResource MarkDescription}" HorizontalAlignment="Left" Margin="10,17,0,0" VerticalAlignment="Top" Width="510"/>
         <Label Content="{StaticResource Mark5}" HorizontalAlignment="Left" Margin="10,48,0,0" VerticalAlignment="Top" Width="510" Background="#CCE1F2"/>

@@ -31,7 +31,13 @@ namespace Memorq.Services
                               (c.LastRepetitionDate.HasValue && c.LastRepetitionDate.Value.AddDays(c.Interval) <= today))
                               .ToList();
         }
-
+        public List<Item> GetHardItems(int categoryId)
+        {
+            using SQLiteConnection connection = new SQLiteConnection(App.databasePath);
+            return connection.Table<Item>()
+                .Where(c => c.CategoryId.Equals(categoryId) && c.EFactor <= 2.0)
+                .ToList();
+        }
         public Item GetRandomItem(int categoryId)
         {
             var random = new Random();

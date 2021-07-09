@@ -51,6 +51,10 @@
     <system:String x:Key="Import">Importuj pytania z pliku</system:String>
     <system:String x:Key="Export">Eksportuj pytania do pliku</system:String>
 
+    <!-- Hard Items -->
+    <system:String x:Key="HardItemsDescription">Lista elementów sprawiających szczególną trudność</system:String>
+    
+    
     <!-- Settings -->
     <system:String x:Key="Settings_ShowTimer">Pokazuj czas odpowiedzi</system:String>
     <system:String x:Key="Settings_ReverseMode">Tryb odwrotny - zamienia pytanie z odpowiedzią</system:String>

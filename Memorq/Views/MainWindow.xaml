@@ -42,12 +42,12 @@
                 </MenuItem>
             </MenuItem>
             <MenuItem Header="{StaticResource Menu_Stats}">
-                <MenuItem Header="{StaticResource Menu_Stats_Schedule}" Command="{Binding ShowAboutCommand}">
+                <MenuItem Header="{StaticResource Menu_Stats_Schedule}" Command="{Binding ShowAboutCommand}" IsEnabled="{Binding Path=IsDefaultCategoryChoosen}">
                     <MenuItem.Icon>
                         <Image Source="{StaticResource Schedule_img}"/>
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem Header="{StaticResource Menu_Stats_HardItems}" Command="{Binding ShowAboutCommand}">
+                <MenuItem Header="{StaticResource Menu_Stats_HardItems}" Command="{Binding ShowHardItemsCommand}" IsEnabled="{Binding Path=IsDefaultCategoryChoosen}">
                     <MenuItem.Icon>
                         <Image Source="{StaticResource HardItems_img}"/>
                     </MenuItem.Icon>
@@ -303,7 +303,7 @@
                     </TextBox>
                 </Grid>
             </Grid>
-            
+
             <Grid Visibility="{Binding Path=LearnMode}">
                 <!-- Visibility="Collapsed" Visibility="{Binding Path=LearnMode}"> -->
 
@@ -395,7 +395,7 @@
                     </TextBox>
                 </Grid>
             </Grid>
-            
+
             <Grid Visibility="{Binding Path=ForceMode}">
                 <!-- Visibility="Collapsed" Visibility="{Binding Path=ForceMode}"> -->
                 <Grid>

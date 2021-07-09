@@ -7,7 +7,10 @@
         mc:Ignorable="d"
         Icon="../Images/settings.png"
         Title="{StaticResource Menu_Options_Settings}" Height="175" Width="380" ResizeMode="NoResize">
-
+    
+    <Window.InputBindings>
+        <KeyBinding Command="{Binding CloseWindowCommand}" Key="Esc"/>
+    </Window.InputBindings>
     <Grid>
         <Button Content="OK" HorizontalAlignment="Left" Margin="103,87,0,0" VerticalAlignment="Top" Width="67" />
         <Button Content="{StaticResource Cancel}" IsCancel="true" HorizontalAlignment="Left" Margin="190,87,0,0" VerticalAlignment="Top" Width="67" />
