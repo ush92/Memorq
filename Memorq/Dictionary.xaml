@@ -30,8 +30,10 @@
     <system:String x:Key="MsgExportError">Wystąpił problem z zapisem pliku</system:String>
     <system:String x:Key="MsgExportSuccess">Elementy zostały poprawnie wyeksportowane</system:String>
     <system:String x:Key="MsgNoItemsInCategory">W wybranej kategorii nie ma pytań. Dodaj pytania, aby kontynuować</system:String>
+    <system:String x:Key="MsgNoItemsToGradeInCategory">W wybranej kategorii nie ma pytań wymagających oceny</system:String>
     <system:String x:Key="MsgForceModeAllItemsPassed">Wszystkie elementy zostały powtórzone</system:String>
-    
+    <system:String x:Key="MsgItemsToGradeAllItemsPassed">Wszystkie nowe elementy zostały ocenione</system:String>
+
 
     <!-- Category Manager -->
     <system:String x:Key="ChooseCategory">Wybierz kategorię</system:String>
