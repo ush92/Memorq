@@ -12,7 +12,8 @@
     <system:String x:Key="Tip">Podpowiedź</system:String>
     <system:String x:Key="ShowAnswer">Pokaż odpowiedź</system:String>
     <system:String x:Key="Next">Następne</system:String>
-
+    <system:String x:Key="Date">Data</system:String>
+    
     <!-- Messages and verification labels -->
     <system:String x:Key="MsgCategoryDuplicate">Kategoria o podanej nazwie istnieje już w bazie kategorii</system:String>
     <system:String x:Key="MsgCategoryNoName">Nazwa kategorii nie może być pusta</system:String>
@@ -51,10 +52,13 @@
     <system:String x:Key="Import">Importuj pytania z pliku</system:String>
     <system:String x:Key="Export">Eksportuj pytania do pliku</system:String>
 
+    <!-- Schedule -->
+    <system:String x:Key="ScheduleDescription">Lista powtórek na najbliższe 30 dni</system:String>
+    <system:String x:Key="Schedule_ItemsCount">Ilość elementów do powtórki</system:String>
+
     <!-- Hard Items -->
     <system:String x:Key="HardItemsDescription">Lista elementów sprawiających szczególną trudność</system:String>
-    
-    
+      
     <!-- Settings -->
     <system:String x:Key="Settings_ShowTimer">Pokazuj czas odpowiedzi</system:String>
     <system:String x:Key="Settings_ReverseMode">Tryb odwrotny - zamienia pytanie z odpowiedzią</system:String>

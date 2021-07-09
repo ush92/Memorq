@@ -42,7 +42,7 @@
                 </MenuItem>
             </MenuItem>
             <MenuItem Header="{StaticResource Menu_Stats}">
-                <MenuItem Header="{StaticResource Menu_Stats_Schedule}" Command="{Binding ShowAboutCommand}" IsEnabled="{Binding Path=IsDefaultCategoryChoosen}">
+                <MenuItem Header="{StaticResource Menu_Stats_Schedule}" Command="{Binding ShowScheduleCommand}" IsEnabled="{Binding Path=IsDefaultCategoryChoosen}">
                     <MenuItem.Icon>
                         <Image Source="{StaticResource Schedule_img}"/>
                     </MenuItem.Icon>

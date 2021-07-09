@@ -331,6 +331,26 @@ namespace Memorq.ViewModels
             importExport.ShowDialog();
             RefreshCategory();
         });
+        public ICommand ShowScheduleCommand => new RelayCommand(_ =>
+        {
+            var scheduleDialog = _windowFactory.CreateWindow<Schedule>();
+            var scheduleViewModel = (ScheduleViewModel)scheduleDialog.DataContext;
+            var allItems = _itemService.GetItems(DefaultCategory.Id);
+            var scheduleList = new List<ScheduleDay>();
+
+            for(int i = 1; i<= 30; i++)
+            {
+                var scheduleDay = new ScheduleDay()
+                {
+                    Date = DateTime.Today.AddDays(i).ToString("dd.MM.yyyy"),
+                    Count = _itemService.GetItemsForRepetitionByDate(DefaultCategory.Id, DateTime.Today.AddDays(i)).Count
+                };
+                scheduleList.Add(scheduleDay);
+            }
+
+            scheduleViewModel.ItemList = scheduleList;
+            scheduleDialog.ShowDialog();
+        });
         public ICommand ShowHardItemsCommand => new RelayCommand(_ => 
         {
             var hardItemsDialog = _windowFactory.CreateWindow<HardItems>();

@@ -24,13 +24,24 @@ namespace Memorq.Services
 
         public List<Item> GetItemsForTodayRepetition(int categoryId)
         {
-            var today = DateTime.Now;
+            var today = DateTime.Today;
             using SQLiteConnection connection = new SQLiteConnection(App.databasePath);
             var items = connection.Table<Item>().Where(c => c.CategoryId.Equals(categoryId)).OrderBy(c => c.Question).ToList();
             return items.Where(c => c.Repetition == 0 ||
                               (c.LastRepetitionDate.HasValue && c.LastRepetitionDate.Value.AddDays(c.Interval) <= today))
                               .ToList();
         }
+
+        public List<Item> GetItemsForRepetitionByDate(int categoryId, DateTime date)
+        {
+            using SQLiteConnection connection = new SQLiteConnection(App.databasePath);
+            var items = connection.Table<Item>().Where(c => c.CategoryId.Equals(categoryId)).OrderBy(c => c.Question).ToList();
+            return items.Where(c => c.Interval > 0 &&
+                              (c.LastRepetitionDate.HasValue &&
+                              (date - c.LastRepetitionDate.Value.AddDays(c.Interval)).Days == 0))
+                              .ToList();
+        }
+
         public List<Item> GetHardItems(int categoryId)
         {
             using SQLiteConnection connection = new SQLiteConnection(App.databasePath);
