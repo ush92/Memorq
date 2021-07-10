@@ -358,7 +358,10 @@ namespace Memorq.ViewModels
             hardItemsViewModel.ItemList = _itemService.GetHardItems(DefaultCategory.Id);
             hardItemsDialog.ShowDialog();
         });
-        public ICommand ShowSettingsCommand => new RelayCommand(_ => _windowFactory.CreateWindow<SettingsWindow>().ShowDialog());
+        public ICommand ShowSettingsCommand => new RelayCommand(_ =>
+        {
+            //_windowFactory.CreateWindow<SettingsWindow>().ShowDialog();        
+        });
         public ICommand ShowMarkDescriptionCommand => new RelayCommand(_ => _windowFactory.CreateWindow<MarkDescription>().ShowDialog());
         public ICommand ShowAboutCommand => new RelayCommand(_ => _windowFactory.CreateWindow<About>().ShowDialog());
         public ICommand ShowMainPanel => new RelayCommand(_ =>
