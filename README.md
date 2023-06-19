@@ -10,3 +10,6 @@ Memorq wykorzystuje algorytm SM-2:
 Algorithm SM-2, (C) Copyright SuperMemo World, 1991
 https://www.supermemo.com/pl
 http://supermemopedia.com/wiki/Licensing_SuperMemo_Algorithm
+
+![alt text](https://i.imgur.com/AftyK3M.png)
+![alt text](https://i.imgur.com/4VAjsj8.png)
